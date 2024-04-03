@@ -13,7 +13,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-echo "Connected to database successfully!";
+echo "";
 
 // Close connection (optional here, typically at the end of your script)
 

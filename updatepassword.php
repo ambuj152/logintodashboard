@@ -112,10 +112,11 @@ function onSignup() {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="dashboard.php">Dashboard</a></li>
+      <li class="active"><a href="#">Dashboard</a></li>
+        <li><a href="dashenquiry.php">Check Enquiry</a></li>
+        <li><a href="uploads.php">Uploads Images</a></li>
        <li><a href="updatepassword.php">Change Password</a></li>
-       <li><a href="dashenquiry.php">Check Enquiry</a></li>
-       <li><a href="logout.php">logout</a></li>
+       <li><a href="logout.php">log-out</a></li>
 
       </ul>
     </div>
@@ -127,10 +128,11 @@ function onSignup() {
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>Logo</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="updatepassword.php">Change Password</a></li>
+      <li class="active"><a href="#">Dashboard</a></li>
         <li><a href="dashenquiry.php">Check Enquiry</a></li>
-       <li><a href="logout.php">logout</a></li>
+        <li><a href="uploads.php">Uploads Images</a></li>
+       <li><a href="updatepassword.php">Change Password</a></li>
+       <li><a href="logout.php">log-out</a></li>
         
       </ul><br>
     </div>

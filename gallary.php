@@ -54,6 +54,9 @@ body, .parent-container, .child-container {
   text-shadow: 2px 2px 10px lightgray;
   
 }
+.rad{
+  border-radius: 20px;
+}
 </style>
 
 
@@ -74,11 +77,11 @@ body, .parent-container, .child-container {
 
         <?php
             include("connection.php");
-            $query="SELECT * FROM `files`ORDER BY id DESC LIMIT 1";
+            $query="SELECT * FROM `files`WHERE id= 7";
             $result=mysqli_query($conn,$query);
             foreach( $result as $row){
             ?><br>
-              <img src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
+               <img class="rad" src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
                 <?php } ?>
         </div>
         </div>  
@@ -94,7 +97,7 @@ body, .parent-container, .child-container {
             $result=mysqli_query($conn,$query);
             foreach( $result as $row){
             ?><br>
-              <img src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
+               <img class="rad" src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
                 <?php } ?>
         </div>
         </div>  </div>
@@ -108,7 +111,55 @@ body, .parent-container, .child-container {
             $result=mysqli_query($conn,$query);
             foreach( $result as $row){
             ?><br>
-              <img src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
+               <img class="rad" src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
+                <?php } ?>
+        </div>
+        </div> 
+  </div>
+  </div>
+  <br>
+  <div class="row">
+  <div class="col-md-4">
+        <div class="">
+        <div class="" id="one">
+
+        <?php
+            include("connection.php");
+            $query="SELECT * FROM `files` WHERE id =4";
+            $result=mysqli_query($conn,$query);
+            foreach( $result as $row){
+            ?><br>
+               <img class="rad" src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
+                <?php } ?>
+        </div>
+        </div>  
+
+  </div>
+  
+  <div class="col-md-4">    <div class="">
+        <div class="" id="one">
+
+        <?php
+            include("connection.php");
+            $query="SELECT * FROM `files` WHERE id= 5";
+            $result=mysqli_query($conn,$query);
+            foreach( $result as $row){
+            ?><br>
+               <img class="rad" src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
+                <?php } ?>
+        </div>
+        </div>  </div>
+  <div class="col-md-4">
+     <div class="">
+        <div class="" id="one">
+
+        <?php
+            include("connection.php");
+            $query="SELECT * FROM `files` WHERE id =6";
+            $result=mysqli_query($conn,$query);
+            foreach( $result as $row){
+            ?><br>
+               <img class="rad" src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
                 <?php } ?>
         </div>
         </div> 

@@ -44,6 +44,8 @@ if(isset($_SESSION['id']) )
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Dashboard</a></li>
+        <li><a href="dashenquiry.php">Check Enquiry</a></li>
+        <li><a href="uploads.php">Uploads Images</a></li>
        <li><a href="updatepassword.php">Change Password</a></li>
        <li><a href="logout.php">log-out</a></li>
 
@@ -58,8 +60,9 @@ if(isset($_SESSION['id']) )
       <h2>GWPL</h2>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="updatepassword.php">Change Password</a></li>
         <li><a href="dashenquiry.php">Check Enquiry</a></li>
+        <li><a href="uploads.php">Uploads Images</a></li>
+        <li><a href="updatepassword.php">Change Password</a></li>
        <li><a href="logout.php">logout</a></li>
 
        
@@ -101,6 +104,8 @@ if(isset($_SESSION['id']) )
 </style>
     <div class="col-sm-9">
     <h2>Enquiry Data</h2>
+    <a href="formsearch.php"><button type="button" class="btn btn-primary">Serach data</button></a>
+
 
 <table border="1">
   <tr>
