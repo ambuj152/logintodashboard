@@ -91,8 +91,8 @@ if(isset($_SESSION['id']) )
                                              <?php } ?>              
                                         </td>
                                         <td>  
-                                            <button type="submit" class="btn btn-primary flex">Update</button>
-                                            <button type="submit" class="btn btn-danger flex">delete</button>
+                                        <a href="update.php?imgid=<?php echo $row['id']; ?>"> <button type="button" class="btn btn-primary flex">Update</button></a>
+                                            <button type="button" class="btn btn-danger flex">delete</button>
                                        </td>
                                     </tr>
                                     <!-- second row-->
@@ -109,8 +109,8 @@ if(isset($_SESSION['id']) )
                                              <?php } ?>              
                                         </td>
                                         <td>  
-                                            <button type="submit" class="btn btn-primary flex">Update</button>
-                                            <button type="submit" class="btn btn-danger flex">delete</button>
+                                        <a href="update.php?imgid=<?php echo $row['id']; ?>"> <button type="button" class="btn btn-primary flex">Update</button></a>
+                                            <button type="button" class="btn btn-danger flex">delete</button>
                                        </td>
                                     </tr>
 
@@ -128,8 +128,8 @@ if(isset($_SESSION['id']) )
                                              <?php } ?>              
                                         </td>
                                         <td>  
-                                            <button type="submit" class="btn btn-primary flex">Update</button>
-                                            <button type="submit" class="btn btn-danger flex">delete</button>
+                                        <a href="update.php?imgid=<?php echo $row['id']; ?>"> <button type="button" class="btn btn-primary flex">Update</button></a>
+                                            <button type="button" class="btn btn-danger flex">delete</button>
                                        </td>
                                     </tr>
 
@@ -148,7 +148,7 @@ if(isset($_SESSION['id']) )
                                         </td>
                                         <td>  
                                            <a href="update.php?imgid=<?php echo $row['id']; ?>"> <button type="button" class="btn btn-primary flex">Update</button></a>
-                                            <button type="submit" class="btn btn-danger flex">delete</button>
+                                            <button type="button" class="btn btn-danger flex">delete</button>
                                        </td>
                                     </tr>
 
@@ -166,8 +166,8 @@ if(isset($_SESSION['id']) )
                                              <?php } ?>              
                                         </td>
                                         <td>  
-                                            <button type="submit" class="btn btn-primary flex">Update</button>
-                                            <button type="submit" class="btn btn-danger flex">delete</button>
+                                        <a href="update.php?imgid=<?php echo $row['id']; ?>"> <button type="button" class="btn btn-primary flex">Update</button></a>
+                                            <button type="button" class="btn btn-danger flex">delete</button>
                                        </td>
                                     </tr>
 
@@ -185,8 +185,8 @@ if(isset($_SESSION['id']) )
                                              <?php } ?>              
                                         </td>
                                         <td>  
-                                            <button type="submit" class="btn btn-primary flex">Update</button>
-                                            <button type="submit" class="btn btn-danger flex">delete</button>
+                                        <a href="update.php?imgid=<?php echo $row['id']; ?>"> <button type="button" class="btn btn-primary flex">Update</button></a>
+                                            <button type="button" class="btn btn-danger flex">delete</button>
                                        </td>
                                     </tr>
                                   

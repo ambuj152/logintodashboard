@@ -27,35 +27,6 @@ if(isset($_SESSION['id']) )
     @media screen and (max-width: 767px) {
       .row.content {height: auto;} 
     }
-    *{
-	margin: 0; 
-	padding: 0; 
-	box-sizing: border-box;
-}
-
-#content{
-	width: 50%;
-	justify-content: center;
-	align-items: center;
-	margin: 20px auto;
-	border: 1px solid #cbcbcb;
-}
-form{
-	width: 50%;
-	margin: 20px auto;
-}
-
-#display-image{
-	width: 100%;
-	justify-content: center;
-	padding: 5px;
-	margin: 15px;
-}
-img{
-	margin: 5px;
-	width: 350px;
-	height: 250px;
-}
   </style>
 </head>
 <body>
@@ -71,9 +42,9 @@ img{
       <a class="navbar-brand" href="#">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <?php 
-      include('mobilemenu.php');
-      ?>
+     <?php
+     include('mobilemenu.php');
+     ?>
     </div>
   </div>
 </nav>
@@ -90,47 +61,66 @@ img{
    
     <div class="col-sm-9">
 
-    <div id="content">
-    <form method="POST" action="" enctype="multipart/form-data">
-        <div class="form-group">
-            <input class="form-control" type="file" name="uploadfile" id="uploadfile" value="" />
-            <input type="hidden">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
-        </div>
-    </form>
-</div>
-<div id="display-image">
-<?php
+  
+        <center>
+           
+
+            <?php
 include("connection.php");
 
-if(isset($_POST['upload'])) {
+if(isset($_GET['imgid'])) {
+    $id=$_GET['imgid'];
+    $sqll="SELECT * FROM `files` WHERE `id`='$id'";
+    $result= mysqli_query($conn,$sqll); 
+
+    $fetch= mysqli_fetch_assoc($result);
+
+    ?>
+    
+    <div class="card-body">
+    <form method="POST" action="" enctype="multipart/form-data">
+            <div class="form-group">
+                <img src="<?php echo $fetch['filepath'] ?>" alt="" width="40px"><br>
+                <br><input class="form-control" type="file" name="uploadfile" id="uploadfile" />
+                <input type="hidden" name="id" value="<?php echo $fetch['id']; ?>">
+                <input type="hidden" value="<?php echo $fetch['filepath']; ?>" name="old_image">
+            </div>
+           <div class="form-group">
+                <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
+           </div>
+    </form>
+    </div>
+<?php
+ 
+ if(isset($_POST['upload'])){
+    $id=$_POST['id'];
+    $target_file=$_POST['old_image'];
+
+    if(!empty($_FILES['uploadfile']['name'])){
     $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["uploadfile"]["name"]);
+   echo $target_file = $target_dir . basename($_FILES["uploadfile"]["name"]);
 
-    if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $target_file)) {
-        $filename = basename($_FILES["uploadfile"]["name"]);
-        $filepath = $target_file;
-        $query = "INSERT INTO files (`filename`, `filepath`) VALUES ('$filename', '$filepath')";
+    move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $target_file);
         
-        if(mysqli_query($conn, $query)) {
+       
+    
+    }
+    echo $query = "UPDATE `files` SET `filepath`='$target_file' WHERE `id`= '$id'";
+        
+        if(mysqli_query($conn,$query)) {
 
-            echo "The file ". htmlspecialchars($filename). " has been uploaded.";
-            echo"<script> alert('image is successfully uploaded'); window.location.href = 'uploads.php';</script>";
+           echo "The file ". htmlspecialchars($filename). " has been uploaded.";
+      
           
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conn);
         }
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
-    // header("Location:uploads.php");
-    
 }
+    // header("Location:uploads.php");
+} 
+ 
 ?>
-</div>
-        
+        </center>
 
         
       
@@ -159,20 +149,5 @@ else{
 }
 
 ?>
-
-
-
-
-
-<!--main upload above-->
-
-
-
-
-
-
-
-
-
 
 

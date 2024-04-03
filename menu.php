@@ -5,6 +5,7 @@
         <li><a href="gallaryupdate.php"> Gallary</a></li>
         <li><a href="updatepassword.php">Change Password</a></li>
        <li><a href="logout.php">logout</a></li>
+       <li><a href="update.php">Update test page</a></li>
 
        
       </ul>
