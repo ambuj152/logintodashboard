@@ -71,13 +71,9 @@ img{
       <a class="navbar-brand" href="#">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Dashboard</a></li>
-       <li><a href="updatepassword.php">Change Password</a></li>
-       <li><a href="dashenquiry.php">Check Enquiry</a></li>
-       <li><a href="logout.php">log-out</a></li>
-
-      </ul>
+      <?php 
+      include('mobilemenu.php');
+      ?>
     </div>
   </div>
 </nav>
@@ -86,16 +82,9 @@ img{
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>GWPL</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="dashenquiry.php">Check Enquiry</a></li>
-        <li><a href="uploads.php">Uploads Images</a></li>
-
-        <li><a href="updatepassword.php">Change Password</a></li>
-       <li><a href="logout.php">logout</a></li>
-
-       
-      </ul><br>
+      <?php
+      include('menu.php');
+      ?><br>
     </div>
     <br>
    
