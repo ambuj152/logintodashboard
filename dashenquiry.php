@@ -93,7 +93,7 @@ if(isset($_SESSION['id']) )
 </style>
     <div class="col-sm-9">
     <h2>Enquiry Data</h2>
-    <a href="formsearch.php"><button type="button" class="btn btn-primary">Serach data</button></a>
+    <a href="formsearch.php"><button type="button" class="btn btn-primary">Search data</button></a>
 
 
 <table border="1">
@@ -101,8 +101,8 @@ if(isset($_SESSION['id']) )
     <th>ID</th>
     <th>Name</th>
     <th>Email</th>
-    <th>phone</th>
-    <th>message</th>
+    <th>Phone</th>
+    <th>Message</th>
   </tr>
   <?php
     include("connection.php");
