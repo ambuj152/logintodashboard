@@ -73,17 +73,17 @@ body, .parent-container, .child-container {
   <div class="row">
   <div class="col-md-4">
         <div class="">
-        <div class="" id="one">
+          <div class="" id="one">
 
-        <?php
-            include("connection.php");
-            $query="SELECT * FROM `files`WHERE id= 7";
-            $result=mysqli_query($conn,$query);
-            foreach( $result as $row){
-            ?><br>
-               <img class="rad" src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
-                <?php } ?>
-        </div>
+          <?php
+              include("connection.php");
+              $query="SELECT * FROM `files`WHERE id= 7";
+              $result=mysqli_query($conn,$query);
+              foreach( $result as $row){
+              ?><br>
+                <img class="rad" src= "<?php echo $row['filepath']; ?>" width="100%" height="auto"><br>
+                  <?php } ?>
+          </div>
         </div>  
 
   </div>

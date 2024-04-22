@@ -31,9 +31,9 @@ if(isset($_SESSION['id']) )
 </head>
 <body>
 
-<nav class="navbar navbar-inverse visible-xs">
+<nav class="navbar navbar-inverse visible-xs" >
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header" >
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -49,8 +49,8 @@ if(isset($_SESSION['id']) )
   </div>
 </nav>
 
-<div class="container-fluid">
-  <div class="row content">
+<div class="container-fluid"style="height: 800px;">
+  <div class="row content" style="height:100%;">
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>GWPL</h2>
       <?php
