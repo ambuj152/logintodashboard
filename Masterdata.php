@@ -118,7 +118,7 @@ if(isset($_SESSION['id']) )
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>USER-ID</th>
                                 <th>NAME</th>
                                 <th>EMAIL</th>
                                 <th>PHONE</th>
@@ -148,7 +148,7 @@ if(isset($_SESSION['id']) )
                             {
                                 ?>
                                 <tr>
-                                    <td><?=$row['id']; ?></td>
+                                    <td><?=$row['userid']; ?></td>
                                     <td><?=$row['name']; ?></td>
                                     <td><?=$row['email']; ?></td>
                                     <td><?=$row['phone']; ?></td>
@@ -156,8 +156,8 @@ if(isset($_SESSION['id']) )
                                     <td><?=$row['state']; ?></td>
                                     <td><?=$row['zip']; ?></td>
                                     <td><?=$row['address']; ?></td>
-                                    <td><a href='?id=<?php echo $row['id']?>' class=" btn btn-danger">Show bill</> </a> &nbsp;
-                     <a href="editprofile.php?UDTId=<?php echo $row['id'] ?>" class="btn btn-primary">Edit</a> </td> 
+                                    <td><a href='pdf.php?showid=<?php echo $row['userid']?>' class=" btn btn-danger">Show bill</> </a> &nbsp;
+                     <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class="btn btn-primary">Edit</a> </td> 
 
 
 
@@ -186,7 +186,7 @@ if(isset($_SESSION['id']) )
                             foreach($result as $row) {
                                 ?>
                                 <tr>
-                                    <td><?=$row['id']; ?></td>
+                                    <td><?=$row['userid']; ?></td>
                                     <td><?=$row['name']; ?></td>
                                     <td><?=$row['email']; ?></td>
                                     <td><?=$row['phone']; ?></td>
@@ -194,8 +194,8 @@ if(isset($_SESSION['id']) )
                                     <td><?=$row['state']; ?></td>
                                     <td><?=$row['zip']; ?></td>
                                     <td><?=$row['address']; ?></td>
-                                    <td><a href='?id=<?php echo $row['id']?>' class=" btn btn-danger">Show bill</> </a> &nbsp;
-                     <a href="editprofile.php?UDTId=<?php echo $row['id'] ?>" class="btn btn-primary">Edit</a> </td> 
+                                    <td><a href="pdf.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger">Show bill</> </a> &nbsp;
+                     <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class="btn btn-primary">Edit</a> </td> 
 
                                 </tr>
                                 <?php

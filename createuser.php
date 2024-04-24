@@ -196,7 +196,10 @@ if(isset($_SESSION['id']) )
 include('connection.php');
 if(isset($_POST["submit"]))
 {
-    $id             =   $_POST['id'];
+    $userid             = "SELECT MAX(id) FROM `profile`";
+    $exe=mysqli_query($conn,$userid);
+    $arraycount=mysqli_fetch_array($exe);
+    $uniqueid= "USER-00".$arraycount[0]+1;
     $name           =   $_POST['name'];
     $email          =   $_POST['email'];
     $phone          =   $_POST['phone'];
@@ -211,7 +214,8 @@ if(isset($_POST["submit"]))
 
     // $profile_query =" INSERT INTO `profile` (`id`,`name`,`email`,`phone`,`city`,`state`,`zip`,`address`,`companyname`,`industry`,`gst`) VALUES ('$id','$name','$email','$phone','$city','$state','$zip','$address',$companyname,$industry,$gst)"; 
     // $fire_profile_query = mysqli_query($conn, $profile_query);
-    $profile_query = "INSERT INTO `profile`(`id`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`) VALUES ('$id','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst')";
+    $profile_query = "INSERT INTO `profile`(`userid`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`)
+    VALUES ('$uniqueid','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst')";
     $fire_profile_query = mysqli_query($conn,$profile_query);
     
     
