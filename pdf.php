@@ -26,7 +26,10 @@ if(isset($_SESSION['id']) )
         
     /* On small screens, set height to 'auto' for the grid */
     @media screen and (max-width: 767px) {
-      .row.content {height: auto;} 
+      .row.content {height: auto;}
+      h4{
+        font-size: 13px !important;
+      } 
     }
   </style>
 </head>
@@ -65,124 +68,182 @@ if(isset($_SESSION['id']) )
           <center>  <div >
             <a href="" class="btn btn-danger" style="margin: 10px; padding:10px;"  onclick="generatePDF()" > Download bill</a>
             </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
-            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
   <script>
-        function generatePDF() {
-            // Create a new jsPDF instance
-            var doc = new jsPDF();
+    function generatePDF() {
+        const element = document.getElementById('content');
 
-            // Get the HTML content of the section you want to convert to PDF
-            var content = document.getElementById('content').innerHTML;
-
-            // Add HTML content to the PDF
-            doc.html(content, {
-                callback: function (doc) {
-                    // Save the PDF
-                    doc.save('bill.pdf');
-                }
-            });
-        }
-    </script>
+        html2pdf()
+            .from(element)
+            .save();
+    }
+</script>
           </center>
 
       </div>
+       <div class="container"  id="content" style=" width:80%;">
+     
+        <table class="table" border="1px">
+          <tr>
+                     <div class="col-md-12" style="background:#A8A8A8;">
+            <center><h2 style="color:azure"> Tax Invoice<h2></center>
 
-  
-       <div class="container"  id="content" style=" width:80%;border: 1px solid black;">
-       <cemter><div class="row">
-            <div class="col-md-12" style="background:#A8A8A8;">
-            <center><h2 style="color:azure"> Bill Invoice<h2></center>
+
             
+        </div>
+          </tr>
+              <tr>
+                  <td colspan="2">
+                              <?php 
+                                  include("connection.php");
+                      // if(isset($_GET['showid']));
+                      // {  
+                      //  $val=$_GET['showid'];
+                                    $u="SELECT * FROM `vendors` WHERE 1";
+                                    $v=mysqli_query($conn,$u);   
+                                    $w= mysqli_fetch_assoc($v);
+                      // }        
+                              ?>
+                    
+
+                        
+                                <h4 style="font-size:17px"> <Strong><?php echo $w['companyname'];?> </Strong></h4>
+                                <h4 style="font-size:17px"> <?php echo $w['address'];?>, <?php echo $w['mobile'];?></h4>
+                                <h4 style="font-size:17px"> <Strong>GSTIN/UIN :  </Strong><?php echo $w['gstnumber'];?></h4>
+              
+
             
+                 </td>
+                 <td width="230px">
+               
+                        <?php 
+                            include('connection.php');
+                              if(isset($_GET['showid']))
+                                  {
+                                      $val=$_GET['showid'];
+                                      $x="SELECT * FROM `bill` WHERE `userid`='$val'";
+                                      $y=mysqli_query($conn,$x);   
+                                      $z= mysqli_fetch_assoc($y);
+                                  } 
+                    
+                          ?>
+                              <h4 style="font-size:17px"> <Strong>Mode of Payment - </Strong><?php echo $z['modeofpayment'];?></h4>
+                              <h4 style="font-size:17px"> <Strong>Order Date - </Strong><?php echo $z['orderdate'];?></h4>
+                              <h4 style="font-size:17px"> <Strong>Serial No. - </Strong><?php echo $z['userid'];?></h4>
 
-            </div>
-        </div>
-        <?php 
-        include("connection.php");
-        if(isset($_GET['showid']));
-        {  
-         $val=$_GET['showid'];
-         $a="SELECT * FROM `profile` WHERE `userid`='$val'";
-         $b=mysqli_query($conn,$a);   
-            $c= mysqli_fetch_assoc($b);
-        }        
-        ?>
-        <div class="row" style=" border-bottom: 1px solid black; " >
-
-            <div class ="col-sm-4">
-                   <h4 style="font-size:17px"> <Strong>Company Name - </Strong><?php echo $c['companyname'];?></h4>
-                   <h4 style="font-size:17px"> <Strong>Name - </Strong><?php echo $c['name'];?></h4>
-                   <h4 style="font-size:17px"> <Strong>GST NO. - </Strong><?php echo $c['gst'];?></h4>
-
-
-            </div>
-            <div class ="col-sm-3">
-
-            </div>
-            <div class ="col-sm-5">
-                   <h4 style="font-size:17px"> <Strong>email - </Strong><?php echo $c['email'];?></h4>
-                   <h4 style="font-size:17px"> <Strong>phone - </Strong><?php echo $c['phone'];?></h4>
-                   <h4 style="font-size:17px"> <Strong>Addrees - </Strong><?php echo $c['address'];?></h4>
-
-            </div>
-           
-        </div>
-
-        <div class="row" ><br>
-        <div class="col-sm-8" style="background: #A8A8A8;">
-        <h4 style="font-size:17px;text-align:center"> <Strong>Services - </Strong></h4>
-
-        </div>
-        <div class="col-sm-4" style="background: #A8A8A8;">
-        <h4 style="font-size:17px;text-align:center"> <Strong>Price - </Strong></h4>
-
-        </div>
-
-
-        </div>
-
-        <div class="row" style=" border-bottom: 1px solid black;">
-        <?php 
+            
+                 </td>
+              </tr>
+              <tr>
+                        <td colspan="2">
+                                  <?php 
+                                  include("connection.php");
+                                  if(isset($_GET['showid']));
+                                  {  
+                                  $val=$_GET['showid'];
+                                  $a="SELECT * FROM `profile` WHERE `userid`='$val'";
+                                  $b=mysqli_query($conn,$a);   
+                                      $c= mysqli_fetch_assoc($b);
+                                  }        
+                                  ?>
+                                  <h4 style="font-size:17px"> <Strong>Company Name - </Strong><?php echo $c['companyname'];?></h4>
+                                  <h4 style="font-size:17px"> <Strong>Customer Name - </Strong><?php echo $c['name'];?></h4>
+                                  <h4 style="font-size:17px"> <Strong>GST NO. - </Strong><?php echo $c['gst'];?></h4>
+                        </td >
+                            <td width="230px">                    
+                                <h4 style="font-size:17px"> <Strong>email - </Strong><?php echo $c['email'];?></h4>
+                                <h4 style="font-size:17px"> <Strong>phone - </Strong><?php echo $c['phone'];?></h4>
+                                <h4 style="font-size:17px"> <Strong>Addrees - </Strong><?php echo $c['address'];?></h4>
+                            </td>
+              </tr>
+              
+              <tr style="background:#A8A8A8">
+                            <td><h4 style="font-size:17px;text-align:left"> <Strong> Sr No. </Strong></h4></td>
+                            <td> <h4 style="font-size:17px;text-align:left"> <Strong> Description of Services and Product - </Strong></h4> </td>
+                            <td> <h4 style="font-size:17px;text-align:left"> <Strong>Price / Unit  </Strong></h4></td>
+              </tr>
+                                        
+              <?php 
         include('connection.php');
         if(isset($_GET['showid']))
         {
             $val=$_GET['showid'];
+            $i=1;
+            $amt=0;
             $x="SELECT * FROM `bill` WHERE `userid`='$val'";
             $y=mysqli_query($conn,$x);   
-               $z= mysqli_fetch_assoc($y);
-           } 
+              // $z= mysqli_fetch_assoc($y);
+              foreach($y as $res){
+           
         
         ?>
-            <div class="col-sm-8" style=" border-right: 1px solid black; height: 600px; ">
-            <br>
-            <h4> <strong> <?Php
-          if(($z)>0){
-          echo $z['services'];
-          }
-          else{
-            echo "no bill generated";
-          }
-          ?></strong> </h4>
-            
-            </div>
-            <div class="col-sm-4" style="">
-           <br><h4> <strong><?Php
-          if(($z)>0){
-          echo $z['price'];
-          }
-          else{
-            echo "- NA";
-          }
-          ?></h4></strong>
-            </div>
-        </div>
+              <tr >
+                        <td width="100px">
+                              <h4><strong><?php echo $i ;?></strong></h4>
+                        </td> 
+                        <td>
+                            <h4> 
+                              <strong> 
+                                  <?Php
+                                    echo ucfirst( $res['services']);
+                                  ?>
+                               </strong> 
+                            </h4>
+                        </td>
+                        <td>
+                              <h4> <strong><?Php
+                                 echo $res['price'];
+                                    $amt=$amt+$res['price'];
+                                    ?></h4></strong>
+                                      </div>
+                                        <?php
+                                        $i++;
+                                        }
+                               }
+                                        ?>
+                        </td>
+              </tr>
+              <tr height="200px">
 
-        <div class="row">
-            <div class="col-sm-8">
-            <h4><strong> TOTAL COST INCLUSIVE 18% GST</strong><small> &nbsp;( AND OTHER TAXES*)</small><h4>
-            </div>
-        </div>
+              </tr>
+                          
+              <tr>
+                <td colspan="2">
+                      <h4><strong> TOTAL COST INCLUSIVE 18% GST</strong><small> &nbsp;( AND OTHER TAXES*)</small><h4>
+                </td>
+                <td>
+                      <h4><strong> Amount: <?php  echo $amt;?></strong><h4>
+
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"></td>
+                <td width="">
+                <h4 style="font-size:17px"> <Strong><?php echo $w['companyname'];?> </Strong></h4>
+                   <h4 style="font-size:17px"> <Strong>A/C No. : - </Strong><?php echo $w['account'];?></h4>
+                   <h4 style="font-size:17px"> <Strong>IFSC Code : - </Strong><?php echo $w['ifsc'];?></h4>
+                   <h4 style="font-size:17px"> <Strong><?php echo $w['bank'];?> </Strong></h4>
+
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">  <h4 style="font-size:17px"> <Strong>Declaration :  </Strong> We Declare that this Invoice shows the actual
+            Price of the services/goods described and that all perticular are true and correct.    </h4></td>
+                <td>
+                <h4 style="font-size:17px"> <Strong><?php echo $w['companyname'];?> </Strong></h4>
+                 <br>
+                   <h4 style="font-size:17px"> <Strong>Authorized Signature </Strong></h4>
+                </td>
+              </tr>
+
+
+            </table>
+
+
+
+
+
+                              </div>
         
         
     </center>
@@ -206,11 +267,11 @@ if(isset($_SESSION['id']) )
   <?php
 
 
-
+        }
 
   
    
-}
+
 else{
     echo "please login to Continue";
     header("Location:admin.php");

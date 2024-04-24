@@ -185,9 +185,9 @@ if(isset($_SESSION['id']) )
             margin-top: 15px;
         }
     </style>
-</head>
 
-<body>
+
+
 
     <div class="container">
         <h2>Add Services</h2>
@@ -231,18 +231,33 @@ if(isset($_SESSION['id']) )
 
 
     <!--service addup-->
-                  </div>
-                  <div class="col-md-6"></div>
+                  
+                  <div class="row">
+                  <div class="col-sm-6">
+                  <h2 class="text-center">Select Mode of Payment:</h2>
+                <div class="form-group">
+                    <select class="form-control" id="modeOfPayment" name="modeOfPayment">
+                        <option value="online">Online</option>
+                        <option value="cash">Cash</option>
+                    </select>
                 </div>
+                  </div>
+                  <div class="col-sm-6">
+                                <div class="form-group">
+                    <h2 class="text-center">Order Date:</h2> 
+                    <input type="date" class="form-control" id="birthday" name="orderdate">
+                  </div>
+                </div>
+                  </div>
                                                         
 
                 <div class="row">
-                  <div class="col-md-12">
-                  <div class="form-check">
+                  <div class="col-sm-12">
+                  <div class="form-check"><br>
                     <input type="checkbox" class="form-check-input" id="terms" name="terms">
                     <label class="form-check-label" for="terms">I agree with the <a href="#">Terms and Conditions</a>.</label>
                 </div>
-               
+                <br>
                 <button type="submit" class="btn btn-primary" name="generate">Generate</button>
                   </div>
 
@@ -279,11 +294,14 @@ if(isset($_POST['generate']))
   $userid=$_POST['userid'];
   $services=$_POST['services']; 
   $price=$_POST['price'];
+  $modeofpayment=$_POST['modeOfPayment'];
+  $orderdate=$_POST['order'];
+
 
  for ($i = 0; $i < count($services); $i++) {
   
 
-  $quiry="INSERT INTO  `bill` (`userid`, `services` ,`price`) VALUES ('$userid','$services[$i]','$price[$i]')";
+  $quiry="INSERT INTO  `bill` (`userid`, `services` ,`price` ,`modeofpayment`,`orderdate`) VALUES ('$userid','$services[$i]','$price[$i]','$modeofpayment','$orderdate')";
   $fire = mysqli_query($conn, $quiry);
   // Here you can store these values in a database or perform any other processing
 }
