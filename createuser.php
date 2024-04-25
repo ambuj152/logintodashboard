@@ -168,6 +168,33 @@ if(isset($_SESSION['id']) )
       </div>
     </div>
   </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Company Pan</label>
+      <input type="text" class="form-control is-invalid" name="companypan"  placeholder="Company PAN No."
+        required>
+      <div class="invalid-feedback">
+     &nbsp;
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>company bank Account</label>
+      <input type="text" class="form-control is-invalid" name="companybank" placeholder="Company bank"
+        required>
+      <div class="invalid-feedback">
+       
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Bank IFSC</label>
+      <input type="text" class="form-control is-invalid" name="bankifsc" placeholder="Bank IFSC"
+        required>
+      <div class="invalid-feedback">
+       &nbsp;
+      </div>
+    </div>
+  </div>
   
       
     
@@ -210,12 +237,14 @@ if(isset($_POST["submit"]))
     $companyname    =   $_POST['companyname'];
     $industry       =   $_POST['industry'];
     $gst            =   $_POST['gst'];
+    $companypan     =   $_POST['companypan']; 
+    $companybank    =   $_POST['companybank'];   
 
 
     // $profile_query =" INSERT INTO `profile` (`id`,`name`,`email`,`phone`,`city`,`state`,`zip`,`address`,`companyname`,`industry`,`gst`) VALUES ('$id','$name','$email','$phone','$city','$state','$zip','$address',$companyname,$industry,$gst)"; 
     // $fire_profile_query = mysqli_query($conn, $profile_query);
-    $profile_query = "INSERT INTO `profile`(`userid`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`)
-    VALUES ('$uniqueid','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst')";
+    $profile_query = "INSERT INTO `profile`(`userid`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`,`companypan`,`companybank`,`bankifsc`)
+    VALUES ('$uniqueid','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst','$companypan','$companybank','$bankifsc')";
     $fire_profile_query = mysqli_query($conn,$profile_query);
     
     
