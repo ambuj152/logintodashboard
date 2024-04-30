@@ -249,6 +249,7 @@ th, td {
             $i=1;
             $amt=0;
             $gst=0;
+            $totalamt=0;
             $x = "SELECT * FROM `bill` WHERE `userid` = '$val' AND `orderdate` = (SELECT MAX(`orderdate`) FROM `bill` WHERE `userid` = '$val')";
             // $x="SELECT * FROM `bill` WHERE `userid`='$val'AND MAX(`orderdate`)";
             $y=mysqli_query($conn,$x);   
@@ -279,12 +280,17 @@ th, td {
                       </td>
 
                         <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px"></td>
-                        <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px"></td>
+                        <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px">
+                        <?php
+                      echo $totalamt=$res['quantity'] * $res['price'];
+                      $totalamt=$totalamt+$res['price'];
+                      ?>
+                      </td>
 
                         <td style="border:none;padding-right:20px">
                               <p style="font-size:14px;font-family: system-ui;;text-align:right;"> <strong>₹<?Php
                                  echo $res['price'];
-                                    $amt=$amt+$res['price'];
+                                 $amt=$amt+$res['price'];
                                     ?>
                                     </p></strong></div>
                                         <?php
@@ -321,7 +327,7 @@ th, td {
 
                                 <td colspan="3" style="border-top:none;border-right:1px solid grey; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:14px;font-family: system-ui;"><strong> <?php echo $sgst;?>% CGST </strong> </p></td>
                                 <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:14px;font-family: system-ui;; padding-right:20px; text-align:right;"> ₹  <?php
-                                echo $gst=($sgst/100)*$amt;
+                                echo $gst=($sgst/100)*$totalamt;
                                   ?></p>
                                   
                                 </td>
@@ -331,7 +337,7 @@ th, td {
                       <td colspan="3" style="border-left:none; border-right:1px solid grey; padding-top:5px;padding-left:20px;"><p style="font-size:14px;font-family: system-ui;"><strong><?php echo $sgst; ?>% SGST </strong>  </p></td>
                       <td style="border-left:none !important; padding-left:20px; padding:5px;"><p  style="font-size:14px;font-family: system-ui;;border:none; padding-right:20px; text-align:right">  ₹
                       <?php
-                         echo $gst=($sgst/100)*$amt;
+                         echo $gst=($sgst/100)*$totalamt;
                       ?></p>
                         
                       </td>
@@ -341,7 +347,7 @@ th, td {
 
           <td colspan="3" style="border-left:none; border-right:1px solid grey; padding-left:20px; padding:5px;"><p style="font-size:14px;font-family: system-ui;"><strong><?php echo $check['taxpercentage']?>% GST = </strong> (9% sgst + 9% CGST)</p></td>
           <td style=" border-left:none;  padding:5px;"><p  style="font-size:14px;font-family: system-ui;;text-align:right;padding-right:20px;"> ₹ <?php
-           echo $gst=($check['taxpercentage']/100)*$amt;
+           echo $gst=($check['taxpercentage']/100)*$totalamt;
             ?></p>
             
           </td>
@@ -353,7 +359,7 @@ th, td {
                       <p style="font-size:14px;font-family: system-ui;"><strong> TOTAL COST INCLUSIVE <?php $check['taxpercentage']; ?>GST</strong><small> &nbsp;( AND OTHER TAXES*)</small><p>
                 </td>
                 <td style="border-left:none; padding-left:20px">
-                      <p style="font-size:14px;font-family: system-ui;;text-align:right;padding-right:20px"><strong>Total Amount:₹ <?php echo $total= round($gst+$amt); ?></strong><p>
+                      <p style="font-size:14px;font-family: system-ui;;text-align:right;padding-right:20px"><strong>Total Amount:₹ <?php echo $total= round($gst+$totalamt); ?></strong><p>
 
                 </td>
           </tr>
