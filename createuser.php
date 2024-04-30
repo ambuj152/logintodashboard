@@ -50,7 +50,7 @@ if(isset($_SESSION['id']) )
 </nav>
 
 <div class="container-fluid">
-  <div class="row content">
+  <div class="row content" style="height: 900px;">
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>GWPL</h2>
       <?php 
@@ -73,8 +73,115 @@ if(isset($_SESSION['id']) )
 }
 </style>
  <div class="col-sm-9 hidden-xs">
+ <style>
+     .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+  /* Style for the form container */
+  .container-fluid {
+   
+  }
 
- <div class="container-fluid" width="60%" style="margin:200px;margin-top:50px;">
+  /* Style for the form heading */
+  h2 {
+    background: linear-gradient(135deg, #B4A7, #E9C46A);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  /* Style for form labels */
+  label {
+    font-weight: bold;
+    color: #555;
+  }
+
+  /* Style for form inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="checkbox"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="checkbox"]:focus {
+    background-color: #e8e8e8;
+  }
+
+  /* Style for form buttons */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #B4A77B, #E9C46A);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background: linear-gradient(135deg, #E9C46A, #B4A77B);
+  }
+
+  /* Style for the Master Data link */
+  .master-data-link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .master-data-link:hover {
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="checkbox"] {
+    width: 100%;
+    height: 45px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+    font-size: 16px;
+  }
+
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder {
+    color: #888;
+    font-size: 14px;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="checkbox"]:focus {
+    background-color: #e8e8e8;
+  }
+</style>
+
+
+ <div class="container-fluid" width="80%" style="margin:50px;margin-top:0px;">
+ <h2 style="">Create Customer</h2>
+
    <form method="post">
   <div class="form-row">
     <div class="col-md-4 mb-3">
@@ -101,12 +208,20 @@ if(isset($_SESSION['id']) )
       </div>
     </div>
     <div class="form-row">
-      <div class="col-md-12 mb-3">
+      <div class="col-md-6 mb-3">
       <label for="validationServer033">Address</label>
       <input type="text" class="form-control is-invalid" name="address" id="validationServer033" placeholder="Address"
         required>
       <div class="invalid-feedback">
      &nbsp;
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label >City</label>
+      <input type="text" class="form-control is-invalid" name="city"  placeholder="City"
+        required>
+      <div class="invalid-feedback">
+      &nbsp;
       </div>
     </div>
       </div>
@@ -117,14 +232,7 @@ if(isset($_SESSION['id']) )
       </div>
      
   <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label >City</label>
-      <input type="text" class="form-control is-invalid" name="city"  placeholder="City"
-        required>
-      <div class="invalid-feedback">
-      &nbsp;
-      </div>
-    </div>
+    
     <div class="col-md-4 mb-3">
       <label>State</label>
       <input type="text" class="form-control is-invalid" name="state"  placeholder="State"
@@ -178,39 +286,39 @@ if(isset($_SESSION['id']) )
      &nbsp;
       </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <!-- <div class="col-md-4 mb-3">
       <label>company bank Account</label>
       <input type="text" class="form-control is-invalid" name="companybank" placeholder="Company bank"
         required>
       <div class="invalid-feedback">
        
       </div>
-    </div>
-    <div class="col-md-4 mb-3">
+    </div> -->
+    <!-- <div class="col-md-4 mb-3">
       <label>Bank IFSC</label>
       <input type="text" class="form-control is-invalid" name="bankifsc" placeholder="Bank IFSC"
         required>
       <div class="invalid-feedback">
        &nbsp;
       </div>
-    </div>
+    </div> -->
   </div>
   
       
     
   
-  <div class="form-group" style="padding-left:12px;">
+  <!-- <div class="form-group" style="padding-left:12px;">
     <div class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input is-invalid" id="invalidCheck33" required>
       <label class="custom-control-label" for="invalidCheck33">Agree to terms and conditions</label>
       <div class="invalid-feedback">
-        <!-- You must agree before submitting. -->
+        You must agree before submitting.
       </div>
     </div>
    &nbsp;
-  </div>
-  <button  style="margin-left:10px;" class="btn btn-primary" type="submit" name="submit">Submit form</button>
-  <a href="Masterdata.php" style="margin-left:10px; color:black ;font-weight:600;" class="btn btn-warning">Master Data</></a>
+  </div> -->
+  <button  style="margin-left:10px; background:#337AB7" class="btn btn-primary" type="submit" name="submit">Create User</button>
+  <!-- <a href="Masterdata.php" style="margin-left:10px; color:black ;font-weight:600;" class="btn btn-warning">Master Data</></a> -->
  
 </form></div>
 
@@ -220,13 +328,20 @@ if(isset($_SESSION['id']) )
   </div>
 </div>
 <?php
+
 include('connection.php');
 if(isset($_POST["submit"]))
 {
     $userid             = "SELECT MAX(id) FROM `profile`";
+
     $exe=mysqli_query($conn,$userid);
+
     $arraycount=mysqli_fetch_array($exe);
+    
     $uniqueid= "USER-00".$arraycount[0]+1;
+
+    $companyid=$_SESSION['companyid'];
+
     $name           =   $_POST['name'];
     $email          =   $_POST['email'];
     $phone          =   $_POST['phone'];
@@ -238,13 +353,13 @@ if(isset($_POST["submit"]))
     $industry       =   $_POST['industry'];
     $gst            =   $_POST['gst'];
     $companypan     =   $_POST['companypan']; 
-    $companybank    =   $_POST['companybank'];   
+    // $companybank    =   $_POST['companybank'];   
 
 
     // $profile_query =" INSERT INTO `profile` (`id`,`name`,`email`,`phone`,`city`,`state`,`zip`,`address`,`companyname`,`industry`,`gst`) VALUES ('$id','$name','$email','$phone','$city','$state','$zip','$address',$companyname,$industry,$gst)"; 
     // $fire_profile_query = mysqli_query($conn, $profile_query);
-    $profile_query = "INSERT INTO `profile`(`userid`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`,`companypan`,`companybank`,`bankifsc`)
-    VALUES ('$uniqueid','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst','$companypan','$companybank','$bankifsc')";
+    $profile_query = "INSERT INTO `profile`(`companyid`,`userid`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`,`companypan`)
+    VALUES ('$companyid','$uniqueid','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst','$companypan')";
     $fire_profile_query = mysqli_query($conn,$profile_query);
     
     

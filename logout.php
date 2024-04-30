@@ -6,6 +6,6 @@ session_destroy();
 
 $message = "This is an alert message!";
 // echo "<script>alert('$message');</script>";
-header("Location:admin.php");
+header("Location:index.php");
 
 ?>

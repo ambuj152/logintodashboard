@@ -26,6 +26,103 @@ session_start();
     @media screen and (max-width: 767px) {
       .row.content {height: auto;} 
     }
+    .container-fluid {
+   
+  }
+
+  /* Style for the form heading */
+  h2 {
+    background: linear-gradient(135deg, #B4A7, #E9C46A);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  /* Style for form labels */
+  label {
+    font-weight: bold;
+    color: #555;
+  }
+
+  /* Style for form inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="checkbox"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="checkbox"]:focus {
+    background-color: #e8e8e8;
+  }
+
+  /* Style for form buttons */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #B4A77B, #E9C46A);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background: linear-gradient(135deg, #E9C46A, #B4A77B);
+  }
+
+  /* Style for the Master Data link */
+  .master-data-link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .master-data-link:hover {
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="checkbox"] {
+    width: 100%;
+    height: 45px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+    font-size: 16px;
+  }
+
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder {
+    color: #888;
+    font-size: 14px;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="checkbox"]:focus {
+    background-color: #e8e8e8;
+  }
   </style>
   <script>
 
@@ -119,7 +216,7 @@ function onSignup() {
 </nav>
 
 <div class="container-fluid">
-  <div class="row content">
+  <div class="row content" style="height: 800px;">
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>Logo</h2>
       <?php 
@@ -216,7 +313,7 @@ button[disabled] {
       
 <!--       <img src="" id="signupLogo"/> -->
       
-      <h2 class="formTitle">
+      <h2>
         Login to your account
       </h2>
       
@@ -266,13 +363,13 @@ button[disabled] {
 		$newpassword=$_POST['confirmPassword'];
     $id=$_POST["id"];
 
-	  $sql= "SELECT * FROM `admin` WHERE `id`='$id' AND `password`='$oldpassword'";
+	  $sql= "SELECT * FROM `vendors` WHERE `id`='$id' AND `password`='$oldpassword'";
 		$result=mysqli_query($conn,$sql);  
     
 
 		if(mysqli_num_rows($result)>0)
 		{ 
-      $sqll = "UPDATE `admin` SET password = '$newpassword' WHERE id = 1";
+      $sqll = "UPDATE `vendors` SET password = '$newpassword' WHERE id = 1";
       echo"old password is matched";
 
       if (mysqli_query($conn, $sqll)) {

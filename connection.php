@@ -3,7 +3,7 @@
 $host = "localhost";  
 $db_username = "root";  
 $db_password = ""; 
-$dbname = "eventvilladb";  
+$dbname = "gstproject";  
 
 // Create connection
 $conn = new mysqli($host, $db_username, $db_password, $dbname);

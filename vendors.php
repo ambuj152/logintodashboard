@@ -27,7 +27,114 @@ if(isset($_SESSION['id']) )
     @media screen and (max-width: 767px) {
       .row.content {height: auto;} 
     }
-  </style>
+
+
+    
+     .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+  /* Style for the form container */
+  .container-fluid {
+   
+  }
+
+  /* Style for the form heading */
+  h2 {
+    background: linear-gradient(135deg, #B4A7, #E9C46A);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  /* Style for form labels */
+  label {
+    font-weight: bold;
+    color: #555;
+  }
+
+  /* Style for form inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="checkbox"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="checkbox"]:focus {
+    background-color: #e8e8e8;
+  }
+
+  /* Style for form buttons */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #B4A77B, #E9C46A);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background: linear-gradient(135deg, #E9C46A, #B4A77B);
+  }
+
+  /* Style for the Master Data link */
+  .master-data-link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .master-data-link:hover {
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="checkbox"] {
+    width: 100%;
+    height: 45px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+    font-size: 16px;
+  }
+
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder {
+    color: #888;
+    font-size: 14px;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="checkbox"]:focus {
+    background-color: #e8e8e8;
+  }
+</style>
+
+
 </head>
 <body>
 
@@ -50,7 +157,7 @@ if(isset($_SESSION['id']) )
 </nav>
 
 <div class="container-fluid">
-  <div class="row content">
+  <div class="row content" style="height: 800px;">
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>GWPL</h2>
       <?php 
@@ -75,8 +182,13 @@ if(isset($_SESSION['id']) )
  <div class="col-sm-9 hidden-xs">
     <h2>Company Profile</h2>
 <?php
+
+
 include("connection.php");
-$p="SELECT * FROM `vendors` where 1";
+
+$companyid=$_SESSION['companyid'];
+
+$p="SELECT * FROM `vendors` where `companyid`='$companyid'";
 $q=mysqli_query($conn, $p);
 $r=mysqli_fetch_assoc($q);
 ?>
@@ -180,16 +292,7 @@ $r=mysqli_fetch_assoc($q);
       
     
   
-  <div class="form-group" style="padding-left:12px;">
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input is-invalid" id="invalidCheck33" required>
-      <label class="custom-control-label" for="invalidCheck33">Agree to terms and conditions</label>
-      <div class="invalid-feedback">
-        <!-- You must agree before submitting. -->
-      </div>
-    </div>
-   &nbsp;
-  </div>
+
   <button  style="margin-left:10px;" class="btn btn-primary" type="submit" name="submit">Update Company Profile</button>
   <!-- <a href="Masterdata.php" style="margin-left:10px; color:black ;font-weight:600;" class="btn btn-warning">Master Data</></a> -->
  
@@ -202,12 +305,16 @@ $r=mysqli_fetch_assoc($q);
 </div>
 <?php
 include('connection.php');
+$companyid=$_SESSION['companyid'];
+
 if(isset($_POST["submit"]))
 {
     // $userid             = "SELECT MAX(id) FROM `profile`";
     // $exe=mysqli_query($conn,$userid);
     // $arraycount=mysqli_fetch_array($exe);
     // $uniqueid= "USER-00".$arraycount[0]+1;
+    $companyid=$_SESSION['companyid'];
+
     $companyname    =   $_POST['companyname'];
     $gst            =   $_POST['gstnumber'];
     $mobile         =   $_POST['mobile'];
@@ -222,7 +329,7 @@ if(isset($_POST["submit"]))
 
     // $profile_query =" INSERT INTO `profile` (`id`,`name`,`email`,`phone`,`city`,`state`,`zip`,`address`,`companyname`,`industry`,`gst`) VALUES ('$id','$name','$email','$phone','$city','$state','$zip','$address',$companyname,$industry,$gst)"; 
     // $fire_profile_query = mysqli_query($conn, $profile_query);
-    $profile_query = "UPDATE `vendors` SET `companyname`='$companyname',`address`=' $address',`mobile`='$mobile',`gstnumber`='$gst',`account`='$account',`ifsc`='$ifsc',`bank`=' $bank' WHERE 1";
+    $profile_query = "UPDATE `vendors` SET `companyname`='$companyname',`address`=' $address',`mobile`='$mobile',`gstnumber`='$gst',`account`='$account',`ifsc`='$ifsc',`bank`=' $bank' WHERE `companyid`='$companyid' ";
     $fire_profile_query = mysqli_query($conn,$profile_query);
     
     

@@ -150,13 +150,14 @@
 		$username=$_POST['username'];
 		$password=$_POST['password'];
 
-		$sql= "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password'";
+		$sql= "SELECT * FROM `vendors` WHERE `username`='$username' AND `password`='$password'";
 		$result=mysqli_query($conn,$sql);
 
 		if(mysqli_num_rows($result))
 		{
 			$res=mysqli_fetch_assoc($result);
 			$_SESSION['id']=$res['id'];
+			$_SESSION['companyid']=$res['companyid'];
 			header('Location:dashboard.php');
 		}
 		else{ echo" detail are not Matched";

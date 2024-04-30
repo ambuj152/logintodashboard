@@ -1,65 +1,101 @@
-<?php
 
+<?php
 session_start();
-if(isset($_SESSION['id']) ) 
+if(isset($_SESSION['id']))
 {
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Dashboard</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 550px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
+    /* Custom styles */
+    body {
+      font-family: Arial, sans-serif;
     }
-        
-    /* On small screens, set height to 'auto' for the grid */
-    @media screen and (max-width: 767px) {
-      .row.content {height: auto;} 
+    .sidebar {
+      background-color: #37474F;
+      position: fixed;
+      height: 100%;
+      width: 250px;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      overflow-x: hidden;
+      padding-top: 20px;
+      transition: all 0.3s;
+    }
+    .sidebar-heading {
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+    }
+    .sidebar-link {
+      color: #ffffff;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.3s;
+    }
+    .sidebar-link:hover {
+      background-color: #455A64;
+    }
+    .navbar {
+      background-color: #455A64;
+      padding: 14px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar-brand {
+      color: #ffffff;
+      font-weight: bold;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      transition: margin 0.3s;
+    }
+    @media (max-width: 992px) {
+      .sidebar {
+        margin-left: -250px;
+      }
+      .main-content {
+        margin-left: 0;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Sidebar -->
+    <?php
+    include('sidemenu.php');
+    ?>
+  <!-- /#sidebar -->
+<style>
+    @media (min-width:600px)
+{
+    .navbar-nav{
+        display: none;
+    }
+}
 
-<nav class="navbar navbar-inverse visible-xs">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-    <?php 
-      include('mobilemenu.php');
-      ?>
-    </div>
-  </div>
-</nav>
+</style>
+  <!-- Page content -->
+  <div class="main-content">
+    <!--  -->
 
-<div class="container-fluid">
-  <div class="row content" style="height: 800px;">
-    <div class="col-sm-3 sidenav hidden-xs">
-      <h2>GWPL</h2>
-      <?php 
-      include('menu.php');
-      ?><br>
-    </div>
-    <br>
-   
-    <style>
+    <?php
+    include("tooglemenu.php");
+    ?>
+<br>
+    
+    
+<style>
   /* Overall body background color */
   body {
     background-color: #f8f9fa;
@@ -67,12 +103,12 @@ if(isset($_SESSION['id']) )
 
   /* Style for the form container */
   .container-fluid {
-   
+   width: 1400px;
   }
 
   /* Style for the form heading */
   h2 {
-    background: linear-gradient(135deg, #B4A7, #E9C46A);
+    background: #455A64;
     color: white;
     padding: 15px 20px;
     border-radius: 10px 10px 0 0;
@@ -141,7 +177,7 @@ if(isset($_SESSION['id']) )
   }
 
   .btn-danger{
-    width: 40%;
+    width: 100%;
     padding: 12px;
     border: none;
     border-radius: 6px;
@@ -207,13 +243,13 @@ if(isset($_SESSION['id']) )
     border:1px solid grey;
   }
 </style>
-
+<div class="container-fluid">
 <div class="row">
   <div class="col-md-12">
     <form action="#" method="GET">
       <div class="input-group">
         <input type="text" name="search" class="form-control" placeholder="Search Data" value="<?php if(isset($_GET['search'])) {echo $_GET['search'];}?>">
-        <button type="submit" class="btn btn-primary" style="margin-top:5px;">Search</button>
+        <button type="submit" class="btn btn-primary" style="z-index:2;height: 41px; margin-bottom:12px; margin-right:10px;">Search</button>
       </div>
     </form>
     <br>
@@ -234,62 +270,65 @@ if(isset($_SESSION['id']) )
                         <br>
                 </div>
             </div> -->
-        </div>  
-    <h2>Customer Data</h2>
+         
+    <h2>Company Data</h2>
     <!-- <a href="formsearch.php"><button type="button" class="btn btn-primary">Search data</button></a> -->
 
 
-    <div class ="row">
+    <!-- <div class ="row">
             <div class="col-md-12">
                 <div class=" card mt-4">
-                <div class="card-body">
+                <div class="card-body"> -->
                     <table class="table table-bordered">
                         <thead>
-                            <tr>
-                                <th>USER-ID</th>
-                                <th>NAME</th>
+                            <tr style="font-size:12px">
+                                <th>COMPANY-ID</th>
+                                <th>FULL NAME</th>                                                                                         
+                                <th>COMPANY NAME</th>
                                 <th>EMAIL</th>
                                 <th>PHONE</th>
-                                <th>CITY</th>
-                                <th>STATE</th>
-                                <th>ZIP</th>
                                 <th>ADDRESS</th>
+                                <th>GSTIN/UIN</th>
+                                <th>TAX </th>
+                                <th>ADDRESS</th>
+                                        
 
 
-
-                                <th>OPERATIONS</th>
+                                
                             </tr>
                         </thead>
                             <tbody>
                             <?php
-                    include ('connection.php');
-                    $companyid=$_SESSION['companyid'];
+                    include ('../connection.php');
+                    //  $companyid=$_SESSION['companyid'];
                     if(isset($_GET['search']))
                     {
                         $filtervalues= $_GET['search'];
-                        $query ="SELECT * FROM `profile` WHERE CONCAT(`name`,`email`,`phone`,`city`,`state`,`Zip`,`address`) LIKE '%$filtervalues%' AND `companyid`='$companyid' ";
+                        $query ="SELECT * FROM `vendors` WHERE CONCAT(`fullname`,`companyid`,`companyname`,`email`,`mobile`,`address`,`gstnumber`,`address`) LIKE '%$filtervalues%'  ";
 
                       }
                       else {
                         // If search button is not clicked, display all data
-                        $query = "SELECT * FROM `profile` WHERE `companyid`='$companyid'";
+                        $query = "SELECT * FROM `vendors` ";
                       }
                         $result = mysqli_query($conn, $query);
                     
                         if(mysqli_num_rows($result) > 0) {
                             foreach($result as $row) {
                                 ?>
-                                <tr>
-                                    <td><?=$row['userid']; ?></td>
-                                    <td><?=$row['name']; ?></td>
+                                <tr style="font-size:13px">
+
+                                    <td><?=$row['companyid']; ?></td>
+                                 <td><?=$row['fullname']; ?></td>
+                                    <td><?=$row['companyname']; ?></td>
                                     <td><?=$row['email']; ?></td>
-                                    <td><?=$row['phone']; ?></td>
-                                    <td><?=$row['city']; ?></td>
-                                    <td><?=$row['state']; ?></td>
-                                    <td><?=$row['zip']; ?></td>
+                                    <td><?=$row['mobile']; ?></td>
                                     <td><?=$row['address']; ?></td>
-                                    <td><a href="pdf.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger">Show bill</> </a> &nbsp;
-                     <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class="btn btn-primary">Create Bill</a> </td> 
+                                    <td><?=$row['gstnumber']; ?></td>
+                                    <td><?=$row['taxpercentage']; ?></td>
+                                    <td><?=$row['address']; ?></td>
+                            
+                      
 
                                 </tr>
                                 <?php
@@ -307,37 +346,36 @@ if(isset($_SESSION['id']) )
 
 
                     </table>
+                <!-- </div>
+                </div>
+
+                </div>
+                </div> -->
+
+  </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<?php
+}
+else{
+  echo "<script>alert('please login first')</script>";
+  header('Location:superuser.php');
+}
+?>
+
+
+
+
+
+
+
 
                     
 
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-    </div>
+                
     
-
-  </div>
-</div>
-
-</body>
-</html>
-  <?php
-
-
-
-
-  
-   
-}
-else{
-    echo "please login to Continue";
-    header("Location:admin.php");
-}
-
-?>
-

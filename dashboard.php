@@ -27,6 +27,104 @@ if(isset($_SESSION['id']) )
     @media screen and (max-width: 767px) {
       .row.content {height: auto;} 
     }
+
+    .container-fluid {
+   
+  }
+
+  /* Style for the form heading */
+  h2 {
+    background: linear-gradient(135deg, #B4A7, #E9C46A);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  /* Style for form labels */
+  label {
+    font-weight: bold;
+    color: #555;
+  }
+
+  /* Style for form inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="checkbox"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="checkbox"]:focus {
+    background-color: #e8e8e8;
+  }
+
+  /* Style for form buttons */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #B4A77B, #E9C46A);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background: linear-gradient(135deg, #E9C46A, #B4A77B);
+  }
+
+  /* Style for the Master Data link */
+  .master-data-link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .master-data-link:hover {
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="checkbox"] {
+    width: 100%;
+    height: 45px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+    font-size: 16px;
+  }
+
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder {
+    color: #888;
+    font-size: 14px;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="checkbox"]:focus {
+    background-color: #e8e8e8;
+  }
   </style>
 </head>
 <body>
@@ -59,75 +157,24 @@ if(isset($_SESSION['id']) )
     </div>
     <br>
    
-    <div class="col-sm-9">
+    <div class="col-sm-9" style="width:60%;justify-content:center ;">
 
   
         
-        <div class="well">
-        <h4>Dashboard</h4>
-        <p>Some text..</p>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Users</h4>
-            <p>1 Million</p> 
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Pages</h4>
-            <p>100 Million</p> 
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Sessions</h4>
-            <p>10 Million</p> 
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Bounce</h4>
-            <p>30%</p> 
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p> 
-            <p>Text</p> 
-            <p>Text</p> 
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p> 
-            <p>Text</p> 
-            <p>Text</p> 
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p> 
-            <p>Text</p> 
-            <p>Text</p> 
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="well">
-            <p>Text</p> 
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p> 
-          </div>
-        </div>
-      </div>
+    <div class="card" style="width:100%;justify-content:center ;padding:100px;padding-left:300px">
+  <center><img src="images/user.jpg"width="250px" class="card-img-top" alt="..." style="justify-content:center ;">
+  <div class="card-body">
+<?php
+include('connection.php');
+$companyid=$_SESSION['companyid'];
+$dp="SELECT * FROM `vendors` WHERE `companyid`='$companyid'";
+$dr=mysqli_query($conn,$dp);
+$naam=mysqli_fetch_assoc($dr);
+?>
+
+    <h1 class="card-text">Hello <strong><?php echo ucfirst($naam['companyname']);  ?></strong> Welcome To the Dashboard</h1></center>
+  </div>
+</div>
 
         
       
@@ -152,7 +199,7 @@ if(isset($_SESSION['id']) )
 }
 else{
     echo "please login to Continue";
-    header("Location:admin.php");
+    header("Location:index.php");
 }
 
 ?>

@@ -141,7 +141,7 @@ if(isset($_SESSION['id']) )
   }
 
   .btn-danger{
-    width: 40%;
+    width: 100%;
     padding: 12px;
     border: none;
     border-radius: 6px;
@@ -288,8 +288,8 @@ if(isset($_SESSION['id']) )
                                     <td><?=$row['state']; ?></td>
                                     <td><?=$row['zip']; ?></td>
                                     <td><?=$row['address']; ?></td>
-                                    <td><a href="pdf.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger">Show bill</> </a> &nbsp;
-                     <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class="btn btn-primary">Create Bill</a> </td> 
+                                    <td><a href="orders.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger">Show Orders</> </a> &nbsp;
+                     <!-- <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class="btn btn-primary">Create Bill</a> </td>  -->
 
                                 </tr>
                                 <?php
