@@ -388,20 +388,20 @@ margin-top: 10px;
                     <div class="input-group">
                     <label for=""> Add services</label>
 
-                        <input type="text" class="form-control" name="services[]" placeholder="Add services">
+                        <input type="text" class="form-control" name="services[]" placeholder="Add services" required>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                       <label for=""> QTY/PER</label>
-                        <input type="number" class="form-control" name="quantity[]" value="1" min="1">
+                        <input type="number" class="form-control" name="quantity[]" value="1" min="1" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group">
                     <label for="">Add Price</label>
 
-                        <input type="text" class="form-control" name="price[]" placeholder=" Add Price">
+                        <input type="number" class="form-control" name="price[]" placeholder=" Add Price" required>
                         
                         <span class="input-group-btn" style="padding-top:24px">
                             <button class="btn btn-danger delete-field" type="button">
@@ -421,7 +421,7 @@ margin-top: 10px;
         $(document).ready(function () {
             // Add new input field
             $(".btn-add").click(function () {
-                var newInput = '<div class="row"><div class="col-md-6"><div class="input-group"><input type="text" class="form-control" name="services[]" placeholder="Add Service"></div></div> <div class="col-md-2"><div class="input-group"><input type="number" class="form-control" name="quantity[]" placeholder="" value="1"></div></div> <div class="col-md-4"><div class="input-group"><input type="text" class="form-control" name="price[]" placeholder=" Add Price"><span class="input-group-btn"><button class="btn btn-danger delete-field" type="button"><i class="glyphicon glyphicon-trash"></i> Delete</button></span></div></div></div>';
+                var newInput = '<div class="row"><div class="col-md-6"><div class="input-group"><input type="text" class="form-control" name="services[]" placeholder="Add Service" required></div></div> <div class="col-md-2"><div class="input-group"><input type="number" class="form-control" name="quantity[]" placeholder="" value="1" required></div></div> <div class="col-md-4"><div class="input-group"><input type="number" class="form-control" name="price[]" placeholder=" Add Price" required><span class="input-group-btn"><button class="btn btn-danger delete-field" type="button"><i class="glyphicon glyphicon-trash"></i> Delete</button></span></div></div></div>';
                 $("#input-fields").append(newInput);
             });
 
@@ -496,7 +496,10 @@ margin-top: 10px;
 <?php
 include("connection.php");
 if(isset($_POST['generate']))
-{
+{   
+  
+
+
   $userid=$_POST['userid'];
   $services=$_POST['services']; 
   $price=$_POST['price'];

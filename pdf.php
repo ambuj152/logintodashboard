@@ -164,7 +164,7 @@ th, td {
                               if(isset($_GET['showid']))
                                   {
                                       $val=$_GET['showid'];
-                                      $x="SELECT * FROM `bill` WHERE `userid`='$val' ORDER BY `id` DESC ";
+                                      $x="SELECT * FROM `bill` WHERE `userid`='$val' ORDER BY `timestamp` DESC ";
                                       $y=mysqli_query($conn,$x);   
                                       $z= mysqli_fetch_assoc($y);
 
@@ -250,7 +250,7 @@ th, td {
             $amt=0;
             $gst=0;
             $totalamt=0;
-            $x = "SELECT * FROM `bill` WHERE `userid` = '$val' AND `orderdate` = (SELECT MAX(`orderdate`) FROM `bill` WHERE `userid` = '$val')";
+            $x = "SELECT * FROM `bill` WHERE `userid` = '$val' AND `timestamp` = (SELECT MAX(`timestamp`) FROM `bill` WHERE `userid` = '$val')";
             // $x="SELECT * FROM `bill` WHERE `userid`='$val'AND MAX(`orderdate`)";
             $y=mysqli_query($conn,$x);   
               // $z= mysqli_fetch_assoc($y);
@@ -345,7 +345,7 @@ th, td {
 
                             <tr style="border:none">
 
-          <td colspan="3" style="border-left:none; border-right:1px solid grey; padding-left:20px; padding:5px;"><p style="font-size:14px;font-family: system-ui;"><strong><?php echo $check['taxpercentage']?>% GST = </strong> (9% sgst + 9% CGST)</p></td>
+          <td colspan="3" style="border-left:none; border-right:1px solid grey; padding-left:20px; padding:5px;"><p style="font-size:14px;font-family: system-ui;"><strong><?php echo $check['taxpercentage']?>% GST = </strong> (<?php echo $sgst;?> sgst + <?php echo $sgst;?>% CGST)</p></td>
           <td style=" border-left:none;  padding:5px;"><p  style="font-size:14px;font-family: system-ui;;text-align:right;padding-right:20px;"> ₹ <?php
            echo $gst=($check['taxpercentage']/100)*$totalamt;
             ?></p>
