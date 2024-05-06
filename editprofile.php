@@ -4,6 +4,24 @@ session_start();
 if(isset($_SESSION['id']) ) 
 {
 ?>
+
+
+<?php
+include('connection.php');
+
+
+if(isset($_POST['userid']))
+{
+
+    $userid=$_POST['userid'];
+    $deleteQuery= "DELETE FROM `tempbill` WHERE `userid`= '$userid'";
+    $exec= mysqli_query($conn,$deleterow);
+}
+   
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +30,7 @@ if(isset($_SESSION['id']) )
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
@@ -78,7 +97,10 @@ if(isset($_SESSION['id']) )
 
   /* Style for form buttons */
   .btn-primary{
-    width: 100%;
+    /* width: 100%; */
+    right:10px;
+    /* margin-left: 300px; */
+    margin-top: 10;
     padding: 12px;
     border: none;
     border-radius: 6px;
@@ -91,8 +113,13 @@ if(isset($_SESSION['id']) )
   }
 
   .btn-danger{
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
     height: 45px;
-margin-top: 10px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+
   }
 
   .btn:hover {
@@ -232,7 +259,8 @@ margin-top: 10px;
                             <div class="form-group">
                             <label for="username">Address</label>
                             <input type="text" class="form-control" id="username" name="city" disabled value="<?php echo $w['address']?>">
-                        </div>
+                            <input type="hidden" name="action_code" value="previewbill">
+                          </div>
                     </div>
                   </div>
 
@@ -270,31 +298,26 @@ margin-top: 10px;
             <h2>Customer data</h2>
                
                   <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                     <div class="form-group">
                     <label for="firstname"> Customer Name</label>
-                          <input type="text" class="form-control" id="firstname" name="firstname"  value="<?php echo $c['name'] ?>">
+                          <input type="text" class="form-control" id="customername" name="customername"  value="<?php echo $c['name'] ?>">
                     </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                           
                           <div class="form-group">
                               <label for="lastname">Email</label>
-                              <input type="text" class="form-control" id="lastname" name="email"  value="<?php echo $c['email']?>">
+                              <input type="text" class="form-control" id="email" name="email"  value="<?php echo $c['email']?>">
                           </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                           <div class="form-group">
                           <label >Phone</label>
-                          <input type="text" class="form-control" id="email" name="phone" value="<?php echo $c['phone']?>">
+                          <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $c['phone']?>">
                       </div>
                     </div>
-                    <div class="col-sm-3">
-                            <div class="form-group">
-                            <label for="username">Invoice</label>
-                            <input type="text" class="form-control" id="username" name="userid" disabled value="<?php echo $c['userid']?>">
-                        </div>
-                    </div>
+                   
                   </div>
                   
               
@@ -303,7 +326,7 @@ margin-top: 10px;
                   <div class="form-group">
                                 <label for="password">Customer ID</label>
 
-                                <input type="text" class="form-control" id="state" name="state" disabled value="<?php echo $c['id']?>">
+                                <input type="text" class="form-control" id="cid" name="customerid" disabled value="<?php echo $c['userid']?>">
                                 <input type="hidden" name="userid" value="<?php echo $c['userid']; ?>">
                             </div>
                   </div>
@@ -318,7 +341,7 @@ margin-top: 10px;
                           <div class="col-sm-4">
                           <div class="form-group">
                                 <label for="password">Address</label>
-                                <input type="text" class="form-control" id="password" name="password"  value="<?php echo $c['address']?>">
+                                <input type="text" class="form-control" id="address" name="address"  value="<?php echo $c['address']?>">
                             </div>
 
                           </div> 
@@ -388,20 +411,20 @@ margin-top: 10px;
                     <div class="input-group">
                     <label for=""> Add services</label>
 
-                        <input type="text" class="form-control" name="services[]" placeholder="Add services" required>
+                        <input type="text" class="form-control" name="services[]" id="services[]" placeholder="Add services" required>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                       <label for=""> QTY/PER</label>
-                        <input type="number" class="form-control" name="quantity[]" value="1" min="1" required>
+                        <input type="number" class="form-control" name="quantity[]" id="quantity[]" value="1" min="1" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group">
                     <label for="">Add Price</label>
 
-                        <input type="number" class="form-control" name="price[]" placeholder=" Add Price" required>
+                        <input type="number" class="form-control" name="price[]" id="prices[]" placeholder=" Add Price" required>
                         
                         <span class="input-group-btn" style="padding-top:24px">
                             <button class="btn btn-danger delete-field" type="button">
@@ -412,7 +435,7 @@ margin-top: 10px;
                 </div>
             </div>
             <div id="input-fields"></div>
-            <button type="button" class="btn btn-primary btn-add"><i class="glyphicon glyphicon-plus"></i> Add More Services</button>
+            <button type="button"  class="btn btn-primary btn-add"><i class="glyphicon glyphicon-plus"></i> Add More Services</button>
             
     
 
@@ -421,7 +444,7 @@ margin-top: 10px;
         $(document).ready(function () {
             // Add new input field
             $(".btn-add").click(function () {
-                var newInput = '<div class="row"><div class="col-md-6"><div class="input-group"><input type="text" class="form-control" name="services[]" placeholder="Add Service" required></div></div> <div class="col-md-2"><div class="input-group"><input type="number" class="form-control" name="quantity[]" placeholder="" value="1" required></div></div> <div class="col-md-4"><div class="input-group"><input type="number" class="form-control" name="price[]" placeholder=" Add Price" required><span class="input-group-btn"><button class="btn btn-danger delete-field" type="button"><i class="glyphicon glyphicon-trash"></i> Delete</button></span></div></div></div>';
+                var newInput = '<div class="row"><div class="col-md-6"><div class="input-group"><input type="text" class="form-control" name="services[]" id="services[]" placeholder="Add Service" required></div></div> <div class="col-md-2"><div class="input-group"><input type="number" class="form-control" name="quantity[]" id="quantity[]" placeholder="" value="1" required></div></div> <div class="col-md-4"><div class="input-group"><input type="number" class="form-control" name="price[]" id="price[]" placeholder=" Add Price" required><span class="input-group-btn"><button class="btn btn-danger delete-field" type="button"><i class="glyphicon glyphicon-trash"></i> Delete</button></span></div></div></div>';
                 $("#input-fields").append(newInput);
             });
 
@@ -451,7 +474,22 @@ margin-top: 10px;
                   <div class="col-sm-6">
                                 <div class="form-group">
                     <h2 class="text-center">Order Date:</h2> 
-                    <input type="date" class="form-control" id="birthday" name="orderdate">
+                    <input type="date" class="form-control" id="orderdate" name="orderdate">
+
+
+                    <script>
+// Function to get the current date in YYYY-MM-DD format
+function getCurrentDate() {
+  var today = new Date();
+  var year = today.getFullYear();
+  var month = ('0' + (today.getMonth() + 1)).slice(-2); // Add leading zero if needed
+  var day = ('0' + today.getDate()).slice(-2); // Add leading zero if needed
+  return year + '-' + month + '-' + day;
+}
+
+// Set the value of the hidden input field with the current date
+document.getElementById("orderdate").value = getCurrentDate();
+</script>
                   </div>
                 </div>
                   </div>
@@ -464,32 +502,151 @@ margin-top: 10px;
                  include ('connection.php');
                  $companyid=$_SESSION['companyid'];
                 ?>
-                <button type="submit" class="btn btn-primary" name="generate">Generate</button>
+                <button type="submit" style="width: 300px;" class="btn btn-danger" onclick="modaldata('<?php  echo $c['userid']; ?>')"
+                data-toggle="modal" data-target="#myModal">Preview Bill</button>
+
+                <button type="button" style="margin-left:430px ;width:30%" class="btn btn-primary" id="generatepage"  onclick="finalpage('<?php  echo $c['userid']; ?>')" >Generate Bill</button>
                   </div>
-
-                </div>
-               
+                </div>         
             </form>
-        </div>
-    </div>
-</div>
-
-        
-        
-      
-             </div>
-      </div>
-
-        
-      
 
 
-       
-      
-       
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" >
+    <div class="modal-dialog">
     
-  
-</div>
+      <!-- Modal content-->
+          <div class="modal-content" style="width:900px;" >
+              <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title" style="text-align:center;">Bill Preview</h4>
+             </div>
+              <div class="modal-body">
+                  <p id="ShowDis" style="text-align:center;font-family: Garamond;"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deltable('<?php  echo $c['userid']; ?>')">Done</button>
+              </div>
+          </div>
+      
+    </div>
+  </div>
+                            <p id="userid">
+
+                            </p>
+                              <script>
+                                   function finalpage(userid)
+                                  {
+                                    var userid=userid;
+                                  //alert(PackageTour);
+                                  $.ajax({
+                                    url: "showfunction.php",
+                                    method: "POST",
+                                    data: {
+                                      pageid: userid,
+                                    },
+                                    success: function(data)
+                                    {
+                                    
+                                    $("userid").html(data);
+                                    }
+                                  });   }
+
+                                  function deltable(userid)
+                                  {
+                                    var userid=userid;
+                                  //alert(PackageTour);
+                                  $.ajax({
+                                    url: "showfunction.php",
+                                    method: "POST",
+                                    data: {
+                                      userid: userid,
+                                    },
+                                    success: function(data)
+                                    {
+                                    
+                                    $("userid").html(data);
+                                    }
+                                  });   }
+
+                                  </script>
+                                  <script>
+                                  $(document).ready(function() {
+                                      $("#dynamic-form").on('submit', function(e) {
+                                          e.preventDefault();
+                                          $.ajax({
+                                              url: "function.php",
+                                              type: "POST",
+                                              data: new FormData(this),
+                                              contentType: false,
+                                              processData: false,
+                                              success: function(data) {
+                                                  if (data === 'Invalid') {
+                                                      failed_password();
+                                                  }
+                                                  else{
+                                                    modaldata('<?php echo $c['userid']; ?>');
+                                                  }
+                                              }
+                                          });
+                                      });
+                                  });
+
+                                  $(document).ready(function() {
+                                      $("#generatepage").on('click', function(e) {
+                                        alert('hi');
+                                          e.preventDefault();
+                                          $.ajax({
+                                              url: "showfunction.php",
+                                              type: "POST",
+                                              data: new FormData(this),
+                                              contentType: false,
+                                              processData: false,
+                                              success: function(data) {
+                                                  if (data === 'Invalid') {
+                                                      failed_password();
+                                                  }
+                                                  else{
+                                                    
+                                                  }
+                                              }
+                                          });
+                                      });
+                                  });
+
+
+
+
+                                  function modaldata(userid)
+                                  {
+                                    var EnqId=userid;
+                                  //alert(PackageTour);
+                                  $.ajax({
+                                    url: "ShowFunction.php",
+                                    method: "POST",
+                                    data: {
+                                    EnqId: EnqId,
+                                    },
+                                    success: function(data)
+                                    {
+                                    $("#ShowDis").html(data);
+                                    }
+                                  });     
+                                      
+
+                                  }
+                              </script> 
+    
+                                </div>
+                            </div>
+                       </div>      
+                  </div>
+             </div>
+       </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 </body>
 
@@ -497,31 +654,60 @@ margin-top: 10px;
 include("connection.php");
 if(isset($_POST['generate']))
 {   
+  // Invoice number evaluate
+  $seria= "SELECT MAX(`serial`) FROM `bill`";
+
+  $exe=mysqli_query($conn,$seria);
+
+  $arraycount=mysqli_fetch_array($exe);
+  
+  $serial= $arraycount[0]+1;
   
 
+  $companyid=$_SESSION['companyid'];
 
-  $userid=$_POST['userid'];
-  $services=$_POST['services']; 
-  $price=$_POST['price'];
-  $modeofpayment=$_POST['modeOfPayment'];
-  $orderdate=$_POST['orderdate'];
-  $quantity= $_POST['quantity'];
+
+// serial number evaluate
+  $invoice= "SELECT MAX(`invoice`) FROM `bill`";
+
+  $exe=mysqli_query($conn,$invoice);
+
+  $arraycount=mysqli_fetch_array($exe);
+  
+  $invoice= $arraycount[0]+1;
+
+
+
+
+  $userid = $_POST['userid'];
+  $services = $_POST['services']; 
+  $price = $_POST['price'];
+  $modeofpayment = $_POST['modeOfPayment'];
+  $orderdate = $_POST['orderdate'];
+  $quantity = $_POST['quantity'];
   
 
 
  for ($i = 0; $i < count($services); $i++) {
   
 
-  $quiry="INSERT INTO  `bill` (`userid`, `services`,`quantity` ,`price` ,`modeofpayment`,`orderdate`) VALUES ('$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate')";
-  $fire = mysqli_query($conn, $quiry);
+  $quiry="INSERT INTO  `bill` (`serial`,`invoice`,`companyid`,`userid`, `services`,`quantity` ,`price` ,`modeofpayment`,`orderdate`) VALUES ('$serial','$invoice' ,'$companyid','$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate')";
+  $fire = mysqli_query($conn, $quiry,);
+ 
+  $tempquery="INSERT INTO  `tempbill` (`companyid`,`userid`, `services`,`quantity` ,`price` ,`modeofpayment`,`orderdate`) VALUES ('$companyid','$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate')";
+  $fir2=mysqli_query($conn, $tempquery);
+ 
+  
   // Here you can store these values in a database or perform any other processing
 }
 
 
 
+
+
  if($fire)
  {
-  echo $qwerty="SELECT * FROM `bill` WHERE `userid`='$userid' AND `modeofpayment`='$modeofpayment' AND `orderdate`='$orderdate' ORDER  BY `id` DESC";
+  echo $qwerty= "SELECT * FROM `bill` WHERE `userid`='$userid' AND `modeofpayment`='$modeofpayment' AND `orderdate` ='$orderdate' ORDER  BY `id` DESC";
   $execute=mysqli_query($conn,$qwerty);
   $res=mysqli_fetch_assoc($execute);
   //  echo mysqli_error($conn);
@@ -554,7 +740,7 @@ if(isset($_POST['generate']))
 }
 else{
     echo "please login to Continue";
-    header("Location:admin.php");
+    header("Location:index.php");
 }
 
 ?>

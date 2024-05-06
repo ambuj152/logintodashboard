@@ -175,10 +175,7 @@ th, td {
                                 
                     
                           ?>
-                              <!-- <h4 style="font-size:14px"> <Strong>Invoice No.- </Strong>GW/
-                              <?php 
-                              // echo $z['userid'];
-                              ?></h4> -->
+                      
                  <h4 style="font-size:14px"> <Strong>Mode of Payment - </Strong><?php echo $z['modeofpayment'];?></h4>
 
 
@@ -190,7 +187,7 @@ th, td {
                               // echo date('j F Y', strtotime($z['orderdate'])) ;
                               ?>
                             </h4> -->
-                              <h4 style="font-size:14px"> <Strong>Serial NO. - </Strong><?php echo $z['id'];?></h4>
+                              <h4 style="font-size:14px"> <Strong> <?php echo "ORDER PREVIEW";?></Strong></h4>
                                       <?php
                                   }
                                   else{

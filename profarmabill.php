@@ -1,8 +1,10 @@
 <?php
 
 session_start();
-if(isset($_SESSION['id']) ) 
+if(isset($_SESSION['tempid']) ) 
 {
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,17 +124,18 @@ th, td {
         <tr style="border:none;">
 
        <div class="col-md-12" style="background:#eff5f5;">
-                                  <center><h2 style=" background: linear-gradient(135deg, #B4A7, #E9C46A);
-                          color: white;
+                                  <center><h2 style="
+                          color: black;
                           padding: 15px 20px;
                           border-radius: 10px 10px 0 0;
                           margin-top: 0;
-                          text-align: center;"> Tax Invoice<h2></center>
+                          text-align: center;"> PROFARMA INVOICE<h2></center>
         </div>
           </tr>
-                            <tr style="">
+          <tr>
+            <tr style="">
 
-                  <td colspan="2" width="43%" style="border-right:1px solid grey; border-top:none;border-left:none; padding:20px;">
+                  <td colspan="2" width="43%" style="border-right:1px solid grey; border-top:none;border-left:none;">
                               <?php 
                                   include("connection.php");
                     $companyid=$_SESSION['companyid'];
@@ -148,23 +151,22 @@ th, td {
                     
 
                         
-                                <p style="font-size:14px;font-family: system-ui;"> <Strong><?php echo ucfirst($w['companyname']);?> </Strong></p>
+                                <h3 style="font-family: system-ui;"> <Strong><?php echo ucfirst($w['companyname']);?> </Strong></h3>
                                 <p style="font-size:14px;font-family: system-ui;"> <?php echo $w['address'];?>, <?php echo $w['mobile'];?></p>
                                 <p style="font-size:14px;font-family: system-ui;"> <Strong>GSTIN/UIN :  </Strong><?php echo $w['gstnumber'];?></p>
               
 
             
                  </td>
-                 <td width="30%" style="border-top:none;border-left:none; padding:20px;">
+                 <td width="30%" style="border-top:none;border-left:none; ">
                
                         <?php 
                             include('connection.php');
                     // $companyid=$_SESSION['companyid'];
 
-                              if(isset($_GET['showid']))
-                                  {
-                                      $val=$_GET['showid'];
-                                      $x="SELECT * FROM `bill` WHERE `userid`='$val' ORDER BY `id` DESC ";
+                        
+                                    
+                                      $x="SELECT * FROM `profarmacustomer` WHERE `id` ORDER BY `id` DESC ";
                                       $y=mysqli_query($conn,$x);   
                                       $z= mysqli_fetch_assoc($y);
                                       $count=1;
@@ -173,57 +175,57 @@ th, td {
                                 
                     
                           ?>
-                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Invoice No.- </Strong>GW-00<?php echo $z['invoice'];?></p>
-                 <p style="font-size:14px;font-family: system-ui;"> <Strong>Mode of Payment - </Strong><?php echo $z['modeofpayment'];?></p>
+                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Invoice No.- </Strong>GW-00<?php echo $z['serial'];?></p>
+                              
+                 <p style="font-size:14px;font-family: system-ui;"> <Strong>Mobile number - </Strong><?php echo $z['mobile'];?></p>
 
 
             
                  </td>
                  <td width="27%" style=" border:none; border-bottom:1px solid grey; padding:20px;">
-                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Order Date - </Strong><?php echo $z['orderdate'] ;?></p>
-                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Serial NO. - </Strong><?php echo  $z['serial']?></p>
-                                      <?php
-                                  }
-                                  else{
-
-                                    echo "bill not generated yet";
-                                  }
-                                      ?>
+                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Order Date - </Strong><?php echo $z['date'] ;?></p>
+                              
+                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Business - </Strong><?php echo  $z['businessname']?></p>
+                                    
 
                  </td>
               </tr>
-                             <tr style="border:none;" border-bottom:none;>
 
-                        <td colspan="2" style="border-top:none; border-left:none; border-right:1px solid grey;padding:20px;">
-                                  <?php 
-                                  include("connection.php");
-                                  if(isset($_GET['showid']));
-                                  {  
-                                  $val=$_GET['showid'];
-                                  $a="SELECT * FROM `profile` WHERE `userid`='$val'";
-                                  $b=mysqli_query($conn,$a);   
-                                      $c= mysqli_fetch_assoc($b);
-                                        
-                                  ?>
-                                  <p style="font-size:14px;font-family: system-ui;"> <Strong>Company Name - </Strong><?php  echo ucfirst($c['companyname']);?></p>
-                                  <p style="font-size:14px;font-family: system-ui;text-transform: uppercase;"> <Strong>GST NO. - </Strong><?php echo $c['gst'];?></p>
-                                <p style="font-size:14px;font-family: system-ui;"> <Strong>Addrees - </Strong><?php echo $c['address'];?></p>
+              <tr style="border:none;" border-bottom:none;>
 
-                        </td >
-                        <td style=" border-right:1px solid grey; border-left:none;border-top:none; padding:20px;">
-                        <p style="font-size:14px;font-family: system-ui;"> <Strong>Customer ID - </Strong><?php echo $c['userid'];?></p>
-                                <p style="font-size:14px;font-family: system-ui;"> <Strong>Mobile No. - </Strong><?php echo $c['phone'];?></p>
+<td colspan="2" style="border-top:none; border-left:none; border-right:1px solid grey;">
+          <?php 
+          include("connection.php");
+        //   $val=$_GET['showid'];
+          $a="SELECT * FROM `profarmacustomer` WHERE `id` ORDER BY `id` DESC";
+          $b=mysqli_query($conn,$a);   
+              $c= mysqli_fetch_assoc($b);
+                
+          ?>
+<p style="font-size:14px;font-family: system-ui;"> <Strong>Customer Name - </Strong><?php echo $c['customername'];?></p>
+<p style="font-size:14px;font-family: system-ui;"> <Strong>GSTIN / UIN - </Strong><?php ?></p>
 
-                        </td>
-                            <td width="230px" style="border:none; padding :20px; border-bottom:none;">                    
-                                <p style="font-size:14px;font-family: system-ui;"> <Strong>Email - </Strong><?php echo $c['email']; ?></p>
+          
+       
 
-                                <?php
-                                  }
-                             
-                            ?>
-                            </td>
-                         </tr>
+</td >
+<td style=" border-right:1px solid grey; border-left:none;border-top:none;">
+<p style="font-size:14px;font-family: system-ui;"> <Strong>Customer ID - </Strong><?php echo $c['userid'];?></p>
+       
+
+</td>
+    <td width="230px" style="border:none; padding :20px; border-bottom:none;">                    
+        <p style="font-size:14px;font-family: system-ui;"> <Strong>Email - </Strong><?php echo $c['email']; ?></p>
+
+        <?php
+          
+     
+    ?>
+    </td>
+ </tr>
+            
+            </tr>
+                           
                  </table>
                  <table style="border-top:none" border="1px" >
               
@@ -244,20 +246,18 @@ th, td {
               <?php 
         include('connection.php');
         
-        if(isset($_GET['showid']))
-        {
-            $val=$_GET['showid'];
+        
+            // $val=$_GET['showid'];
             $i=1;
             $amt=0;
-            $gst=0;
+            // $gst=0;
             $totalamt=0;
-
-            // $x = "SELECT * FROM `bill` WHERE `userid` = '$val' AND (`orderdate`, `timestamp`) = (SELECT MAX(`orderdate`), `timestamp` FROM `bill` WHERE `userid` = '$val')";
-
-            $x = "SELECT * FROM `tempbill` WHERE `userid` = '$val' AND `orderdate` = (SELECT MAX(`orderdate`) FROM `tempbill` WHERE `userid` = '$val') AND `timestamp`" ;
-            // $x="SELECT * FROM `bill` WHERE `userid`='$val'AND MAX(`orderdate`)";
+             $userid= $_SESSION['tempid'];
+        
+            $x = "SELECT * FROM `profarmacustomer` WHERE `userid` = '$userid'" ;
             $y=mysqli_query($conn,$x);   
               // $z= mysqli_fetch_assoc($y);
+            // mysqli_error($conn);
               foreach($y as $res)
               {
            
@@ -303,77 +303,31 @@ th, td {
                                         <?php
                                         $i++;
                                         }
-                               }
+                               
                                         ?>
                         </td>
               </tr>
                                 </table>
               <table class="table" border="1px" style="border-top:none;">
-                            <tr style="border-bottom:1px solid grey;background:#eff5f5; ">
-              <td colspan="4" style="border-top:none;border-left:none; border-right:none; padding-left:20px; padding-top:10px;">
-              <p style="font-size:14px;font-family: system-ui;"><strong> Taxation</strong><small> &nbsp;( AND OTHER TAXES*)</small><p>
-              <center>
-
-              </td>
-                    
+                          
         
-          </tr>
-         <tr style="border:none;">
+  
 
-        <?php
-        include("connection.php");
-
-        if(isset($_GET['showid'])){
-        $companyid=$_SESSION['companyid'];
-        $tax="SELECT * FROM `vendors` WHERE `companyid`='$companyid' ";
-        $calc=mysqli_query($conn, $tax);
-        $check=mysqli_fetch_assoc($calc);
-        $sgst= $check['taxpercentage']/2;
-        
-        }
-        ?>
-
-                                <td colspan="3" style="border-top:none;border-right:1px solid grey; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:14px;font-family: system-ui;"><strong> <?php echo $sgst;?>% CGST </strong> </p></td>
-                                <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:14px;font-family: system-ui;; padding-right:20px; text-align:right;"> ₹  <?php
-                                echo $agst=($sgst/100)*$totalamt;
-                                  ?></p>
-                                  
-                                </td>
-        </tr>
-       <tr style="border-bottom: 1px solid grey; border:none">
-
-                      <td colspan="3" style="border-left:none; border-right:1px solid grey; padding-top:5px;padding-left:20px;"><p style="font-size:14px;font-family: system-ui;"><strong><?php echo $sgst; ?>% SGST </strong>  </p></td>
-                      <td style="border-left:none !important; padding-left:20px; padding:5px;"><p  style="font-size:14px;font-family: system-ui;;border:none; padding-right:20px; text-align:right">  ₹
-                      <?php
-                         echo $cgst=($sgst/100)*$totalamt;
-                      ?></p>
-                        
-                      </td>
-        </tr>
-
-                            <tr style="border:none">
-
-          <td colspan="3" style="border-left:none; border-right:1px solid grey; padding-left:20px; padding:5px;"><p style="font-size:14px;font-family: system-ui;"><strong><?php echo $check['taxpercentage']?>% GST = </strong> (<?php echo $sgst;?> sgst + <?php echo $sgst;?>% CGST)</p></td>
-          <td style=" border-left:none;  padding:5px;"><p  style="font-size:14px;font-family: system-ui;;text-align:right;padding-right:20px;"> ₹ <?php
-           echo $gst=$cgst+$agst;
-            ?></p>
-            
-          </td>
-        </tr>
+                           
                           
            <tr style="border:none; background:#eff5f5">
 
-                <td colspan="3" style="border-left:none; border-right:1px solid grey;padding-left:20px;padding:5px;">
-                      <p style="font-size:14px;font-family: system-ui;"><strong> TOTAL COST INCLUSIVE <?php $check['taxpercentage']; ?>GST</strong><small> &nbsp;( AND OTHER TAXES*)</small><p>
+                <td colspan="1" style="border-left:none; border-right:1px solid grey;padding-left:20px;padding:5px;">
+                      <p style="font-size:14px;font-family: system-ui;"><strong> TOTAL ESTIMATE </strong><small> &nbsp;( Without including taxes*)</small><p>
                 </td>
                 <td style="border-left:none; padding-left:20px">
-                      <p style="font-size:14px;font-family: system-ui;;text-align:right;padding-right:20px"><strong>Total Amount:₹ <?php echo $total= round($gst+$totalamt); ?></strong><p>
+                      <p style="font-size:14px;font-family: system-ui;;text-align:right;padding-right:20px"><strong> Amount:₹ <?php echo $total= round($totalamt); ?></strong><p>
 
                 </td>
           </tr>
                              <tr style="border:none;">
 
-                <td colspan="3" width="50%" style="border-left:none; border-right:1px solid grey;padding-left:20px;">
+                <td colspan="2" width="50%" style="border-left:none; border-right:1px solid grey;padding-left:20px;">
 
                                 <!-- number to word-->
                                 <script>
@@ -420,27 +374,18 @@ document.getElementById("total_amt").innerHTML = str;
 
 
                 <p style="font-size:14px;font-family: system-ui;text-transform: uppercase;"> <Strong>Total Amount (In Words) - <span id="total_amt"><script>inWordsTotal(<?php //echo $a;?>);</script></span></Strong></p>
-                <p style="font-size:14px;font-family: system-ui;text-transform: uppercase;"> <Strong>Company Pan - </Strong><?php echo $c['companypan'];?></p>
+                <!-- <p style="font-size:14px;font-family: system-ui;text-transform: uppercase;"> <Strong>Company Pan - </Strong><?php echo $c['companypan'];?></p> -->
 
 
                 </td>
-                <td width="40%" style="border-left:none; padding:20px; padding-top:10px;padding-bottom:10px; text-align:right;">
-                <p style="font-size:14px;font-family: system-ui;"> <Strong><?php echo ucfirst($w['companyname']);?> </Strong></p>
-                   <p style="font-size:14px;font-family: system-ui;"> <Strong>A/C No. : - </Strong><?php echo $w['account'];?></p>
-                   <p style="font-size:14px;font-family: system-ui;"> <Strong>IFSC Code : - </Strong><?php echo $w['ifsc'];?></p>
-                   <p style="font-size:14px;font-family: system-ui;"> <Strong><?php echo $w['bank'];?> </Strong></p>
-
-                </td>
+                <!--  -->
               </tr>
                              <tr style="border:none;">
 
-                <td colspan="3" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;">  <p style="font-size:14px;font-family: system-ui;"> <Strong>Declaration :  </Strong> We Declare that this Invoice shows the actual
-            Price of the services/goods described and that all perticular are true and correct.    </p></td>
-                <td style="padding:20px; border-left:none; text-align:right;">
-                <p style="font-size:14px;font-family: system-ui;"> <Strong><?php echo ucfirst($w['companyname']);?> </Strong></p>
-                 
-                   <p style="font-size:14px;font-family: system-ui;"> <Strong>Authorized Signature </Strong></p>
-                </td>
+                <td colspan="2" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;">  <p style="font-size:14px;font-family: system-ui;"> <Strong>Declaration :  </Strong>  We declare that this invoive shows the actual price of the service /Goods described and that all
+particulars are true and correct.  </p>
+<p><Strong>(*GST is not Included in this bill profarma )</Strong></p></td>
+                
               </tr>
 
 
@@ -474,14 +419,14 @@ document.getElementById("total_amt").innerHTML = str;
   <?php
 
 
-        }
+}
 
   
    
 
 else{
     echo "please login to Continue";
-    header("Location:admin.php");
+    //header("Location:index.php");
 }
 
 ?>

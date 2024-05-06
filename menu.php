@@ -34,6 +34,7 @@
   <li><a href="createuser.php">Create User</a></li>
   <li><a href="Masterdata.php">Customer Data</a></li>
   <li><a href="customerorder.php">Customer Orders</a></li>
+  <li><a href="profarma.php">Profarma</a></li>
   <li><a href="vendors.php">Company Profile</a></li>
   <li><a href="updatepassword.php">Change Password</a></li>
   <li><a href="logout.php">Logout</a></li>

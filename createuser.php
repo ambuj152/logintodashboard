@@ -332,7 +332,7 @@ if(isset($_SESSION['id']) )
 include('connection.php');
 if(isset($_POST["submit"]))
 {
-    $userid= "SELECT MAX(id) FROM `profile`";
+    $userid             = "SELECT MAX(id) FROM `profile`";
 
     $exe=mysqli_query($conn,$userid);
 
