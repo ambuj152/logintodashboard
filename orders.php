@@ -237,11 +237,11 @@ th, td {
         
         if(isset($_GET['showid']))
         {
-            $val=$_GET['showid'];
+            $userid=$_GET['showid'];
             $i=1;
             $amt=0;
             $gst=0;
-            $x = "SELECT * FROM `bill` WHERE `userid` = '$val' ";
+            $x = "SELECT * FROM `bill` WHERE `userid` = '$userid' ";
             // $x="SELECT * FROM `bill` WHERE `userid`='$val'AND MAX(`orderdate`)";
             $y=mysqli_query($conn,$x);   
               // $z= mysqli_fetch_assoc($y);
@@ -324,7 +324,7 @@ th, td {
 
 else{
     echo "please login to Continue";
-    header("Location:admin.php");
+    header("Location:index.php");
 }
 
 ?>

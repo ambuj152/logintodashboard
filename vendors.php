@@ -220,11 +220,20 @@ $r=mysqli_fetch_assoc($q);
     </div>
    
     <div class="form-row">
-      <div class="col-md-12 mb-3">
+      <div class="col-md-6 mb-3">
       <br>
       <label>Address</label>
       <input type="text" class="form-control is-invalid" name="address" id="validationServer033" placeholder="Address"
        value="<?php echo $r['address'];?>" required>
+      <div class="invalid-feedback">
+     &nbsp;
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <br>
+      <label>Tax</label>
+      <input type="text" class="form-control is-invalid" name="tax" id="validationServer033" placeholder="Address"
+       value="<?php echo $r['taxpercentage'];?>" required>
       <div class="invalid-feedback">
      &nbsp;
       </div>
@@ -324,12 +333,12 @@ if(isset($_POST["submit"]))
     $bank           =   $_POST['bank'];
     // $companyname    =   $_POST['companyname'];
     // $industry       =   $_POST['industry'];
-    // $gst            =   $_POST['gst'];
+     $tax            =   $_POST['tax'];
 
 
     // $profile_query =" INSERT INTO `profile` (`id`,`name`,`email`,`phone`,`city`,`state`,`zip`,`address`,`companyname`,`industry`,`gst`) VALUES ('$id','$name','$email','$phone','$city','$state','$zip','$address',$companyname,$industry,$gst)"; 
     // $fire_profile_query = mysqli_query($conn, $profile_query);
-    $profile_query = "UPDATE `vendors` SET `companyname`='$companyname',`address`=' $address',`mobile`='$mobile',`gstnumber`='$gst',`account`='$account',`ifsc`='$ifsc',`bank`=' $bank' WHERE `companyid`='$companyid' ";
+    $profile_query = "UPDATE `vendors` SET `companyname`='$companyname',`address`=' $address',`mobile`='$mobile',`gstnumber`='$gst',`account`='$account',`ifsc`='$ifsc',`bank`=' $bank',`taxpercentage`='$tax' WHERE `companyid`='$companyid' ";
     $fire_profile_query = mysqli_query($conn,$profile_query);
     
     

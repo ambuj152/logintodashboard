@@ -288,7 +288,7 @@ if(isset($_SESSION['id']) )
                                     <td><?=$row['state']; ?></td>
                                     <td><?=$row['zip']; ?></td>
                                     <td><?=$row['address']; ?></td>
-                                    <td><a href="pdf.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger">Show bill</> </a> &nbsp;
+                                    <td><a href="showbill.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger">Show bill</> </a> &nbsp;
                      <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class="btn btn-primary">Create Bill</a> </td> 
 
                                 </tr>

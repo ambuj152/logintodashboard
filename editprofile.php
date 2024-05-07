@@ -10,12 +10,12 @@ if(isset($_SESSION['id']) )
 include('connection.php');
 
 
-if(isset($_POST['userid']))
+if(isset($_GET['showid']))
 {
 
-    $userid=$_POST['userid'];
-    $deleteQuery= "DELETE FROM `tempbill` WHERE `userid`= '$userid'";
-    $exec= mysqli_query($conn,$deleterow);
+    $userid=$_POST['showid'];
+    $deleteQuery= "DELETE FROM `temppreview` WHERE `userid`= '$userid'";
+    $exec= mysqli_query($conn,$deleteQuery);
 }
    
 
@@ -218,8 +218,8 @@ if(isset($_POST['userid']))
                     }?>
             <div class="container-fluid" style="padding-left:60px;" >
     <div class="row">
-        <div class="col-md-11 offset-md-3">
-            <h2>Billing Invoice</h2>
+        <div class="col-md-11 offset-md-3" >
+            <h2 style="background:#337AB7;">Billing Invoice</h2>
         
             <form method="post" id="dynamic-form" >
             <div class="row">
@@ -260,6 +260,7 @@ if(isset($_POST['userid']))
                             <label for="username">Address</label>
                             <input type="text" class="form-control" id="username" name="city" disabled value="<?php echo $w['address']?>">
                             <input type="hidden" name="action_code" value="previewbill">
+                            <!-- <input type="hidden" name="action_code1" value="generatebill"> -->
                           </div>
                     </div>
                   </div>
@@ -294,8 +295,11 @@ if(isset($_POST['userid']))
                 <?php
                 
                       }?>
+              <hr style="border-top: 1px solid #c2c2c2">
 
-            <h2>Customer data</h2>
+            <h3>Customer data</h3>
+              <hr style="border-top: 1px solid #c2c2c2">
+
                
                   <div class="row">
                     <div class="col-sm-4">
@@ -348,17 +352,13 @@ if(isset($_POST['userid']))
                            
                             
                 </div>
+              <hr style="border-top: 1px solid #c2c2c2">
+                        
+            <h3>Services</h3>
+              <hr style="border-top: 1px solid #c2c2c2">
+            
 
-            <h2>Services</h2>
-
-               
-                <!-- <div class="form-group">
-                    <label for="services">Services</label>
-                    <input type="text" class="form-control inputField" id="inputContainer" name="services"> 
-                    <button class="btn btn-warning" id="nextButton">Next</button>
-                </div> -->
-
-                <!--service addup-->
+       
                 
 
 
@@ -463,7 +463,11 @@ if(isset($_POST['userid']))
                     <br>
                     <br>
                   <div class="col-sm-6">
-                  <h2 class="text-center">Select Mode of Payment:</h2>
+              <hr style="border-top: 1px solid #c2c2c2">
+                    
+                  <h3 class="text-center;">Select Mode of Payment:</h3>
+              <hr style="border-top: 1px solid #c2c2c2">
+
                 <div class="form-group">
                     <select class="form-control" id="modeOfPayment" name="modeOfPayment">
                         <option value="online">Online</option>
@@ -473,7 +477,11 @@ if(isset($_POST['userid']))
                   </div>
                   <div class="col-sm-6">
                                 <div class="form-group">
-                    <h2 class="text-center">Order Date:</h2> 
+              <hr style="border-top: 1px solid #c2c2c2">
+
+                    <h3 class="">Order Date:</h3> 
+              <hr style="border-top: 1px solid #c2c2c2">
+
                     <input type="date" class="form-control" id="orderdate" name="orderdate">
 
 
@@ -496,28 +504,58 @@ document.getElementById("orderdate").value = getCurrentDate();
                                                         
 
                 <div class="row">
-                  <div class="col-sm-12">
+              <hr style="border-top: 1px solid #c2c2c2">
+
+                  <div class="col-sm-6">
                  
                 <br><?php
-                 include ('connection.php');
-                 $companyid=$_SESSION['companyid'];
+                          include ('connection.php');
+                          $companyid=$_SESSION['companyid'];
                 ?>
-                <button type="submit" style="width: 300px;" class="btn btn-danger" onclick="modaldata('<?php  echo $c['userid']; ?>')"
-                data-toggle="modal" data-target="#myModal">Preview Bill</button>
+                <button type="submit" style="width: 60%;" class="btn btn-danger" name="" onclick="modaldata('<?php  echo $c['userid']; ?>')"
+                data-toggle="modal" data-target="#myModal">   Preview Bill   </button>
 
-                <button type="button" style="margin-left:430px ;width:30%" class="btn btn-primary" id="generatepage"  onclick="finalpage('<?php  echo $c['userid']; ?>')" >Generate Bill</button>
+              
                   </div>
-                </div>         
-            </form>
 
+                  <div class="col-sm-6">
+                    <br>
+                  <!-- <button type="submit" style="margin-left:90px; margin-top:10px;width:60%;" class="btn btn-primary" name="billgen" id="gneratebill">   Generate Bill </button> -->
+                  </div>
+              <hr style="border-top: 1px solid #C2C2C2">
+
+                  
+                </div>    
+                     
+            </form>
+           
+        
+   
 
 
 <!-- Modal -->
+
+<style>
+
+  .modal-content{
+    width:1100px;
+  }
+  @media (max-width:600px){
+    .modal{
+      width: 100% !important;
+    }
+    .modal-content{
+    width:100%;
+
+    }
+  }
+</style>
+
 <div class="modal fade" id="myModal" role="dialog" >
     <div class="modal-dialog">
     
       <!-- Modal content-->
-          <div class="modal-content" style="width:900px;" >
+          <div class="modal-content"  >
               <div class="modal-header">
                  <button type="button" class="close" data-dismiss="modal">&times;</button>
                      <h4 class="modal-title" style="text-align:center;">Bill Preview</h4>
@@ -526,7 +564,8 @@ document.getElementById("orderdate").value = getCurrentDate();
                   <p id="ShowDis" style="text-align:center;font-family: Garamond;"></p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deltable('<?php  echo $c['userid']; ?>')">Done</button>
+              <a href="redirectpage.php?showid=<?php echo $c['userid'];?>"> <button type="button" style="width:40%; float:left;margin-bottom:10px;margin-top:0px" class="btn btn-danger" name="billgen" id="gneratebill">  Generate Bill </button></a>
+                <button type="button" class="btn btn-primary" style="width:40%;" data-dismiss="modal" onclick="deltable('<?php  echo $c['userid']; ?>')">Edit</button>
               </div>
           </div>
       
@@ -539,7 +578,6 @@ document.getElementById("orderdate").value = getCurrentDate();
                                    function finalpage(userid)
                                   {
                                     var userid=userid;
-                                  //alert(PackageTour);
                                   $.ajax({
                                     url: "showfunction.php",
                                     method: "POST",
@@ -556,7 +594,6 @@ document.getElementById("orderdate").value = getCurrentDate();
                                   function deltable(userid)
                                   {
                                     var userid=userid;
-                                  //alert(PackageTour);
                                   $.ajax({
                                     url: "showfunction.php",
                                     method: "POST",
@@ -570,8 +607,7 @@ document.getElementById("orderdate").value = getCurrentDate();
                                     }
                                   });   }
 
-                                  </script>
-                                  <script>
+                                  
                                   $(document).ready(function() {
                                       $("#dynamic-form").on('submit', function(e) {
                                           e.preventDefault();
@@ -582,8 +618,9 @@ document.getElementById("orderdate").value = getCurrentDate();
                                               contentType: false,
                                               processData: false,
                                               success: function(data) {
-                                                  if (data === 'Invalid') {
-                                                      failed_password();
+                                                  if(data =='billgenerated')
+                                                  {
+                                                    window.location.href="";
                                                   }
                                                   else{
                                                     modaldata('<?php echo $c['userid']; ?>');
@@ -593,31 +630,34 @@ document.getElementById("orderdate").value = getCurrentDate();
                                       });
                                   });
 
-                                  $(document).ready(function() {
-                                      $("#generatepage").on('click', function(e) {
-                                        alert('hi');
-                                          e.preventDefault();
-                                          $.ajax({
-                                              url: "showfunction.php",
-                                              type: "POST",
-                                              data: new FormData(this),
-                                              contentType: false,
-                                              processData: false,
-                                              success: function(data) {
-                                                  if (data === 'Invalid') {
-                                                      failed_password();
-                                                  }
-                                                  else{
-                                                    
-                                                  }
-                                              }
-                                          });
-                                      });
-                                  });
 
 
 
-
+                              
+                                  // $(document).ready(function() {
+                                  //     $("#generatepage").on('click', function(e) {
+                                       
+                                  //         e.preventDefault();
+                                  //         $.ajax({
+                                  //             url: "showfunction.php",
+                                  //             type: "POST",
+                                  //             data: new FormData(this),
+                                  //             contentType: false,
+                                  //             processData: false,
+                                  //             success: function(data) 
+                                  //             {
+                                  //                 if (data === 'Invalid')
+                                  //                 {
+                                  //                     failed_password();
+                                  //                 }
+                                  //                 else{
+                                  //                   alert('bill generated');
+                                  //                 }
+                                  //             }
+                                  //         });
+                                  //     });
+                                  // });
+                                  
                                   function modaldata(userid)
                                   {
                                     var EnqId=userid;
@@ -634,7 +674,6 @@ document.getElementById("orderdate").value = getCurrentDate();
                                     }
                                   });     
                                       
-
                                   }
                               </script> 
     
@@ -644,7 +683,6 @@ document.getElementById("orderdate").value = getCurrentDate();
                   </div>
              </div>
        </div>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -663,9 +701,7 @@ if(isset($_POST['generate']))
   
   $serial= $arraycount[0]+1;
   
-
   $companyid=$_SESSION['companyid'];
-
 
 // serial number evaluate
   $invoice= "SELECT MAX(`invoice`) FROM `bill`";
@@ -676,9 +712,6 @@ if(isset($_POST['generate']))
   
   $invoice= $arraycount[0]+1;
 
-
-
-
   $userid = $_POST['userid'];
   $services = $_POST['services']; 
   $price = $_POST['price'];
@@ -686,24 +719,16 @@ if(isset($_POST['generate']))
   $orderdate = $_POST['orderdate'];
   $quantity = $_POST['quantity'];
   
-
-
  for ($i = 0; $i < count($services); $i++) {
   
-
   $quiry="INSERT INTO  `bill` (`serial`,`invoice`,`companyid`,`userid`, `services`,`quantity` ,`price` ,`modeofpayment`,`orderdate`) VALUES ('$serial','$invoice' ,'$companyid','$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate')";
   $fire = mysqli_query($conn, $quiry,);
  
   $tempquery="INSERT INTO  `tempbill` (`companyid`,`userid`, `services`,`quantity` ,`price` ,`modeofpayment`,`orderdate`) VALUES ('$companyid','$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate')";
   $fir2=mysqli_query($conn, $tempquery);
  
-  
   // Here you can store these values in a database or perform any other processing
 }
-
-
-
-
 
  if($fire)
  {
@@ -726,17 +751,8 @@ if(isset($_POST['generate']))
 
 ?>
 
-
-
-
 </html>
   <?php
-
-
-
-
-  
-   
 }
 else{
     echo "please login to Continue";

@@ -48,33 +48,52 @@ $query= mysqli_query($conn,$previewbill);
                                         
 <table class="table table-bordered">
      <tr>
-        <td>
+        <td colspan="3">
              <strong>SERVICES</strong>
         </td>
         <td>
              <strong> Quantity</strong>
         </td>
         <td>
-        <strong> price</strong> 
+        <strong> Price/unit</strong> 
+        </td>
+        <td>
+        <strong> Total</strong> 
         </td>
      </tr>
     <tr>
 <?php
+$sum=0;
  foreach($query as $work)
  {
 ?>
-  <td> <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><?php echo $work['services']; ?></span>
+  <td colspan="3"> <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><?php echo $work['services']; ?></span>
     </td>
     <td><span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> <?php echo $work['quantity'] ?></span>
     </td>
     <td> <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><?php echo $work['price'] ?></span>
     </td>
+    <td> <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><?php echo 
+$tot=$work['price']*$work['quantity'];
+?></span>
+    </td>
 
     </tr>
     
 <?php
-}
+    
+    $sum=$sum+$tot
+  ;}
 ?>
+
+<tr>
+  <td colspan="5"> <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><Strong>Total Cost</Strong></span>
+</td>
+  <td> 
+    <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><Strong><?php echo $sum; ?></Strong></span>
+ </td>
+  
+</tr>
      </table>
 
      <?php
@@ -85,6 +104,8 @@ elseif(isset($_POST['userid']))
     $userid=$_POST['userid'];
     $deleterow= "DELETE FROM `temppreview` WHERE `userid`= '$userid'";
     $exec= mysqli_query($conn,$deleterow);
+
+    
 }
     
    elseif(isset($_POST['action_code'])) 

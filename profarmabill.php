@@ -120,7 +120,7 @@ th, td {
       </div>
        <div class="container"  id="content" style=" width:80%;" >
      
-        <table border="1px" >
+        <table class="table"  style="border-bottom:none;" border="1px" >
         <tr style="border:none;">
 
        <div class="col-md-12" style="background:#eff5f5;">
@@ -182,7 +182,7 @@ th, td {
 
             
                  </td>
-                 <td width="27%" style=" border:none; border-bottom:1px solid grey; padding:20px;">
+                 <td width="27%" style=" border-top:none;border-left:none; padding:20px;">
                               <p style="font-size:14px;font-family: system-ui;"> <Strong>Order Date - </Strong><?php echo $z['date'] ;?></p>
                               
                               <p style="font-size:14px;font-family: system-ui;"> <Strong>Business - </Strong><?php echo  $z['businessname']?></p>
@@ -227,20 +227,24 @@ th, td {
             </tr>
                            
                  </table>
-                 <table style="border-top:none" border="1px" >
+                 <table style="border-top:none; border-bottom:none;" border="1px" >
               
                      <tr style="border-top:none;border-left:none;background:#eff5f5">
  
                             <td style=" width:10%;border-left:none;  padding:20px; border-right:1px solid grey;"><p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong> Sr No. </Strong></p></td>
                             <td style=" width:43%; border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong> Description of Services and Product</Strong></p> </td>
+                           
+                            <td style=" width: 9% !important;border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:center"> <Strong>HSN/SAC</Strong></p></td>
+                           
                             <td style=" width:10%; border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong> QTY/PER</Strong></p> </td>
                             
 
                             
-                            <td style=" width: 9% !important;border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:center"> <Strong>HSN/SAC</Strong></p></td>
-                            <td style=" width:10%; border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong>Total</Strong></p> </td>
                            
                             <td style="width:18% !important;border-left:none; border-right:none; padding:20px"> <p style="font-size:14px;font-family: system-ui;;text-align:right"> <Strong>Price / Unit  </Strong></p></td>
+                           
+                            <td style=" width:10%; border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong>Total</Strong></p> </td>
+                           
                       </tr>
                                         
               <?php 
@@ -278,34 +282,37 @@ th, td {
                                
                             </p>
                         </td>
+                      
+
+                        <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px"></td>
                         <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px">
                       <?php
                       echo $res['quantity'];
                       ?>
                       </td>
-
-                        <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px"></td>
-                        <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px">
-                        <?php
-                        $test=0;
-                      echo $test=$res['quantity'] * $res['price'];
-                       
-                           $totalamt=$totalamt+$test
-                      ?>
-                      </td>
+                      
 
                         <td style="border:none;padding-right:20px">
-                              <p style="font-size:14px;font-family: system-ui;;text-align:right;"> <strong>₹<?Php
+                              <p style="font-size:14px;font-family: system-ui;;text-align:right;">₹<?Php
                                  echo $res['price'];
                                  $amt=$amt+$res['price'];
                                     ?>
-                                    </p></strong></div>
+                                    </p></div>
                                         <?php
                                         $i++;
-                                        }
+                                       
                                
                                         ?>
                         </td>
+                        <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px">
+                        <strong>₹<?php
+                        $test=0;
+                      echo $test=$res['quantity'] * $res['price'];
+                       
+                           $totalamt=$totalamt+$test;
+                          }
+                      ?></strong>
+                      </td>
               </tr>
                                 </table>
               <table class="table" border="1px" style="border-top:none;">
@@ -426,7 +433,7 @@ particulars are true and correct.  </p>
 
 else{
     echo "please login to Continue";
-    //header("Location:index.php");
+    header("Location:index.php");
 }
 
 ?>

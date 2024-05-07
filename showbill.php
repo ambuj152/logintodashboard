@@ -233,7 +233,7 @@ th, td {
               
                      <tr style="border-top:none;border-left:none;background:#eff5f5">
  
-                            <td style=" width:11%; border-top:none; padding:20px; border-right:none; border-left:none;"><p style="font-size:12px;font-family: system-ui;text-align:left"> <Strong> Sr No. </Strong></p></td>
+                            <td style=" width:11%; border-top:none; padding:20px; border-right:1px solid grey; border-left:none;"><p style="font-size:12px;font-family: system-ui;text-align:left"> <Strong> Sr No. </Strong></p></td>
                             <td style=" width:35.5%;border-top:none;  padding:20px;"> <p style="font-size:12px;font-family: system-ui;text-align:left"> <Strong> Description of Services</Strong></p> </td>
                             <td style=" width:13.5% !important;border-top:none;border-left:none; padding:20px;"> <p style="font-size:12px;font-family: system-ui;text-align:center"> <Strong>HSN/SAC</Strong></p></td>
                             <td style=" width:13%; border-left:none;border-top:none; padding:20px;"> <p style="font-size:12px;font-family: system-ui;text-align:left"> <Strong> QTY/PER</Strong></p> </td>
@@ -305,7 +305,7 @@ th, td {
                               
                                         ?>
                         </td>
-                        <td style="border-top:none; border-left: none;border-right:none;padding-left:20px"><strong>₹
+                        <td style="border-top:none; border-left: none;border-right:none;padding-left:20px"><strong>
                         <?php
                         $test=0;
                       echo $test=$res['quantity'] * $res['price'];
