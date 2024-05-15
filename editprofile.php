@@ -19,8 +19,6 @@ if(isset($_GET['UDTId']))
 }
    
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
