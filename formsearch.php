@@ -162,7 +162,7 @@ if(isset($_SESSION['id']) )
 }
 else{
     echo "please login to Continue";
-    header("Location:admin.php");
+    header("Location:index.php");
 }
 
 ?>

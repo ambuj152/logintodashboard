@@ -129,28 +129,28 @@ if(isset($_SESSION['id']) )
     background: linear-gradient(135deg, #E9C46A, #B4A77B);
   } */
   .btn-primary {
-    width: 40%;
+    /* width: 40%;
     padding: 12px;
     border: none;
     border-radius: 6px;
-    background: linear-gradient(135deg, #4e73df, #224abe);
+    background: linear-gradient(135deg, #4e73df, #224abe); */
     /* background: linear-gradient(135deg, #B4A77B, #E9C46A); */
-    color: white;
+    /* color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; */
   }
 
   .btn-danger{
-    width: 40%;
+    /* width: 40%;
     padding: 12px;
     border: none;
     border-radius: 6px;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: linear-gradient(135deg, #e74c3c, #c0392b); */
     /* background: linear-gradient(135deg, #4e73df, #224abe); */
     /* background: linear-gradient(135deg, #B4A77B, #E9C46A); */
-    color: white;
+    /* color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; */
 
   }
 
@@ -279,7 +279,14 @@ if(isset($_SESSION['id']) )
                         if(mysqli_num_rows($result) > 0) {
                             foreach($result as $row) {
                                 ?>
+
+                                <a href="updatecustomer.php?userID=<?php echo $row['userid'];?>">
                                 <tr>
+                                  <style>
+                                    td{
+                                      font-size: 10px;
+                                    }
+                                  </style>
                                     <td><?=$row['userid']; ?></td>
                                     <td><?=$row['name']; ?></td>
                                     <td><?=$row['email']; ?></td>
@@ -288,10 +295,17 @@ if(isset($_SESSION['id']) )
                                     <td><?=$row['state']; ?></td>
                                     <td><?=$row['zip']; ?></td>
                                     <td><?=$row['address']; ?></td>
-                                    <td><a href="showbill.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger">Show bill</> </a> &nbsp;
-                     <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class="btn btn-primary">Create Bill</a> </td> 
+                                    <td>
+                                    <a href="updatecustomer.php?showID=<?php echo $row['userid']?>" class=" btn btn-warning" style="font-size: 10px;"><i class="fas fa-edit"></i> Edit</a>  
+                                    <a href="showbill.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger" style="font-size: 10px;">Show bill</a> &nbsp;
+                     <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class=" btn  btn-primary" style="font-size: 10px;">Create Bill</a> </td> 
 
                                 </tr>
+
+                                </a>
+                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
                                 <?php
                             }
                         } else {
@@ -336,7 +350,7 @@ if(isset($_SESSION['id']) )
 }
 else{
     echo "please login to Continue";
-    header("Location:admin.php");
+    header("Location:index.php");
 }
 
 ?>

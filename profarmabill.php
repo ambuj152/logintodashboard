@@ -152,8 +152,8 @@ th, td {
 
                         
                                 <h3 style="font-family: system-ui;"> <Strong><?php echo ucfirst($w['companyname']);?> </Strong></h3>
-                                <p style="font-size:14px;font-family: system-ui;"> <?php echo $w['address'];?>, <?php echo $w['mobile'];?></p>
-                                <p style="font-size:14px;font-family: system-ui;"> <Strong>GSTIN/UIN :  </Strong><?php echo $w['gstnumber'];?></p>
+                                <p style="font-size:11px;font-family: system-ui;"> <?php echo $w['address'];?>, <?php echo $w['mobile'];?></p>
+                                <p style="font-size:11px;font-family: system-ui;"> <Strong>GSTIN/UIN :  </Strong><?php echo $w['gstnumber'];?></p>
               
 
             
@@ -175,17 +175,17 @@ th, td {
                                 
                     
                           ?>
-                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Invoice No.- </Strong>GW-00<?php echo $z['serial'];?></p>
+                              <p style="font-size:11px;font-family: system-ui;"> <Strong>Invoice No.- </Strong>GW-00<?php echo $z['serial'];?></p>
                               
-                 <p style="font-size:14px;font-family: system-ui;"> <Strong>Mobile number - </Strong><?php echo $z['mobile'];?></p>
+                 <p style="font-size:11px;font-family: system-ui;"> <Strong>Mobile number - </Strong><?php echo $z['mobile'];?></p>
 
 
             
                  </td>
                  <td width="27%" style=" border-top:none;border-left:none; padding:20px;">
-                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Order Date - </Strong><?php echo $z['date'] ;?></p>
+                              <p style="font-size:11px;font-family: system-ui;"> <Strong>Order Date - </Strong><?php echo $z['date'] ;?></p>
                               
-                              <p style="font-size:14px;font-family: system-ui;"> <Strong>Business - </Strong><?php echo  $z['businessname']?></p>
+                              <p style="font-size:11px;font-family: system-ui;"> <Strong>Business - </Strong><?php echo  $z['businessname']?></p>
                                     
 
                  </td>
@@ -202,20 +202,20 @@ th, td {
               $c= mysqli_fetch_assoc($b);
                 
           ?>
-<p style="font-size:14px;font-family: system-ui;"> <Strong>Customer Name - </Strong><?php echo $c['customername'];?></p>
-<p style="font-size:14px;font-family: system-ui;"> <Strong>GSTIN / UIN - </Strong><?php ?></p>
+<p style="font-size:11px;font-family: system-ui;"> <Strong>Customer Name - </Strong><?php echo $c['customername'];?></p>
+<p style="font-size:11px;font-family: system-ui;"> <Strong>GSTIN / UIN - </Strong><?php ?></p>
 
           
        
 
 </td >
 <td style=" border-right:1px solid grey; border-left:none;border-top:none;">
-<p style="font-size:14px;font-family: system-ui;"> <Strong>Customer ID - </Strong><?php echo $c['userid'];?></p>
+<p style="font-size:11px;font-family: system-ui;"> <Strong>Customer ID - </Strong><?php echo $c['userid'];?></p>
        
 
 </td>
     <td width="230px" style="border:none; padding :20px; border-bottom:none;">                    
-        <p style="font-size:14px;font-family: system-ui;"> <Strong>Email - </Strong><?php echo $c['email']; ?></p>
+        <p style="font-size:11px;font-family: system-ui;"> <Strong>Email - </Strong><?php echo $c['email']; ?></p>
 
         <?php
           
@@ -231,19 +231,19 @@ th, td {
               
                      <tr style="border-top:none;border-left:none;background:#eff5f5">
  
-                            <td style=" width:10%;border-left:none;  padding:20px; border-right:1px solid grey;"><p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong> Sr No. </Strong></p></td>
-                            <td style=" width:43%; border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong> Description of Services and Product</Strong></p> </td>
+                            <td style=" width:10%;border-left:none;  padding:20px; border-right:1px solid grey;"><p style="font-size:11px;font-family: system-ui;;text-align:left"> <Strong> Sr No. </Strong></p></td>
+                            <td style=" width:43%; border-left:none; padding:20px;"> <p style="font-size:11px;font-family: system-ui;;text-align:left"> <Strong> Description of Services and Product</Strong></p> </td>
                            
-                            <td style=" width: 9% !important;border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:center"> <Strong>HSN/SAC</Strong></p></td>
+                            <td style=" width: 9% !important;border-left:none; padding:20px;"> <p style="font-size:11px;font-family: system-ui;;text-align:center"> <Strong>HSN/SAC</Strong></p></td>
                            
-                            <td style=" width:10%; border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong> QTY/PER</Strong></p> </td>
+                            <td style=" width:10%; border-left:none; padding:20px;"> <p style="font-size:11px;font-family: system-ui;;text-align:left"> <Strong> QTY/PER</Strong></p> </td>
                             
 
                             
                            
-                            <td style="width:18% !important;border-left:none; border-right:none; padding:20px"> <p style="font-size:14px;font-family: system-ui;;text-align:right"> <Strong>Price / Unit  </Strong></p></td>
+                            <td style="width:18% !important;border-left:none; border-right:none; padding:20px"> <p style="font-size:11px;font-family: system-ui;;text-align:right"> <Strong>Price / Unit  </Strong></p></td>
                            
-                            <td style=" width:10%; border-left:none; padding:20px;"> <p style="font-size:14px;font-family: system-ui;;text-align:left"> <Strong>Total</Strong></p> </td>
+                            <td style=" width:10%; border-left:none; padding:20px;"> <p style="font-size:11px;font-family: system-ui;;text-align:left"> <Strong>Total</Strong></p> </td>
                            
                       </tr>
                                         
@@ -271,10 +271,10 @@ th, td {
                              <tr style="border:none; ">
  
                         <td width="100px" style="border-top:none; border-left: none; border-right:1px solid grey; padding-left:20px;padding-top:10px;">
-                              <p style="font-size:14px;font-family: system-ui;"><strong><?php echo $i ;?></strong></p>
+                              <p style="font-size:11px;font-family: system-ui;"><strong><?php echo $i ;?></strong></p>
                         </td> 
                         <td style="border-top:none; border-left: none; border-right:1px solid grey;padding-left:20px">
-                            <p style="font-size:14px;font-family: system-ui;"> 
+                            <p style="font-size:11px;font-family: system-ui;"> 
                               
                                   <?Php
                                     echo ucfirst( $res['services']);
@@ -293,7 +293,7 @@ th, td {
                       
 
                         <td style="border:none;padding-right:20px">
-                              <p style="font-size:14px;font-family: system-ui;;text-align:right;">₹<?Php
+                              <p style="font-size:11px;font-family: system-ui;;text-align:right;">₹<?Php
                                  echo $res['price'];
                                  $amt=$amt+$res['price'];
                                     ?>
@@ -325,10 +325,10 @@ th, td {
            <tr style="border:none; background:#eff5f5">
 
                 <td colspan="1" style="border-left:none; border-right:1px solid grey;padding-left:20px;padding:5px;">
-                      <p style="font-size:14px;font-family: system-ui;"><strong> TOTAL ESTIMATE </strong><small> &nbsp;( Without including taxes*)</small><p>
+                      <p style="font-size:11px;font-family: system-ui;"><strong> TOTAL ESTIMATE </strong><small> &nbsp;( Without including taxes*)</small><p>
                 </td>
                 <td style="border-left:none; padding-left:20px">
-                      <p style="font-size:14px;font-family: system-ui;;text-align:right;padding-right:20px"><strong> Amount:₹ <?php echo $total= round($totalamt); ?></strong><p>
+                      <p style="font-size:11px;font-family: system-ui;;text-align:right;padding-right:20px"><strong> Amount:₹ <?php echo $total= round($totalamt); ?></strong><p>
 
                 </td>
           </tr>
@@ -380,8 +380,8 @@ document.getElementById("total_amt").innerHTML = str;
 
 
 
-                <p style="font-size:14px;font-family: system-ui;text-transform: uppercase;"> <Strong>Total Amount (In Words) - <span id="total_amt"><script>inWordsTotal(<?php //echo $a;?>);</script></span></Strong></p>
-                <!-- <p style="font-size:14px;font-family: system-ui;text-transform: uppercase;"> <Strong>Company Pan - </Strong><?php echo $c['companypan'];?></p> -->
+                <p style="font-size:11px;font-family: system-ui;text-transform: uppercase;"> <Strong>Total Amount (In Words) - <span id="total_amt"><script>inWordsTotal(<?php //echo $a;?>);</script></span></Strong></p>
+                <!-- <p style="font-size:11px;font-family: system-ui;text-transform: uppercase;"> <Strong>Company Pan - </Strong><?php echo $c['companypan'];?></p> -->
 
 
                 </td>
@@ -389,7 +389,7 @@ document.getElementById("total_amt").innerHTML = str;
               </tr>
                              <tr style="border:none;">
 
-                <td colspan="2" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;">  <p style="font-size:14px;font-family: system-ui;"> <Strong>Declaration :  </Strong>  We declare that this invoive shows the actual price of the service /Goods described and that all
+                <td colspan="2" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;">  <p style="font-size:11px;font-family: system-ui;"> <Strong>Declaration :  </Strong>  We declare that this invoive shows the actual price of the service /Goods described and that all
 particulars are true and correct.  </p>
 <p><Strong>(*GST is not Included in this bill profarma )</Strong></p></td>
                 

@@ -70,8 +70,13 @@ if(isset($_SESSION['id']))
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <nav id="sidebar" class="sidebar">
+
+
+<?php 
+include('sidemenu.php');
+?>
+<!-- Sidebar -->
+  <!-- <nav id="sidebar" class="sidebar">
     <div class="sidebar-heading">SuperUser</div>
     <hr style="color:white">
     <ul class="list-unstyled">
@@ -83,7 +88,7 @@ if(isset($_SESSION['id']))
       <li><a href="#" class="sidebar-link">Orders</a></li>
       <li><a href="#" class="sidebar-link">Settings</a></li>
     </ul>
-  </nav>
+  </nav> -->
   <!-- /#sidebar -->
 <style>
     @media (min-width:600px)

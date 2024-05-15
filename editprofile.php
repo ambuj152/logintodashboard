@@ -10,10 +10,10 @@ if(isset($_SESSION['id']) )
 include('connection.php');
 
 
-if(isset($_GET['showid']))
+if(isset($_GET['UDTId']))
 {
 
-    $userid=$_POST['showid'];
+    $userid=$_GET['UDTId'];
     $deleteQuery= "DELETE FROM `temppreview` WHERE `userid`= '$userid'";
     $exec= mysqli_query($conn,$deleteQuery);
 }
@@ -236,26 +236,26 @@ if(isset($_GET['showid']))
                                     $w= mysqli_fetch_assoc($v);
                              
                               ?>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                     <div class="form-group">
                     <label for="firstname">Company Name</label>
                           <input type="text" class="form-control" id="firstname" name="companyname" disabled value="<?php echo $w['companyname'] ?>">
                     </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                           
                           <div class="form-group">
                               <label for="lastname">Company Id</label>
                               <input type="text" class="form-control" id="lastname" name="invoice" disabled value="<?php echo $w['companyid']?>">
                           </div>
                     </div>
-                    <div class="col-sm-3">
+                    <!-- <div class="col-sm-3">
                           <div class="form-group">
                           <label for="email">Order Date</label>
                           <input type="text" class="form-control" id="email" name="phone"disabled value="<?php echo $w['dataeofregistration']?>">
                       </div>
-                    </div>
-                    <div class="col-sm-3">
+                    </div> -->
+                    <div class="col-sm-4">
                             <div class="form-group">
                             <label for="username">Address</label>
                             <input type="text" class="form-control" id="username" name="city" disabled value="<?php echo $w['address']?>">
@@ -266,7 +266,7 @@ if(isset($_GET['showid']))
                   </div>
 
                   <div class="row">
-                  <div class="col-sm-4">
+                  <div class="col-sm-6">
                   <div class="form-group">
                                 <label for="password">Mobile</label>
 
@@ -275,14 +275,14 @@ if(isset($_GET['showid']))
                             </div>
                   </div>
 
-                  <div class="col-sm-4">
+                  <!-- <div class="col-sm-4">
                           <div class="form-group">
                                         <label for="password">Serial No.</label>
                                         <input type="text" class="form-control" id="password" name="zip" disabled value="<?php echo $w['id']?>">
                                     </div>
 
-                  </div>
-                          <div class="col-sm-4">
+                  </div> -->
+                          <div class="col-sm-6">
                           <div class="form-group">
                                 <label for="password">GSTIN/UIN</label>
                                 <input type="text" class="form-control" id="password" name="password" disabled value="<?php echo $w['gstnumber']?>">
@@ -296,8 +296,32 @@ if(isset($_GET['showid']))
                 
                       }?>
               <hr style="border-top: 1px solid #c2c2c2">
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+              <div class="row">
+                <div class="col-sm-6">
+                <h3>Customer data</h3>
+                </div>
 
-            <h3>Customer data</h3>
+                <div class="col-sm-6">
+                  <?php
+                  include('connection.php');
+
+                   if(isset($_GET['UDTId'])){
+                    $val= $_GET['UDTId'];
+                        $query = "SELECT * FROM `profile` WHERE `userid`='$val' ";
+                      
+                        $result = mysqli_query($conn, $query);
+                        $rest = mysqli_fetch_assoc($result);
+                   }
+                   ?>
+            <a href="updatecustomer.php?showID=<?php echo $rest['userid']?>" class=" btn btn-warning" style="font-size: 10px; margin-top:20px; float:right"><i class="fas fa-edit"></i> Edit</a>  </span>
+                    <?php
+                   
+                    ?>
+                </div>
+                </div>
+         
+
               <hr style="border-top: 1px solid #c2c2c2">
 
                
@@ -305,20 +329,20 @@ if(isset($_GET['showid']))
                     <div class="col-sm-4">
                     <div class="form-group">
                     <label for="firstname"> Customer Name</label>
-                          <input type="text" class="form-control" id="customername" name="customername"  value="<?php echo $c['name'] ?>">
+                          <input type="text" class="form-control" id="customername" name="customername"  value="<?php echo $c['name'] ?>" disabled>
                     </div>
                     </div>
                     <div class="col-sm-4">
                           
                           <div class="form-group">
                               <label for="lastname">Email</label>
-                              <input type="text" class="form-control" id="email" name="email"  value="<?php echo $c['email']?>">
+                              <input type="text" class="form-control" id="email" name="email"  value="<?php echo $c['email']?>" disabled>
                           </div>
                     </div>
                     <div class="col-sm-4">
                           <div class="form-group">
                           <label >Phone</label>
-                          <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $c['phone']?>">
+                          <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $c['phone']?>" disabled>
                       </div>
                     </div>
                    
@@ -338,14 +362,14 @@ if(isset($_GET['showid']))
                   <div class="col-sm-4">
                           <div class="form-group">
                                         <label for="password">Zip</label>
-                                        <input type="text" class="form-control" id="password" name="zip" value="<?php echo $c['zip']?>">
+                                        <input type="text" class="form-control" id="zip" name="zip" value="<?php echo $c['zip']?>" disabled>
                                     </div>
 
                   </div>
                           <div class="col-sm-4">
                           <div class="form-group">
                                 <label for="password">Address</label>
-                                <input type="text" class="form-control" id="address" name="address"  value="<?php echo $c['address']?>">
+                                <input type="text" class="form-control" id="address" name="address"  value="<?php echo $c['address']?>" disabled>
                             </div>
 
                           </div> 
@@ -407,11 +431,18 @@ if(isset($_GET['showid']))
     
         <!-- <h2>Add Services</h2> -->
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="input-group">
                     <label for=""> Add services</label>
 
                         <input type="text" class="form-control" name="services[]" id="services[]" placeholder="Add services" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group">
+                    <label for=""> HSN/SAC</label>
+
+                        <input type="text" class="form-control" name="hsn[]" id="hsn[]" placeholder="HSN/SAC">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -444,7 +475,7 @@ if(isset($_GET['showid']))
         $(document).ready(function () {
             // Add new input field
             $(".btn-add").click(function () {
-                var newInput = '<div class="row"><div class="col-md-6"><div class="input-group"><input type="text" class="form-control" name="services[]" id="services[]" placeholder="Add Service" required></div></div> <div class="col-md-2"><div class="input-group"><input type="number" class="form-control" name="quantity[]" id="quantity[]" placeholder="" value="1" required></div></div> <div class="col-md-4"><div class="input-group"><input type="number" class="form-control" name="price[]" id="price[]" placeholder=" Add Price" required><span class="input-group-btn"><button class="btn btn-danger delete-field" type="button"><i class="glyphicon glyphicon-trash"></i> Delete</button></span></div></div></div>';
+                var newInput = '<div class="row"><div class="col-md-4"><div class="input-group"><input type="text" class="form-control" name="services[]" id="services[]" placeholder="Add Service" required></div></div> <div class="col-md-2"><div class="input-group"><input type="text" class="form-control" name="hsn[]" id="hsn[]" placeholder="HSN/SAC" ></div>          </div><div class="col-md-2"><div class="input-group"><input type="number" class="form-control" name="quantity[]" id="quantity[]" placeholder="" value="1" required></div></div> <div class="col-md-4"><div class="input-group"><input type="number" class="form-control" name="price[]" id="price[]" placeholder=" Add Price" required><span class="input-group-btn"><button class="btn btn-danger delete-field" type="button"><i class="glyphicon glyphicon-trash"></i> Delete</button></span></div></div></div>';
                 $("#input-fields").append(newInput);
             });
 
@@ -465,24 +496,41 @@ if(isset($_GET['showid']))
                   <div class="col-sm-6">
               <hr style="border-top: 1px solid #c2c2c2">
                     
-                  <h3 class="text-center;">Select Mode of Payment:</h3>
-              <hr style="border-top: 1px solid #c2c2c2">
+                  <!-- <h3 class="text-center;">Select Mode of Payment:</h3> -->
+              <!-- <hr style="border-top: 1px solid #c2c2c2"> -->
 
                 <div class="form-group">
-                    <select class="form-control" id="modeOfPayment" name="modeOfPayment">
-                        <option value="online">Online</option>
+                <label for="">Order Date</label>
+                    <select class="form-control" id="modeOfPayment" name="modeOfPayment" style=" width: 100%;
+    height: 45px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+    font-size: 16px;">
+                        <option value="online" style="">Online</option>
                         <option value="cash">Cash</option>
                     </select>
                 </div>
                   </div>
                   <div class="col-sm-6">
-                                <div class="form-group">
+                   <div class="form-group">
               <hr style="border-top: 1px solid #c2c2c2">
 
-                    <h3 class="">Order Date:</h3> 
-              <hr style="border-top: 1px solid #c2c2c2">
+                    
+              <!-- <hr style="border-top: 1px solid #c2c2c2"> -->
+              <div class="input-group">
+              <label for="">Order Date</label>
 
-                    <input type="date" class="form-control" id="orderdate" name="orderdate">
+                    <input type="date" class="form-control" id="orderdate" name="orderdate" style=" width: 100%;
+    height: 45px;
+   
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+    font-size: 16px;">
+                    </div>
+                    <hr>
+                  
 
 
                     <script>
@@ -500,7 +548,20 @@ document.getElementById("orderdate").value = getCurrentDate();
 </script>
                   </div>
                 </div>
+
+
+              
+                
                   </div>
+                  <div class="row">
+                  <div class="col-sm-12">
+                  <div class="input-group">
+                    <label for="">TAX PERCENTAGE</label>
+
+                        <input type="text" class="form-control" name="taxp" placeholder="Enter tax percentage" required >
+                    </div>
+                  </div>
+                </div>
                                                         
 
                 <div class="row">
@@ -538,7 +599,7 @@ document.getElementById("orderdate").value = getCurrentDate();
 <style>
 
   .modal-content{
-    width:1100px;
+    width:900px;
   }
   @media (max-width:600px){
     .modal{
@@ -663,7 +724,7 @@ document.getElementById("orderdate").value = getCurrentDate();
                                     var EnqId=userid;
                                   //alert(PackageTour);
                                   $.ajax({
-                                    url: "ShowFunction.php",
+                                    url: "showfunction.php",
                                     method: "POST",
                                     data: {
                                     EnqId: EnqId,

@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-if(isset($_SESSION['id']))
-{
+
 if(isset($_GET['showid'])) 
 {
 $userid=$_GET['showid'];
@@ -134,9 +133,9 @@ th, td {
                           text-align: center;"> Tax Invoice<h2></center>
         </div>
           </tr>
-                            <tr style="border-bottom:none;" width="1200px">
+                            <tr style="border-bottom:none;">
 
-                  <td style=" border-right:1px solid grey; border-top:none;border-left:none; padding:20px;" width="800px">
+                  <td style="width:40%;border-right:1px solid grey; border-top:none;border-left:none; padding:20px;">
                               <?php 
                                   include("connection.php");
                     $companyid=$_SESSION['companyid'];
@@ -152,14 +151,14 @@ th, td {
                     
 
                         
-                                <p style="font-size:11px;font-family: system-ui;"> <b><?php echo ucfirst($w['companyname']);?> </b></p>
-                                <p style="font-size:11px;font-family: system-ui;"> <?php echo $w['address'];?>, <?php echo $w['mobile'];?></p>
-                                <p style="font-size:11px;font-family: system-ui;"> <b>GSTIN/UIN :  </b><?php echo $w['gstnumber'];?></p>
+                                <p style="font-size:12px;font-family: system-ui;"> <Strong><?php echo ucfirst($w['companyname']);?> </Strong></p>
+                                <p style="font-size:12px;font-family: system-ui;"> <?php echo $w['address'];?>, <?php echo $w['mobile'];?></p>
+                                <p style="font-size:12px;font-family: system-ui;"> <Strong>GSTIN/UIN :  </Strong><?php echo $w['gstnumber'];?></p>
               
 
             
                  </td>
-                 <td style=" width:400px; border-top:none;border-left:none; padding:20px;margin-right:0px;  border-right:none;">
+                 <td style="border-top:none;border-left:none; padding:20px;width:35%;margin-right:0px;">
                
                         <?php 
                             include("connection.php");
@@ -174,17 +173,15 @@ th, td {
                                       $count=1;
                                                    
                           ?>
-                              <p style="font-size:11px;font-family: system-ui;"> <b>Invoice No.- </b><?php echo $w['in-prefix'];echo "-";echo $z['serial'];?></p>
-                 <p style="font-size:11px;font-family: system-ui;"> <b>Payment mode- </b><?php echo $z['modeofpayment'];?></p>
+                              <p style="font-size:12px;font-family: system-ui;"> <Strong>Invoice No.- </Strong>GW-00<?php echo $z['invoice'];?></p>
+                 <p style="font-size:12px;font-family: system-ui;"> <Strong>Payment mode- </Strong><?php echo $z['modeofpayment'];?></p>
 
 
             
-                 <!-- </td>
-                 <td style=" border:none; padding:19px;width:35%"> -->
-                              <p style="font-size:11px;font-family: system-ui;"> <b>Order Date - </b><?php  $formatted_date = date("d M Y", strtotime($z['orderdate'] ));
-                              echo $formatted_date;
-                              ?></p>
-                              <p style="font-size:11px;font-family: system-ui;"> <b>Serial NO. - </b><?php echo  $z['serial']?></p>
+                 </td>
+                 <td style=" border:none; padding:19px;width:35%">
+                              <p style="font-size:12px;font-family: system-ui;"> <Strong>Order Date - </Strong><?php echo $z['orderdate'] ;?></p>
+                              <p style="font-size:12px;font-family: system-ui;"> <Strong>Serial NO. - </Strong><?php echo  $z['serial']?></p>
                                       <?php
                                   }
                                   else{
@@ -195,12 +192,12 @@ th, td {
 
                  </td>
               </tr>
-                                <!-- </table>
+                                </table>
                                 
-                                <table class="table" border="1px" style="border-top:none;"> -->
+                                <table class="table" border="1px" style="border-top:none;">
                              <tr style="border:none;border-bottom:none; border-right:1px solid grey;">
 
-                        <td style="border-top:none; border-left:none; border-right:1px solid grey;padding:20px; ">
+                        <td style="border-top:none; border-left:none; border-right:1px solid grey;padding:20px; width:40%;">
                                   <?php 
                                   include("connection.php");
                                   if(isset($_GET['showid']));
@@ -211,19 +208,19 @@ th, td {
                                       $c= mysqli_fetch_assoc($b);
                                         
                                   ?>
-                                  <p style="font-size:11px;font-family: system-ui;"> <b>Name - </b><?php  echo ucfirst($c['companyname']);?><span>&nbsp;(<?php echo ucfirst($c['name'])?>)</span></p>
+                                  <p style="font-size:12px;font-family: system-ui;"> <Strong>Name - </Strong><?php  echo ucfirst($c['companyname']);?><span>&nbsp;(<?php echo ucfirst($c['name'])?>)</span></p>
                                  
-                                <p style="font-size:11px;font-family: system-ui;"> <b>Addrees - </b><?php echo $c['address'];?></p>
-                                <p style="font-size:11px;font-family: system-ui;text-transform: uppercase;"> <b>GST NO. - </b><?php echo $c['gst'];?></p>
+                                <p style="font-size:12px;font-family: system-ui;"> <Strong>Addrees - </Strong><?php echo $c['address'];?></p>
+                                <p style="font-size:12px;font-family: system-ui;text-transform: uppercase;"> <Strong>GST NO. - </Strong><?php echo $c['gst'];?></p>
 
                         </td >
-                        <td style="  border-left:none;border-top:none; padding:20px;;padding-right:29px;border-right:none; padding-right:40px;">
-                        <p style="font-size:11px;font-family: system-ui;"> <b>Customer ID - </b><?php echo $c['userid'];?></p>
-                                <p style="font-size:11px;font-family: system-ui;"> <b>Mobile No. - </b><?php echo $c['phone'];?></p>
+                        <td style=" border-right:1px solid grey; border-left:none;border-top:none; padding:20px;width:35%">
+                        <p style="font-size:12px;font-family: system-ui;"> <Strong>Customer ID - </Strong><?php echo $c['userid'];?></p>
+                                <p style="font-size:12px;font-family: system-ui;"> <Strong>Mobile No. - </Strong><?php echo $c['phone'];?></p>
 
-                        <!-- </td>
-                            <td style="border:none; padding :20px; border-bottom:none; width:35%; border-right:none;">                     -->
-                                <p style="font-size:11px;font-family: system-ui;"> <b>Email - </b><?php echo $c['email']; ?></p>
+                        </td>
+                            <td style="border:none; padding :20px; border-bottom:none; width:35%; border-right:none;">                    
+                                <p style="font-size:12px;font-family: system-ui;"> <Strong>Email - </Strong><?php echo $c['email']; ?></p>
 
                                 <?php
                                   }
@@ -231,20 +228,20 @@ th, td {
                             ?>
                             </td>
                          </tr>
-             </table>
+                 </table>
                  <table class="table" style="border-top:none" border="1px" >
               
                      <tr style="border-top:none;border-left:none;background:#eff5f5">
  
-                            <td style=" width:11%; border-top:none; padding:20px; border-right:none; border-left:none;"><p style="font-size:11px;font-family: system-ui;text-align:left"> <b> Sr No. </b></p></td>
-                            <td style=" width:35.5%;border-top:none;  border-right:none; padding:20px;"> <p style="font-size:11px;font-family: system-ui;text-align:left"> <b> Description of Services</b></p> </td>
-                            <td style=" width:13.5% !important;border-top:none;border-left:none; border-right:none; padding:20px;"> <p style="font-size:11px;font-family: system-ui;text-align:center"> <b>HSN/SAC</b></p></td>
-                            <td style=" width:13%; border-left:none;border-top:none; padding:20px; border-right:none;"> <p style="font-size:11px;font-family: system-ui;text-align:left"> <b> QTY/PER</b></p> </td>
+                            <td style=" width:11%; border-top:none; padding:20px; border-right:1px solid grey; border-left:none;"><p style="font-size:12px;font-family: system-ui;text-align:left"> <Strong> Sr No. </Strong></p></td>
+                            <td style=" width:35.5%;border-top:none;  padding:20px;"> <p style="font-size:12px;font-family: system-ui;text-align:left"> <Strong> Description of Services</Strong></p> </td>
+                            <td style=" width:13.5% !important;border-top:none;border-left:none; padding:20px;"> <p style="font-size:12px;font-family: system-ui;text-align:center"> <Strong>HSN/SAC</Strong></p></td>
+                            <td style=" width:13%; border-left:none;border-top:none; padding:20px;"> <p style="font-size:12px;font-family: system-ui;text-align:left"> <Strong> QTY/PER</Strong></p> </td>
                             
-                            <td style="width:16% !important;border-left:none;border-top:none;   border-right:none;"> <p style="font-size:11px;font-family: system-ui;text-align:right"> <b>Price / Unit  </b></p></td>
+                            <td style="width:16% !important;border-left:none;border-top:none;  padding:20px"> <p style="font-size:12px;font-family: system-ui;text-align:right"> <Strong>Price / Unit  </Strong></p></td>
                             
                            
-                            <td style=" width:13%; border-left:none; padding:20px;border-right:none; border-top:none;"> <p style="font-size:11px;font-family: system-ui;text-align:left"> <b>Total</b></p> </td>
+                            <td style=" width:13%; border-left:none; padding:20px;border-right:none; border-top:none;"> <p style="font-size:12px;font-family: system-ui;text-align:left"> <Strong>Total</Strong></p> </td>
                            
                            
                       </tr>
@@ -274,11 +271,11 @@ th, td {
         
                              <tr style="border:none; ">
  
-                        <td width="100px" style="border:none; padding-left:20px;padding-top:10px;">
-                              <p style="font-size:11px;font-family: system-ui;"><?php echo $i ;?></p>
+                        <td width="100px" style="border-top:none; border-left: none; border-right:none; padding-left:20px;padding-top:10px;">
+                              <p style="font-size:12px;font-family: system-ui;"><?php echo $i ;?></p>
                         </td> 
-                        <td style="border:none;padding-left:20px">
-                            <p style="font-size:11px;font-family: system-ui;"> 
+                        <td style="border-top:none; border-left: 1px solid grey; border-right:1px solid grey;padding-left:20px">
+                            <p style="font-size:12px;font-family: system-ui;"> 
                               
                                   <?Php
                                     echo ucfirst( $res['services']);
@@ -286,24 +283,18 @@ th, td {
                                
                             </p>
                         </td>
-                        <td style="border:none; ;padding-left:20px">
-                        <p style="font-size:11px;font-family: system-ui;">
-                        <?php
-                      echo $res['hsn'];
-                      ?></p>
-                      </td>
+                        <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px"></td>
 
-                        <td style="border:none;padding-left:20px">
-                        <p style="font-size:11px;font-family: system-ui;">
+                        <td style="border-top:none; border-left: none;border-right:1px solid grey;padding-left:20px">
                       <?php
                       echo $res['quantity'];
-                      ?></p>
+                      ?>
                       </td>
 
                     
 
-                        <td style="border:none;padding-right:20px;">
-                              <p style="font-size:11px;font-family: system-ui;text-align:right;"> ₹<?Php
+                        <td style="border:none;padding-right:20px;border-right: 1px solid grey;">
+                              <p style="font-size:12px;font-family: system-ui;text-align:right;"> ₹<?Php
                                  echo $res['price'];
                                  $amt=$amt+$res['price'];
                                     ?>
@@ -314,7 +305,7 @@ th, td {
                               
                                         ?>
                         </td>
-                        <td style="border-top:none; border-left: none;border-right:none;padding-left:20px"><b> <p style="font-size:11px;font-family: system-ui;"> ₹
+                        <td style="border-top:none; border-left: none;border-right:none;padding-left:20px"><strong>
                         <?php
                         $test=0;
                       echo $test=$res['quantity'] * $res['price'];
@@ -323,15 +314,15 @@ th, td {
                            }
                           }
 
-                      ?></p>
-                      </b>
+                      ?>
+                      </strong>
                       </td>
               </tr>
                                 </table>
-              <table class="table" style="border-top:none;border:1px solid grey;">
+              <table class="table" border="1px" style="border-top:none;">
                             <tr style="border-bottom:1px solid grey;background:#eff5f5; ">
               <td colspan="4" style="border-top:none;border-left:none; border-right:none; padding-left:20px; padding-top:10px;">
-              <p style="font-size:11px;font-family: system-ui;"><b> Taxation</b><small> &nbsp;( AND OTHER TAXES*)</small><p>
+              <p style="font-size:12px;font-family: system-ui;"><strong> Taxation</strong><small> &nbsp;( AND OTHER TAXES*)</small><p>
               <center>
 
               </td>
@@ -343,29 +334,27 @@ th, td {
         <?php
         include("connection.php");
 
-        if(isset($_GET['showid']))
-        {
-         $userid=$_GET['showid']; 
+        if(isset($_GET['showid'])){
         $companyid=$_SESSION['companyid'];
-        $tax="SELECT * FROM `temppreview` WHERE `userid`= '$userid' ";
+        $tax="SELECT * FROM `vendors` WHERE `companyid`='$companyid' ";
         $calc=mysqli_query($conn, $tax);
         $check=mysqli_fetch_assoc($calc);
-        $sgst= $check['tax']/2;
+        $sgst= $check['taxpercentage']/2;
         
         }
         ?>
 
-                                <td colspan="3" style="border-top:none; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b> <?php echo $sgst;?>% CGST </b> </p></td>
-                                <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui; padding-right:20px; text-align:right;"> ₹  <?php
+                                <td colspan="3" style="border-top:none;border-right:1px solid grey; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:12px;font-family: system-ui;"><strong> <?php echo $sgst;?>% CGST </strong> </p></td>
+                                <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:12px;font-family: system-ui; padding-right:20px; text-align:right;"> ₹  <?php
                                 echo $agst=($sgst/100)*$totalamt;
                                   ?></p>
                                   
                                 </td>
         </tr>
-       <tr style=" border:none">
+       <tr style="border-bottom: 1px solid grey; border:none">
 
-                      <td colspan="3" style="border-left:none;  padding-top:5px;padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b><?php echo $sgst; ?>% SGST </b>  </p></td>
-                      <td style="border-left:none !important; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui;border:none; padding-right:20px; text-align:right">  ₹
+                      <td colspan="3" style="border-left:none; border-right:1px solid grey; padding-top:5px;padding-left:20px;"><p style="font-size:12px;font-family: system-ui;"><strong><?php echo $sgst; ?>% SGST </strong>  </p></td>
+                      <td style="border-left:none !important; padding-left:20px; padding:5px;"><p  style="font-size:12px;font-family: system-ui;border:none; padding-right:20px; text-align:right">  ₹
                       <?php
                          echo $cgst=($sgst/100)*$totalamt;
                       ?></p>
@@ -375,8 +364,8 @@ th, td {
 
                             <tr style="border:none">
 
-          <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b><?php echo $check['tax']?>% GST = </b> (<?php echo $sgst;?> %SGST + <?php echo $sgst;?>% CGST)</p></td>
-          <td style=" border-left:none;  padding:5px;"><p  style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px;"> ₹ <?php
+          <td colspan="3" style="border-left:none; border-right:1px solid grey; padding-left:20px; padding:5px;"><p style="font-size:12px;font-family: system-ui;"><strong><?php echo $check['taxpercentage']?>% GST = </strong> (<?php echo $sgst;?> %SGST + <?php echo $sgst;?>% CGST)</p></td>
+          <td style=" border-left:none;  padding:5px;"><p  style="font-size:12px;font-family: system-ui;text-align:right;padding-right:20px;"> ₹ <?php
            echo $gst=$cgst+$agst;
             ?></p>
             
@@ -385,17 +374,17 @@ th, td {
                           
            <tr style="border:none; background:#eff5f5">
 
-                <td colspan="3" style="border-left:none;padding-left:20px;padding:5px;">
-                      <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax']; ?></b><p>
+                <td colspan="3" style="border-left:none; border-right:1px solid grey;padding-left:20px;padding:5px;">
+                      <p style="font-size:12px;font-family: system-ui;"><strong> TOTAL AMOUNT <?php $check['taxpercentage']; ?></strong><p>
                 </td>
                 <td style="border-left:none; padding-left:20px">
-                      <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($gst+$totalamt); ?></b><p>
+                      <p style="font-size:12px;font-family: system-ui;text-align:right;padding-right:20px"><strong>₹ <?php echo $total= round($gst+$totalamt); ?></strong><p>
 
                 </td>
           </tr>
-                             <tr style="border:none; border-top: 1px solid grey;">
+                             <tr style="border:none;">
 
-                <td colspan="3" width="50%" style="border-left:none;border-top: 1px solid grey; border-right:1px solid grey;padding-left:20px;">
+                <td colspan="3" width="50%" style="border-left:none; border-right:1px solid grey;padding-left:20px;">
 
                                 <!-- number to word-->
                                 <script>
@@ -441,34 +430,33 @@ document.getElementById("total_amt").innerHTML = str;
 
 
 
-                <p style="font-size:11px;font-family: system-ui;text-transform: uppercase;"> <b>Total Amount (In Words) - <span id="total_amt"><script>inWordsTotal(<?php //echo $a;?>);</script></span></b></p>
-                <p style="font-size:11px;font-family: system-ui;text-transform: uppercase;"> <b>Company Pan - </b><?php echo $w['companypan'];?></p>
+                <p style="font-size:12px;font-family: system-ui;text-transform: uppercase;"> <Strong>Total Amount (In Words) - <span id="total_amt"><script>inWordsTotal(<?php //echo $a;?>);</script></span></Strong></p>
+                <p style="font-size:12px;font-family: system-ui;text-transform: uppercase;"> <Strong>Company Pan - </Strong><?php echo $c['companypan'];?></p>
 
 
                 </td>
-                <td width="40%" style="border-left:none; padding:20px; padding-top:10px;padding-bottom:10px; text-align:right;border-top: 1px solid grey;">
-                <p style="font-size:11px;font-family: system-ui;"> <b><?php echo ucfirst($w['companyname']);?> </b></p>
-                   <p style="font-size:11px;font-family: system-ui;"> <b>A/C No. : - </b><?php echo $w['account'];?></p>
-                   <p style="font-size:11px;font-family: system-ui;"> <b>IFSC Code : - </b><?php echo $w['ifsc'];?></p>
-                   <p style="font-size:11px;font-family: system-ui;"> <b><?php echo $w['bank'];?> </b></p>
+                <td width="40%" style="border-left:none; padding:20px; padding-top:10px;padding-bottom:10px; text-align:right;">
+                <p style="font-size:12px;font-family: system-ui;"> <Strong><?php echo ucfirst($w['companyname']);?> </Strong></p>
+                   <p style="font-size:12px;font-family: system-ui;"> <Strong>A/C No. : - </Strong><?php echo $w['account'];?></p>
+                   <p style="font-size:12px;font-family: system-ui;"> <Strong>IFSC Code : - </Strong><?php echo $w['ifsc'];?></p>
+                   <p style="font-size:12px;font-family: system-ui;"> <Strong><?php echo $w['bank'];?> </Strong></p>
 
                 </td>
               </tr>
                              <tr style="border:none;">
 
-                <td colspan="3" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;"> <img src="images/QR.png" width="80px">  <p style="font-size:11px;font-family: system-ui;margin-top:20px; margin-bottom:0px;"> <b>Declaration :  </b> We Declare that this Invoice shows the actual
+                <td colspan="3" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;">  <p style="font-size:12px;font-family: system-ui;"> <Strong>Declaration :  </Strong> We Declare that this Invoice shows the actual
             Price of the services/goods described and that all perticular are true and correct.    </p></td>
                 <td style="padding:20px; border-left:none; text-align:right;">
-                <p style="font-size:11px;font-family: system-ui;"> <b><?php echo ucfirst($w['companyname']);?> </b></p>
-                 <br>
-                   <p style="font-size:11px;font-family: system-ui;"> <b>Authorized Signature </b></p>
+                <p style="font-size:12px;font-family: system-ui;"> <Strong><?php echo ucfirst($w['companyname']);?> </Strong></p>
+                 
+                   <p style="font-size:12px;font-family: system-ui;"> <Strong>Authorized Signature </Strong></p>
                 </td>
               </tr>
 
 
             </table>
-         
-            <p style="text-align: center;font-size:8px"> *This is computer generated Invoice* </p>
+            <p style="text-align: center;"> *This is computer generated Invoice* </p>
 
 
 
@@ -501,7 +489,7 @@ document.getElementById("total_amt").innerHTML = str;
         }
 
   
-      } 
+   
 
 else{
     echo "please login to Continue";

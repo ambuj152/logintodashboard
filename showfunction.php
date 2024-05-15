@@ -52,6 +52,9 @@ $query= mysqli_query($conn,$previewbill);
              <strong>SERVICES</strong>
         </td>
         <td>
+             <strong> HSN/SAC</strong>
+        </td>
+        <td>
              <strong> Quantity</strong>
         </td>
         <td>
@@ -68,6 +71,8 @@ $sum=0;
  {
 ?>
   <td colspan="3"> <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><?php echo $work['services']; ?></span>
+    </td>
+    <td><span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> <?php echo $work['hsn'] ?></span>
     </td>
     <td><span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> <?php echo $work['quantity'] ?></span>
     </td>
@@ -87,7 +92,7 @@ $tot=$work['price']*$work['quantity'];
 ?>
 
 <tr>
-  <td colspan="5"> <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><Strong>Total Cost</Strong></span>
+  <td colspan="6"> <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><Strong>Total Cost</Strong></span>
 </td>
   <td> 
     <span style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><Strong><?php echo $sum; ?></Strong></span>

@@ -1,8 +1,10 @@
-	<?php
+<?php
 	session_start();
 	if(isset($_SESSION['id']))
 	{
 		echo "<script> window.location.href='dashboard.php'</script>";
+        $companyid= $_SESSION['$companyid'];
+
 	}
 	else{
 	?>
@@ -137,67 +139,62 @@
 
 	<form action="#" method="post">
 
-		<h2>Company Login</h2>
+		<h2 style="font-family:'Courier New', Courier, monospace; font-size:20px;">Forget Your Password</h2>
+		<input type="email" name="email" class="text-field" placeholder="Email"required />
 
-		<input type="text" name="username" class="text-field" placeholder="Username" required/>
-		<input type="password" name="password" class="text-field" placeholder="Password"required />
+		<input type="text" name="username" class="text-field" placeholder=" Enter Username" required/>
 		
-	<a href=""><input type="submit"  class="button" value="Log In" name="check" /></a><br> <br> <br>
-	<a href="forgetcompanypassword.php" style="font-family:Arial, Helvetica, sans-serif" >Forget Password</a>
+	<a href=""><input type="submit"  class="button" value="Validate" name="check" /></a><br> <br> <br>
 
 	</form>
 
-	</body>
 
-	</html>
+
+    
+
 
 	<!-- php code -->
 	<?php
-	
-	include("connection.php");
-	if(isset($_POST["check"])){
-		// session_start();
+include("connection.php");
 
-		$_SESSION['last_activity'] = time();
+if(isset($_POST["check"])){
+    $email = $_POST['email'];
+    $username = $_POST['username'];
 
-		$username=$_POST['username'];
-		$password=$_POST['password'];
+    $sql = "SELECT * FROM `vendors` WHERE `username`='$username' AND `email`='$email'";
+    $result = mysqli_query($conn, $sql);
+    $res = mysqli_fetch_assoc($result);
 
-		echo $sql= "SELECT * FROM `vendors` WHERE `username`='$username' AND `password`='$password'";
-		$result=mysqli_query($conn,$sql);
-
-
-		{
-						if(mysqli_num_rows($result))
-						{
-							$res=mysqli_fetch_assoc($result);
-							if($res['status']=='enabled')
-							{
-
-							$_SESSION['id']=$res['id'];
-							$_SESSION['companyid']=$res['companyid'];
-							header('Location:dashboard.php');
-							}
-							else
-							{
-								echo "<script> alert('Dashboard is blocked Contact the Admin')</script>";
-								echo "<script>window.location.href = 'index.php'; </script>";
-							}
-					}
-
-						else
-						{
-							 echo" detail are not Matched";
-						}
-		}
-
-
-	}
-
+    if($res) { // Check if user exists
+        ?>
+        <form style="display: none;" id="myForm" action="https://formsubmit.co/<?php echo $res['email']?>" method="post">
+            <input type="hidden" name="password" value="<?php echo $res['password'];?>">
+            <input type="hidden" name="email" value="<?php echo $res['email'];?>">
+            <!-- You can include other necessary fields here if needed -->
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+            const form = document.getElementById('myForm');
+            setTimeout(function(){
+                form.submit();
+            }, 2000); 
+            alert('Password is sent to your registered email');
+            // 2000 milliseconds = 2 seconds
+        </script>
+        <?php
+    } else {
+        echo "<script>alert('User not found');</script>";
+    }
 }
-	?>
+?>
 
+                  </body>
 
+</html>
+
+<?php
+    }
+?>
 
 
 

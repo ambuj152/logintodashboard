@@ -6,8 +6,9 @@
       <li><a href="createcompany.php" class="sidebar-link">Create A Company</a></li>
 
       <li><a href="companydata.php" class="sidebar-link">Company Data</a></li>
-      <li><a href="#" class="sidebar-link">Products</a></li>
-      <li><a href="#" class="sidebar-link">Orders</a></li>
-      <li><a href="#" class="sidebar-link">Settings</a></li>
+      <li><a href="suplogout.php" class="sidebar-link">logout</a></li>
+      <!-- <li><a href="#" class="sidebar-link">Products</a></li>
+    
+      <li><a href="#" class="sidebar-link">Settings</a></li> -->
     </ul>
   </nav>

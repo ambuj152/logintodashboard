@@ -117,7 +117,7 @@ body {
       </div>
       <div class="col-sm-6 form-group">
         <label for="name-f">fullname</label>
-        <input type="text" class="form-control" name="fullname" id="name-f" placeholder="Fullname" required>
+        <input type="text" class="form-control" name="fullname" id="name-f" placeholder="Fullname">
       </div>
       <div class="col-sm-6 form-group">
         <label for="name-l">Company name</label>
@@ -151,7 +151,7 @@ body {
       </div> -->
       <div class="col-sm-6 form-group">
         <label for="Date">Date Of Registration</label>
-        <input type="Date" name="dateofregistration" class="form-control" id="Date" placeholder="" required>
+        <input type="Date" name="dateofregistration" class="form-control" id="Date" placeholder="" >
       </div>
    
       <div class="col-sm-2 form-group">
@@ -175,10 +175,10 @@ body {
         <label >Password</label>
         <input type="Password" name="password" class="form-control" id="pass" placeholder="Enter your password." required>
       </div>
-      <div class="col-sm-6 form-group">
+      <!-- <div class="col-sm-6 form-group">
         <label >Tax percentage</label>
         <input type="text" name="taxpercentage" class="form-control" id="pass2" placeholder="Tax" required>
-      </div>
+      </div> -->
       <div class="col-sm-6 form-group">
         <label >GSTIN/UIN</label>
         <input type="text" name="gstnumber" class="form-control" id="pass" placeholder="GST No." required>
@@ -196,6 +196,27 @@ body {
         <label >Bank</label>
         <input type="text" name="bank" class="form-control" id="pass" placeholder="Bank Name" required>
       </div>
+      <div class="col-sm-6 form-group">
+        <label >Company PAN No.</label>
+        <input type="text" name="pancard" class="form-control" id="pass" placeholder="Pan Card" required>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label >Invoice Prefix</label>
+        <input type="text" name="prefix" class="form-control" id="pass" placeholder="Invoice prefix" required>
+      </div>
+      
+      <!-- <div class="col-sm-6 form-group">
+        <label>Status</label>  
+        <select name="status" id="" form="status-form" class="form-control">
+        <option value="enabled">Enable</option>
+        <option value="disabled">Disable</option>
+        </select>
+
+     </div> -->
+     <hr style="border:1px solid #F1F1F1">
+     <hr>
+    </div>
+    <br>
     
     
       
@@ -251,8 +272,11 @@ if(isset($_POST['submit']))
   $username=$_POST['username'];
   $password=$_POST['password'];
   $taxation=$_POST['taxpercentage'];
+  $pancard=$_POST['pancard'];
+  $prefix=$_POST['prefix'];
+  $status='enabled';
 
-  $query="INSERT INTO `vendors`( `companyid`,`fullname`, `companyname`, `email`, `address`, `dataeofregistration`, `mobile`, `gstnumber`, `account`, `ifsc`, `bank`, `username`, `password`, `taxpercentage`) VALUES ('$unique_id','$fullname','$companyname','$email','$address','$dateofregistration','$mobile','$gstnumber','$account','$ifsc','$bank','$username','$password','$taxation')";
+  $query="INSERT INTO `vendors`( `companyid`,`fullname`, `companyname`, `email`, `address`, `dataeofregistration`, `mobile`, `gstnumber`, `account`, `ifsc`, `bank`, `username`, `password`, `taxpercentage`,`companypan`,`in-prefix`,`status`) VALUES ('$unique_id','$fullname','$companyname','$email','$address','$dateofregistration','$mobile','$gstnumber','$account','$ifsc','$bank','$username','$password','$taxation', '$pancard','$prefix','$status')";
   $fire=mysqli_query($conn,$query);
 
   if($fire){
@@ -282,7 +306,7 @@ if(isset($_POST['submit']))
 }
 else{
   echo "<script>alert('please login first')</>";
-  header('Location:superuser.php');
+  header('Location:index.php');
 }
 ?>
 

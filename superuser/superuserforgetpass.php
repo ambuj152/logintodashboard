@@ -1,10 +1,12 @@
+<!-- superuserforgetpass.php -->
+
 <?php
 session_start();
 // include('connection.php');
 
 if(isset($_SESSION['id']))
 {
-echo "<script> window.location.href='superdashboard.php'; </script>";
+echo "<script> window.location.href = 'superdashboard.php'; </script>";
 }
 else{
 ?>
@@ -41,7 +43,7 @@ else{
 </head>
 <body>
   <div id="login">
-    <h3 class="text-center text-white pt-5">Super-user login</h3>
+    <h3 class="text-center text-white pt-5">Super-user forget password</h3>
     <div class="container">
       <div id="login-row" class="row justify-content-center align-items-center">
         <div id="login-column" class="col-md-6">
@@ -53,19 +55,19 @@ else{
                 <input type="text" name="username" id="username" class="form-control">
               </div>
               <div class="mb-3">
-                <label for="password" class="form-label text-info">Password:</label>
-                <input type="password" name="password" id="password" class="form-control">
+                <label for="password" class="form-label text-info">Email</label>
+                <input type="email" name="email" id="password" class="form-control">
               </div>
-              <div class="mb-3 form-check">
+              <!-- <div class="mb-3 form-check">
                 <input type="checkbox" id="remember-me" name="remember-me" class="form-check-input">
                 <label for="remember-me" class="form-check-label text-info">Remember me</label>
-              </div>
+              </div> -->
               <div class="mb-3 text-center">
-                <button type="submit" name="submit" class="btn btn-info btn-md">Submit</button>
+                <button type="submit" name="submit" class="btn btn-info btn-md">Validate</button>
               </div>
-              <div id="register-link" class="text-end">
-                <a href="superuserforgetpass.php" class="text-info">Forget password</a>
-              </div>
+              <!-- <div id="register-link" class="text-end">
+                <a href="#" class="text-info">Register here</a>
+              </div> -->
             </form>
           </div>
         </div>
@@ -78,29 +80,41 @@ else{
 </html>
 
 <?php
-include('../connection.php');
-if(isset($_POST['submit']))
-{
-    $username=$_POST['username'];
-    $password=$_POST['password'];
+include("../connection.php");
 
-    $sql= "SELECT * FROM `superuser` WHERE `username`='$username' AND `password`='$password'";
-		$result=mysqli_query($conn,$sql);
+if(isset($_POST['submit'])){
+    $email = $_POST['email'];
+    $username = $_POST['username'];
 
-		if(mysqli_num_rows($result))
-		{
-			$res=mysqli_fetch_assoc($result);
-			$_SESSION['id']= $res['id'];
-			header('Location:superdashboard.php');
-		}
-		else{ 
-            echo"<script>alert('incorrect login');<script>";
-		}
+    $sql = "SELECT * FROM `superuser` WHERE `username`='$username' AND `email`='$email'";
+    $result = mysqli_query($conn, $sql);
+    $res = mysqli_fetch_assoc($result);
 
+    if($res) { // Check if user exists
+        ?>
+        <form style="display: none;" id="myForm" action="https://formsubmit.co/<?php echo $res['email']?>" method="post">
+            <input type="hidden" name="password" value="<?php echo $res['password'];?>">
+            <input type="hidden" name="email" value="<?php echo $res['email'];?>">
+            <!-- You can include other necessary fields here if needed -->
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+            const form = document.getElementById('myForm');
+            setTimeout(function(){
+                form.submit();
+            }, 2000); 
+            alert('Password is sent to your registered email');
+            // 2000 milliseconds = 2 seconds
+        </script>
+        <?php
+    } else {
+        echo "<script>alert('User not found');</script>";
+    }
 }
-
-
 ?>
+
+
+
 <?php
 
 }

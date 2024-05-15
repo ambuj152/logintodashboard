@@ -22,7 +22,7 @@ $arraycount=mysqli_fetch_array($exe);
   
 $serial= $arraycount[0]+1;
 
-$companyid=$_SESSION['companyid'];
+//$companyid=$_SESSION['companyid'];
 
 // serial number evaluate
   $invoice= "SELECT MAX(`invoice`) FROM `bill`";
@@ -35,10 +35,12 @@ $companyid=$_SESSION['companyid'];
 
 $services=$_REQUEST['services'];
 $quantity=$_REQUEST['quantity'];
+$hsn=$_REQUEST['hsn'];
 $price=$_REQUEST['price'];
 $userid=$_REQUEST['userid'];
 $modeofpayment=$_REQUEST['modeOfPayment'];
 $orderdate=$_REQUEST['orderdate'];
+$tax=$_REQUEST['taxp'];
  if(isset($_POST['billgen']))
  {
   echo "second table";
@@ -47,7 +49,7 @@ $orderdate=$_REQUEST['orderdate'];
 for ($i = 0; $i < count($services); $i++) {
   
    
-    $tempquery="INSERT INTO  `temppreview` (`userid`, `services`,`quantity` ,`price`,`modeofpayment`,`orderdate`) VALUES ('$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate')";
+    $tempquery="INSERT INTO  `temppreview` (`userid`, `services`,`quantity` ,`price`,`modeofpayment`,`orderdate`,`tax`,`hsn`) VALUES ('$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate','$tax','$hsn[$i]')";
     $fire=mysqli_query($conn, $tempquery);
 
 

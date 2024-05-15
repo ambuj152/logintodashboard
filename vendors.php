@@ -366,7 +366,7 @@ if(isset($_POST["submit"]))
 }
 else{
     echo "please login to Continue";
-    header("Location:admin.php");
+    header("Location:index.php");
 }
 
 ?>

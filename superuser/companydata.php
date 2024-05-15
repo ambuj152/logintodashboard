@@ -14,6 +14,7 @@ if(isset($_SESSION['id']))
   <title>Admin Dashboard</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     /* Custom styles */
     body {
@@ -164,31 +165,7 @@ if(isset($_SESSION['id']))
   .btn-primary:hover {
     background: linear-gradient(135deg, #E9C46A, #B4A77B);
   } */
-  .btn-primary {
-    width: 40%;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    background: linear-gradient(135deg, #4e73df, #224abe);
-    /* background: linear-gradient(135deg, #B4A77B, #E9C46A); */
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .btn-danger{
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    /* background: linear-gradient(135deg, #4e73df, #224abe); */
-    /* background: linear-gradient(135deg, #B4A77B, #E9C46A); */
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-  }
+  
 
  
 
@@ -290,7 +267,8 @@ if(isset($_SESSION['id']))
                                 <th>ADDRESS</th>
                                 <th>GSTIN/UIN</th>
                                 <th>TAX </th>
-                                <th>ADDRESS</th>
+                                <th>OPERATIONS</th>
+                                <th>Status</th>
                                         
 
 
@@ -326,32 +304,37 @@ if(isset($_SESSION['id']))
                                     <td><?=$row['address']; ?></td>
                                     <td><?=$row['gstnumber']; ?></td>
                                     <td><?=$row['taxpercentage']; ?></td>
-                                    <td><?=$row['address']; ?></td>
+                                    <td>
+                                      <form action="" method="post">
+                                        <input type="hidden" name="id" value="<?=$row['id'];?>">
+                                        <!-- <input type="hidden" name="action" value="unset_client_session"> -->
+                                      <button type="submit" class="btn btn-success" style="width:100px;
+                                      " name="enable" value="enabled"> Enable</button>
+                                      <button type="submit"id="unsetSessionBtn" class="btn btn-danger" style="width:100px"
+                                      name="disable" value="disabled"> Disbaled</button>
+                                      </form>
+
+                                    </td>
+                                    <td><?= $row['status'];?></td>
                             
                       
 
                                 </tr>
                                 <?php
                             }
-                        } else {
+                        } 
+                        else {
                             ?>
                             <tr>
                                 <td colspan="8"> No Records Found</td>
                             </tr>
                             <?php
-                        }
-                    
+                        }                    
                     ?>
                             </tbody>
-
-
                     </table>
-                <!-- </div>
-                </div>
-
-                </div>
-                </div> -->
-
+              
+                   
   </div>
   </div>
   <!-- /#page-content-wrapper -->
@@ -359,12 +342,79 @@ if(isset($_SESSION['id']))
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<?php
+  include('../connection.php');
+  
+  if(isset($_POST['enable']))
+  {   
+
+    $companyid = $_POST['id'];
+
+      $enable = $_POST['enable'];
+
+      $status="UPDATE `vendors` SET `status` = '$enable' WHERE `id` = '$companyid'";
+      $enab= mysqli_query($conn, $status);
+
+      if($enab)
+      {
+        echo "<script> alert('company Id is Enabled')</script>";
+       echo "<script>window.location.href = 'companydata.php'; </script>";
+
+      }
+      else{
+
+      }
+
+
+  }
+ else if(isset($_POST['disable']))
+ 
+  {  
+    $companyid = $_POST['id'];
+
+      $disable = $_POST['disable'];
+      // $companyid = $_POST['id'];
+
+      $status2="UPDATE `vendors` SET `status`= '$disable' WHERE `id`= '$companyid' ";
+      $disab= mysqli_query($conn, $status2);
+
+      if($disab)
+      {
+        echo "<script> alert('company Id is Disabled')</script>";
+       echo "<script>window.location.href = 'companydata.php'; </script>";
+
+        
+      }
+      else{
+
+      }
+  }
+?>
+ <!-- <script>
+        $(document).ready(function() {
+            $('#unsetSessionBtn').click(function() {
+                // Send request to unset session for Page B
+                $.ajax({
+                    url: '../logout.php',
+                    type: 'POST',
+                    success: function(response) {
+                        // Handle success response if needed
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script> -->
 </html>
 <?php
 }
 else{
   echo "<script>alert('please login first')</script>";
-  header('Location:superuser.php');
+  header('Location:index.php');
 }
 ?>
 

@@ -1,7 +1,9 @@
 <?php
 session_start();
-?>
+if(isset($_SESSION['id']))
+{
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -385,4 +387,8 @@ button[disabled] {
     echo '.<br>';
    
 	}
-	?>
+}
+else{
+  echo "please login to Continue";
+  header("Location:index.php");
+}

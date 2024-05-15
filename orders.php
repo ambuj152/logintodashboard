@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -151,49 +152,22 @@ th, td {
                     
 
                         
-                                <h4 style="font-size:14px"> <Strong><?php echo $w['companyname'];?> </Strong></h4>
-                                <h4 style="font-size:14px"> <?php echo $w['address'];?>, <?php echo $w['mobile'];?></h4>
-                                <h4 style="font-size:14px"> <Strong>GSTIN/UIN :  </Strong><?php echo $w['gstnumber'];?></h4>
+                                <h4 style="font-size:11px"> <Strong><?php echo $w['companyname'];?> </Strong></h4>
+                                <h4 style="font-size:11px"> <?php echo $w['address'];?>, <?php echo $w['mobile'];?></h4>
+                                <h4 style="font-size:11px"> <Strong>GSTIN/UIN :  </Strong><?php echo $w['gstnumber'];?></h4>
               
 
             
                  </td>
-                 <td width="25%" style="border-top:none;border-left:none; padding:20px;">
-               
-                        <?php 
-                            include('connection.php');
-                    // $companyid=$_SESSION['companyid'];
-
-                              if(isset($_GET['showid']))
-                                  {
-                                      $val=$_GET['showid'];
-                                      $x="SELECT * FROM `bill` WHERE `userid`='$val' ";
-                                      $y=mysqli_query($conn,$x);   
-                                      $z= mysqli_fetch_assoc($y);
-
-                                 
-                                
-                    
-                          ?>
-                      
-                 <h4 style="font-size:14px"> <Strong>Mode of Payment - </Strong><?php echo $z['modeofpayment'];?></h4>
-
-
-            
-                 </td>
-                 <td width="25%" style=" border:none; border-bottom:1px solid grey; padding:20px;">
-                              <!-- <h4 style="font-size:14px"> <Strong>Order Date - </Strong>
+                
+                 <td width="50%" style=" border:none; border-bottom:1px solid grey; padding:20px; border-right:none;">
+                              <!-- <h4 style="font-size:11px"> <Strong>Order Date - </Strong>
                               <?php 
                               // echo date('j F Y', strtotime($z['orderdate'])) ;
                               ?>
                             </h4> -->
-                              <h4 style="font-size:14px"> <Strong> <?php echo "ORDER PREVIEW";?></Strong></h4>
-                                      <?php
-                                  }
-                                  else{
-                                    echo "bill not generated yet";
-                                  }
-                                      ?>
+                              <h4 style="font-size:11px"> <Strong> <?php echo "ORDER PREVIEW";?></Strong></h4>
+                                    
 
                  </td>
               </tr>
@@ -210,26 +184,26 @@ th, td {
                                       $c= mysqli_fetch_assoc($b);
                                   }        
                                   ?>
-                                  <h4 style="font-size:14px"> <Strong>Company Name - </Strong><?php  echo $c['companyname'];?></h4>
-                                  <h4 style="font-size:14px"> <Strong>GST NO. - </Strong><?php echo $c['gst'];?></h4>
+                                  <h4 style="font-size:11px"> <Strong>Company Name - </Strong><?php  echo $c['companyname'];?></h4>
+                                  <h4 style="font-size:11px"> <Strong>GSTIN/UIN - </Strong><?php echo $c['gst'];?></h4>
                         </td >
                         <td style=" border-right:1px solid grey; border-left:none;border-top:none; padding:20px;">
-                        <h4 style="font-size:14px"> <Strong>Customer Name - </Strong><?php echo $c['name'];?></h4>
-                                <h4 style="font-size:14px"> <Strong>Mobile No. - </Strong><?php echo $c['phone'];?></h4>
+                        <h4 style="font-size:11px"> <Strong>Customer Name - </Strong><?php echo $c['name'];?></h4>
+                                <h4 style="font-size:11px"> <Strong>Mobile No. - </Strong><?php echo $c['phone'];?></h4>
 
                         </td>
                             <td width="230px" style="border:none; padding :20px;">                    
-                                <h4 style="font-size:14px"> <Strong>Email - </Strong><?php echo $c['email'];?></h4>
-                                <h4 style="font-size:14px"> <Strong>Addrees - </Strong><?php echo $c['address'];?></h4>
+                                <h4 style="font-size:11px"> <Strong>Email - </Strong><?php echo $c['email'];?></h4>
+                                <h4 style="font-size:11px"> <Strong>Addrees - </Strong><?php echo $c['address'];?></h4>
                             </td>
                          </tr>
               
                             <tr style=" border-top:none;border-left:none;background:#eff5f5">
  
-                            <td style="border-left:none;  padding:20px; border-right:1px solid grey;"><h4 style="font-size:14px;text-align:left"> <Strong> Sr No. </Strong></h4></td>
-                            <td style="border-left:none; padding:20px;"> <h4 style="font-size:14px;text-align:left"> <Strong> Description of Services and Product - </Strong></h4> </td>
-                            <td style="border-left:none; padding:20px;"> <h4 style="font-size:14px;text-align:left"> <Strong>Order Date</Strong></h4></td>
-                            <td style="border-left:none; border-right:none; padding:20px"> <h4 style="font-size:14px;text-align:left"> <Strong>Price / Unit  </Strong></h4></td>
+                            <td style="border-left:none;  padding:20px; border-right:1px solid grey;"><h4 style="font-size:11px;text-align:left"> <Strong> Sr No. </Strong></h4></td>
+                            <td style="border-left:none; padding:20px;"> <h4 style="font-size:11px;text-align:left"> <Strong> Description of Services and Product - </Strong></h4> </td>
+                            <td style="border-left:none; padding:20px;"> <h4 style="font-size:11px;text-align:left"> <Strong>Order Date</Strong></h4></td>
+                            <td style="border-left:none; border-right:none; padding:20px"> <h4 style="font-size:11px;text-align:left"> <Strong>Price / Unit  </Strong></h4></td>
               </tr>
                                         
               <?php 
@@ -253,10 +227,10 @@ th, td {
                              <tr style="border:none; ">
  
                         <td width="100px" style="border:none; border-right:1px solid grey; padding-left:20px;padding-top:10px;">
-                              <h4 style="font-size:14px"><strong><?php echo $i ;?></strong></h4>
+                              <h4 style="font-size:11px"><strong><?php echo $i ;?></strong></h4>
                         </td> 
                         <td style="border:none; border-right:1px solid grey;padding-left:20px">
-                            <h4 style="font-size:14px"> 
+                            <h4 style="font-size:11px"> 
                               <strong> 
                                   <?Php
                                     echo ucfirst( $res['services']);
@@ -266,7 +240,7 @@ th, td {
                         </td>
                         <td style="border:none;border-right:1px solid grey;padding-left:20px"> <?php echo $res['orderdate']?></td>
                         <td style="border:none;padding-left:20px">
-                              <h4 style="font-size:14px"> <strong><?Php
+                              <h4 style="font-size:11px"> <strong><?Php
                                  echo $res['price'];
                                     $amt=$amt+$res['price'];
                                     ?>
@@ -328,5 +302,3 @@ else{
 }
 
 ?>
-
-

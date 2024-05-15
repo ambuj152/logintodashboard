@@ -177,7 +177,17 @@ if(isset($_SESSION['id']) )
     background-color: #e8e8e8;
   }
 </style>
-
+<?php
+include('connection.php');
+// $companyid = $_SESSION['companyid'];
+if(isset($_GET['showID']))
+{  
+    $userid = $_GET['showID'];
+    $qwer= " SELECT * FROM `profile` WHERE `userid` = '$userid' ";
+    $firee = mysqli_query($conn, $qwer);
+    $chec= mysqli_fetch_assoc($firee);
+}
+?>
 
  <div class="container-fluid" width="80%" style="margin:50px;margin-top:0px;">
  <h2 style="">Create Customer</h2>
@@ -187,8 +197,8 @@ if(isset($_SESSION['id']) )
     <div class="col-md-4 mb-3">
       <label>Name</label>
       <input type="hidden" name="id">
-      <input type="text" class="form-control is-valid"  placeholder="fullname"
-        name="name">
+      <input type="text" class="form-control is-valid"  placeholder="fullname" 
+        name="name" value="<?php echo $chec['name'];?>" >
       <div class="valid-feedback">
        
       </div>
@@ -196,13 +206,14 @@ if(isset($_SESSION['id']) )
     <div class="col-md-4 mb-3">
       <label>Email</label>
       <input type="Email" class="form-control is-valid"  placeholder="@gmail.com"
-        name="email">
+        name="email" value="<?php echo $chec['email'];?>" >
      
     </div>
     <div class="col-md-4 mb-3">
       <label>Mobile Number</label>
              
         <input type="text" class="form-control is-invalid" name="phone"  placeholder="Mobile"
+        value="<?php echo $chec['phone'];?>"
            required>
        
       </div>
@@ -210,7 +221,7 @@ if(isset($_SESSION['id']) )
     <div class="form-row">
       <div class="col-md-6 mb-3">
       <label for="validationServer033">Address</label>
-      <input type="text" class="form-control is-invalid" name="address" id="validationServer033" placeholder="Address"
+      <input type="text" class="form-control is-invalid" name="address" id="validationServer033" placeholder="Address" value="<?php echo $chec['address'];?>"
         required>
       <div class="invalid-feedback">
      &nbsp;
@@ -218,7 +229,7 @@ if(isset($_SESSION['id']) )
     </div>
     <div class="col-md-6 mb-3">
       <label >City</label>
-      <input type="text" class="form-control is-invalid" name="city"  placeholder="City"
+      <input type="text" class="form-control is-invalid" name="city"  placeholder="City" value="<?php echo $chec['city'];?>"
         required>
       <div class="invalid-feedback">
       &nbsp;
@@ -235,7 +246,7 @@ if(isset($_SESSION['id']) )
     
     <div class="col-md-4 mb-3">
       <label>State</label>
-      <input type="text" class="form-control is-invalid" name="state"  placeholder="State"
+      <input type="text" class="form-control is-invalid" name="state"  placeholder="State" value="<?php echo $chec['state'];?>"
         required>
       <div class="invalid-feedback">
       &nbsp;
@@ -243,7 +254,7 @@ if(isset($_SESSION['id']) )
     </div>
     <div class="col-md-4 mb-3">
       <label>Zip</label>
-      <input type="text" class="form-control is-invalid" name="zip"  placeholder="Zip"
+      <input type="text" class="form-control is-invalid" name="zip"  placeholder="Zip" value="<?php echo $chec['zip'];?>"
         required>
       <div class="invalid-feedback">
        &nbsp;
@@ -253,7 +264,7 @@ if(isset($_SESSION['id']) )
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label>Company Name</label>
-      <input type="text" class="form-control is-invalid" name="companyname"  placeholder="Company name"
+      <input type="text" class="form-control is-invalid" name="companyname"  placeholder="Company name" value="<?php echo $chec['companyname'];?>"
         >
       <div class="invalid-feedback">
      &nbsp;
@@ -261,7 +272,7 @@ if(isset($_SESSION['id']) )
     </div>
     <div class="col-md-4 mb-3">
       <label>Industry Type</label>
-      <input type="text" class="form-control is-invalid" name="industry" placeholder="Industry Type"
+      <input type="text" class="form-control is-invalid" name="industry" placeholder="Industry Type" value="<?php echo $chec['industry'];?>"
         >
       <div class="invalid-feedback">
        
@@ -269,18 +280,18 @@ if(isset($_SESSION['id']) )
     </div>
     <div class="col-md-4 mb-3">
       <label>GST number</label>
-      <input type="text" class="form-control is-invalid" name="gst" placeholder="GST number"
+      <input type="text" class="form-control is-invalid" name="gst" placeholder="GST number" value="<?php echo $chec['gst'];?>"
         required>
       <div class="invalid-feedback">
        &nbsp;
       </div>
     </div>
   </div>
-
-  <!-- <div class="form-row">
+<!-- 
+  <div class="form-row">
     <div class="col-md-4 mb-3">
       <label>Company Pan</label>
-      <input type="text" class="form-control is-invalid" name="companypan"  placeholder="Company PAN No."
+      <input type="text" class="form-control is-invalid" name="companypan"  placeholder="Company PAN No." value=""
         >
       <div class="invalid-feedback">
      &nbsp;
@@ -317,7 +328,7 @@ if(isset($_SESSION['id']) )
     </div>
    &nbsp;
   </div> -->
-  <button  style="margin-left:10px; background:#337AB7" class="btn btn-primary" type="submit" name="submit">Create User</button>
+  <button  style="margin-left:10px; background:#337AB7" class="btn btn-primary" type="submit" name="update">Update User</button>
   <!-- <a href="Masterdata.php" style="margin-left:10px; color:black ;font-weight:600;" class="btn btn-warning">Master Data</></a> -->
  
 </form></div>
@@ -330,18 +341,18 @@ if(isset($_SESSION['id']) )
 <?php
 
 include('connection.php');
-if(isset($_POST["submit"]))
+if(isset($_POST['update']))
 {
-    $userid  = "SELECT MAX(id) FROM `profile`";
+    // $userid  = "SELECT MAX(id) FROM `profile`";
 
-    $exe=mysqli_query($conn,$userid);
+    // $exe=mysqli_query($conn,$userid);
 
-    $arraycount=mysqli_fetch_array($exe);
+    // $arraycount=mysqli_fetch_array($exe);
     
-    $uniqueid= "USER-00".$arraycount[0]+1;
+    // $uniqueid= "USER-00".$arraycount[0]+1;
 
-    $companyid=$_SESSION['companyid'];
-
+    // $companyid=$_SESSION['companyid'];
+    // $userid = $_POST['userid'];
     $name           =   $_POST['name'];
     $email          =   $_POST['email'];
     $phone          =   $_POST['phone'];
@@ -352,21 +363,33 @@ if(isset($_POST["submit"]))
     $companyname    =   $_POST['companyname'];
     $industry       =   $_POST['industry'];
     $gst            =   $_POST['gst'];
-    $companypan     =   $_POST['companypan']; 
+    // $companypan     =   $_POST['companypan']; 
     // $companybank    =   $_POST['companybank'];   
 
 
     // $profile_query =" INSERT INTO `profile` (`id`,`name`,`email`,`phone`,`city`,`state`,`zip`,`address`,`companyname`,`industry`,`gst`) VALUES ('$id','$name','$email','$phone','$city','$state','$zip','$address',$companyname,$industry,$gst)"; 
     // $fire_profile_query = mysqli_query($conn, $profile_query);
-    $profile_query = "INSERT INTO `profile`(`companyid`,`userid`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`,`companypan`)
-    VALUES ('$companyid','$uniqueid','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst','$companypan')";
-    $fire_profile_query = mysqli_query($conn,$profile_query);
+    $update_query = "UPDATE `profile` SET 
+    `name` = '$name', 
+    `email` = '$email', 
+    `phone` = '$phone', 
+    `address` = '$address', 
+    `city` = '$city', 
+    `state` = '$state', 
+    `zip` = '$zip', 
+    `companyname` = '$companyname', 
+    `industry` = '$industry', 
+    `gst` = '$gst', 
+    `companypan` = '$companypan' 
+                WHERE `userid` = '$userid'";
+                $fire_profile_query = mysqli_query($conn, $update_query);
+
     
     
     if($fire_profile_query)
     {
         echo "<script> alert('Recorded Successfully'); </script>";
-        echo "<script>window.location.href = 'createuser.php';</script>";
+        echo "<script>window.location.href = 'masterdata.php';</script>";
     }
     else{
         echo "<script> alert('failed'); </script>";

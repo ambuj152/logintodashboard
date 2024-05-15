@@ -1,26 +1,28 @@
 
-
-
-
 <?php
 
 
 include('connection.php');
 if(isset($_GET['showid']))
-// session_start();
+session_start();
 // $userid = $_SESSION['showid'];
 {
   $userid=($_GET['showid']);
-  $seria= "SELECT MAX(`serial`) FROM `bill`";
+
+  $companyid=$_SESSION['companyid'];
+
+  $seria= "SELECT MAX(serial) FROM `bill` WHERE `companyid`= '$companyid' ";
   $exe=mysqli_query($conn,$seria);
   $arraycount=mysqli_fetch_array($exe);
   $serial= $arraycount[0]+1;
-  $companyid=$_SESSION['companyid'];
+  // $invoice= $arraycount[0]+1;
 
-  $invoice= "SELECT MAX(`invoice`) FROM `bill`";
-  $exe=mysqli_query($conn,$invoice);
-  $arraycount=mysqli_fetch_array($exe);
-  $invoice= $arraycount[0]+1;
+
+
+  // $invoice= "SELECT MAX(`invoice`) FROM `bill`";
+  // $exe=mysqli_query($conn,$invoice);
+  // $arraycount=mysqli_fetch_array($exe);
+  // $invoice= $arraycount[0]+1;
   
 
   
@@ -29,15 +31,33 @@ $querychaloa= mysqli_query($conn, $billinsert);
 // $fetch =  mysqli_fetch_assoc($querychaloa);
 
 foreach($querychaloa as $rest){
+
+ $companyid=$_SESSION['companyid'];
+  
 $services=$rest['services'];
+$hsn=$rest['hsn'];
 $quantity=$rest['quantity'];
 $price=$rest['price'];
 $modeofpayment=$rest['modeofpayment'];
 $orderdate=$rest['orderdate'];
-$insertSql = "INSERT INTO `bill` (`userid`,`services`, `quantity`, `price`,`serial` , `invoice`,`modeofpayment`,`orderdate`) VALUES ('$userid','$services' , '$quantity', '$price', '$serial',$invoice, '$modeofpayment','$orderdate' ) ";
+$tax=$rest['tax'];
+$insertSql = "INSERT INTO `bill` (`userid`,`services`, `quantity`, `price`,`serial`,`modeofpayment`,`orderdate`, `companyid`,`tax-p`,`hsn`) VALUES ('$userid','$services' , '$quantity', '$price', '$serial', '$modeofpayment','$orderdate','$companyid','$tax','$hsn' ) ";
 $sql=mysqli_query($conn, $insertSql);
 
+
+
+// $seria= "SELECT count(`serialcount`)";
+// $exe=mysqli_query($conn,$seria);
+// $arraycount=mysqli_fetch_array($exe);
+// $serialcount= $arraycount[0]+1;
+
+
+$insert_serial="INSERT INTO `serial` (`taxcount`,`serialcount`) VALUES ('$tax', '$serial')";
+$chalao= mysqli_query($conn, $insert_serial);
 }
+
+
+
 $query = "SELECT * FROM `profile` WHERE `userid`='$userid'";
 
 $result = mysqli_query($conn, $query);

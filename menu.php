@@ -31,7 +31,7 @@
 
 <ul class="nav nav-pills nav-stacked">
   <li class="active"><a href="dashboard.php">Dashboard</a></li>
-  <li><a href="createuser.php">Create User</a></li>
+  <li><a href="createuser.php">Create Customer Profile</a></li>
   <li><a href="Masterdata.php">Customer Data</a></li>
   <li><a href="customerorder.php">Customer Orders</a></li>
   <li><a href="profarma.php">Profarma</a></li>

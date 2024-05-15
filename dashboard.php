@@ -1,8 +1,18 @@
 <?php
 
 session_start();
+
+
 if(isset($_SESSION['id']) ) 
 {
+//   if(isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 600)) {
+//     // If user is inactive for more than 10 minutes, redirect to logout page
+//     header("Location: logout.php");
+//     exit;
+// } else {
+//     // Update session variable with current time to track user's activity
+//     $_SESSION['last_activity'] = time();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -172,7 +182,7 @@ $dr=mysqli_query($conn,$dp);
 $naam=mysqli_fetch_assoc($dr);
 ?>
 
-    <h1 class="card-text">Hello <strong><?php echo ucfirst($naam['companyname']);  ?></strong> Welcome To the Dashboard</h1></center>
+    <h1 style="font-size: 30px;" class="card-text">Hello <strong style="font-family:Trattatello,"><?php echo ucfirst($naam['companyname']);  ?></strong> Welcome To the Dashboard</h1></center>
   </div>
 </div>
 

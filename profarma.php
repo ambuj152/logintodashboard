@@ -549,7 +549,7 @@ $userid = "SELECT MAX(id) FROM `profarmacustomer`";
  }
  if($fire)
  {
- $qwerty= "SELECT * FROM `profarmacustomer` WHERE `userid`='$uniqueid' AND `orderdate` ='$orderdate' ORDER  BY `id` DESC";
+ $qwerty= "SELECT * FROM `profarmacustomer` WHERE `userid` = '$uniqueid' AND `orderdate` ='$orderdate' ORDER  BY `id` DESC";
   $execute=mysqli_query($conn,$qwerty);
   $res=mysqli_fetch_assoc($execute);
   //  echo mysqli_error($conn);
