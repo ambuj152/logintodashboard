@@ -49,19 +49,19 @@ $query= mysqli_query($conn,$previewbill);
 <table class="table table-bordered">
      <tr>
         <td colspan="3">
-             <strong>SERVICES</strong>
+             <strong>SERVICES </strong>
         </td>
         <td>
-             <strong> HSN/SAC</strong>
+             <strong> HSN/SAC </strong>
         </td>
         <td>
-             <strong> Quantity</strong>
+             <strong> Quantity </strong>
         </td>
         <td>
-        <strong> Price/unit</strong> 
+        <strong> Price/unit </strong> 
         </td>
         <td>
-        <strong> Total</strong> 
+        <strong> Total </strong> 
         </td>
      </tr>
     <tr>
