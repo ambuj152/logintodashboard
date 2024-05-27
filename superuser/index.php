@@ -2,7 +2,7 @@
 session_start();
 // include('connection.php');
 
-if(isset($_SESSION['id']))
+if(isset($_SESSION['userid']))
 {
 echo "<script> window.location.href='superdashboard.php'; </script>";
 }
@@ -40,6 +40,8 @@ else{
   </style>
 </head>
 <body>
+
+
   <div id="login">
     <h3 class="text-center text-white pt-5">Super-user login</h3>
     <div class="container">
@@ -72,10 +74,13 @@ else{
       </div>
     </div>
   </div>
+
+  
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 <?php
 include('../connection.php');
@@ -90,7 +95,7 @@ if(isset($_POST['submit']))
 		if(mysqli_num_rows($result))
 		{
 			$res=mysqli_fetch_assoc($result);
-			$_SESSION['id']= $res['id'];
+			$_SESSION['userid']= $res['id'];
 			header('Location:superdashboard.php');
 		}
 		else{ 
@@ -101,6 +106,9 @@ if(isset($_POST['submit']))
 
 
 ?>
+
+
+
 <?php
 
 }

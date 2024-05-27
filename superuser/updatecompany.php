@@ -108,6 +108,17 @@ body {
 
 <br>
 <div class="container mt-4" style=" padding: 20px !important;">
+
+<?php
+include('../connection.php');
+if(isset($_GET['cu']))
+{
+  $companydata=$_GET['cu'];
+  $select="SELECT * FROM `vendors` WHERE `id`='$companydata'";
+  $runQ=mysqli_query($conn,$select);
+  $fet=mysqli_fetch_assoc($runQ);
+
+?>
   <form method="post" enctype="multipart/form-data">
     <div class="row jumbotron box8">
       <br>
@@ -117,24 +128,24 @@ body {
       </div>
       <div class="col-sm-6 form-group">
         <label for="name-f">fullname</label>
-        <input type="text" class="form-control" name="fullname" id="name-f" placeholder="Fullname">
+        <input type="text" class="form-control" name="fullname" placeholder="Fullname" value="<?php echo $fet['fullname']?>">
       </div>
       <div class="col-sm-6 form-group">
         <label for="name-l">Company name</label>
-        <input type="text" class="form-control" name="companyname" id="name-l" placeholder="Company Name" required>
+        <input type="text" class="form-control" name="companyname" placeholder="Company Name"  value="<?php echo $fet['companyname']?>" required>
       </div>
       <div class="col-sm-6 form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email." required>
+        <input type="email" class="form-control" name="email"  placeholder="Enter your email."  value="<?php echo $fet['email']?>" required>
       </div>
       <div class="col-sm-6 form-group">
         <label for="address-1">Address</label>
-        <input type="address" class="form-control" name="address" id="address-1" placeholder="Locality" required>
+        <input type="address" class="form-control" name="address"  placeholder="Locality" value="<?php echo $fet['address']?>" required>
       </div>
      
       <div class="col-sm-6 form-group">
         <label for="Date">Date Of Registration</label>
-        <input type="Date" name="dateofregistration" class="form-control" id="Date" placeholder="" >
+        <input type="date" name="dateofregistration" class="form-control"  placeholder=""  value="<?php echo $fet['dataeofregistration']?>" >
       </div>
    
       <div class="col-sm-2 form-group">
@@ -146,57 +157,71 @@ body {
       </div>
       <div class="col-sm-4 form-group">
         <label for="tel">Phone</label>
-        <input type="tel" name="phone" class="form-control" id="tel" placeholder="Enter Your Contact Number." required>
+        <input type="tel" name="phone" class="form-control"  placeholder="Enter Your Contact Number."  value="<?php echo $fet['mobile']?>" required>
       </div>
 
       <div class="col-sm-6 form-group">
         <label >Username</label>
-        <input type="text" name="username" class="form-control" id="pass" placeholder="Enter username" required>
+        <input type="text" name="username" class="form-control"  placeholder="Enter username"  value="<?php echo $fet['username']?>" required>
       </div>
       
       <div class="col-sm-6 form-group">
         <label >Password</label>
-        <input type="Password" name="password" class="form-control" id="pass" placeholder="Enter your password." required>
+        <input type="Password" name="password" class="form-control" placeholder="Enter your password."  value="<?php echo $fet['password']?>" required>
       </div>
-     
+      <!-- <div class="col-sm-6 form-group">
+        <label >Tax percentage</label>
+        <input type="text" name="taxpercentage" class="form-control" id="pass2" placeholder="Tax" required>
+      </div> -->
       <div class="col-sm-6 form-group">
         <label >GSTIN/UIN</label>
-        <input type="text" name="gstnumber" class="form-control" id="pass" placeholder="GST No." required>
+        <input type="text" name="gstnumber" class="form-control"  placeholder="GST No."  value="<?php echo $fet['gstnumber']?>" required>
       </div>
 
       <div class="col-sm-6 form-group">
         <label >Bank A/C No.</label>
-        <input type="text" name="account" class="form-control" id="pass" placeholder="Accoun No." required>
+        <input type="text" name="account" class="form-control"  placeholder="Accoun No."  value="<?php echo $fet['account']?>" required>
       </div>
       <div class="col-sm-6 form-group">
         <label >IFSC</label>
-        <input type="text" name="ifsc" class="form-control" id="pass" placeholder="IFSC No." required>
+        <input type="text" name="ifsc" class="form-control"  placeholder="IFSC No."  value="<?php echo $fet['ifsc']?>"required>
       </div>
       <div class="col-sm-6 form-group">
         <label >Bank</label>
-        <input type="text" name="bank" class="form-control" id="pass" placeholder="Bank Name" required>
+        <input type="text" name="bank" class="form-control" placeholder="Bank Name"  value="<?php echo $fet['bank']?>"required>
       </div>
       <div class="col-sm-6 form-group">
         <label >Company PAN No.</label>
-        <input type="text" name="pancard" class="form-control" id="pass" placeholder="Pan Card" required>
+        <input type="text" name="pancard" class="form-control"  placeholder="Pan Card"  value="<?php echo $fet['companypan']?>" required>
+    <input type="test" name="old_photo" value="<?php echo $fet['filepath'];?>">
+
       </div>
       <div class="col-sm-6 form-group">
         <label >Invoice Prefix</label>
-        <input type="text" name="prefix" class="form-control" id="pass" placeholder="Invoice prefix" required>
+        <input type="text" name="prefix" class="form-control"  placeholder="Invoice prefix"  value="<?php echo $fet['in-prefix']?>" required>
       </div>
       <div class="mb-6">
                             <label for="fileInput" class="form-label">Choose Signature</label>
-                            <input type="file" class="form-control" id="fileInput" name="filename" required >
+                            <input type="file" class="form-control" id="fileInput" name="filename">
                           </div>
       
-  
+      <!-- <div class="col-sm-6 form-group">
+        <label>Status</label>  
+        <select name="status" id="" form="status-form" class="form-control">
+        <option value="enabled">Enable</option>
+        <option value="disabled">Disable</option>
+        </select>
+
+     </div> -->
      <hr style="border:1px solid #F1F1F1">
      <hr>
     </div>
     <br>
-  
+    
+    
+      
       <div class="col-sm-12">
-        <input type="checkbox" class="form-check d-inline" id="chb" required><label for="chb" class="form-check-label">&nbsp;I accept all terms and conditions.
+        <input type="checkbox" class="form-check d-inline" required><label for="chb" class="form-check-label">&nbsp;I accept all terms and conditions.
         </label>
       </div>
       <br>
@@ -208,92 +233,70 @@ body {
     </div>
     <br>
   </form>
+
+  <?php
+}
+  ?>
   <br>
 </div>
 <br>
    
   </div>
 
+  <!-- /#page-content-wrapper -->
+
+
+  <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <?php
-include("../connection.php");
+include('../connection.php');
 if(isset($_POST['submit']))
 {
-
-  $companyid  = "SELECT MAX(id) FROM `vendors`";
-
-  $execute=mysqli_query($conn,$companyid);
-
-  $arraycount=mysqli_fetch_array($execute);
-    
-  $unique_id= "Company-00".$arraycount[0]+1;
-
-  $fullname=$_POST['fullname'];
-  $companyname=$_POST['companyname'];
-  $email=$_POST['email'];
-  $address=$_POST['address'];
-  $dateofregistration=date('Y-m-d', strtotime($_POST['dateofregistration']));
-  $mobile=$_POST['phone'];
-  $gstnumber=$_POST['gstnumber'];
-  $account=$_POST['account'];
-  $ifsc=$_POST['ifsc'];
-  $bank=$_POST['bank'];
-  $username=$_POST['username'];
-  $password=$_POST['password'];
-  $taxation=$_POST['taxpercentage'];
-  $pancard=$_POST['pancard'];
-  $prefix=$_POST['prefix'];
-  $status='enabled';
-
-  $target_file1=$_POST['old_photo'];
-
-
+  $fullname = $_POST['fullname'];
+  $companyname = $_POST['companyname'];
+  $email = $_POST['email'];
+  $address = $_POST['address'];
+  $dateofregistration = date('Y-m-d', strtotime($_POST['dateofregistration']));
+  $mobile = $_POST['phone'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $gstnumber = $_POST['gstnumber'];
+  $account = $_POST['account'];
+  $ifsc = $_POST['ifsc'];
+  $bank = $_POST['bank'];
+  $pancard = $_POST['pancard'];
+  $prefix = $_POST['prefix'];
+  $target_file1 = $_POST['old_photo'];
   $target_dir = "signature/";
 
-  if(!empty($_FILES['filename']['name'])){  
-
-   echo $target_file1 = 'signature/'.base64_encode(date('Y/m/d').time()).'.png';
-$target_file ='../'. $target_file1;
-
-	move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file);
+  if(!empty($_FILES['filename']['name'])){
+    $target_file1 = 'signature/'.base64_encode(date('Y/m/d').time()).'.png';
+    $target_file ='../'. $target_file1;
+    move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file);
   }
-
-  $query="INSERT INTO `vendors`( `companyid`,`fullname`, `companyname`, `email`, `address`, `dataeofregistration`, `mobile`, `gstnumber`, `account`, `ifsc`, `bank`, `username`, `password`, `taxpercentage`,`companypan`,`in-prefix`,`status`,`filepath`) VALUES ('$unique_id','$fullname','$companyname','$email','$address','$dateofregistration','$mobile','$gstnumber','$account','$ifsc','$bank','$username','$password','$taxation', '$pancard','$prefix','$status','$target_file1')";
-  $fire=mysqli_query($conn,$query);
-
-  if($fire){
-    echo "<script>alert('Company Generated Successfull');</script>";
-    echo "<script>window.location.href = 'createcompany.php';</script>";
-    
+  echo $companydata;
+ $query = "UPDATE `vendors` SET `fullname`='$fullname',`companyname`='$companyname',`email`='$email',`address`='$address',`dataeofregistration`='$dateofregistration',`mobile`='$mobile',`gstnumber`='$gstnumber',`account`='$account',`ifsc`='$ifsc',`bank`='$bank',`username`='$username',`password`='$password',`companypan`='$pancard',`in-prefix`='$prefix',`filepath`='$target_file1' WHERE `id` = '$companydata' ";
+  
+  $fireexe=mysqli_query($conn, $query);
+  echo mysqli_error($conn);
+  if($fireexe){
+    echo "<script>alert('Company Updated Successfully');</script>";
+    echo mysqli_error($conn);
+    echo "<script>window.location.href = 'companydata.php';</script>";
   }
-  else
-  {
+  else {
     echo "<script>alert('Something went wrong');</script>";
   }
-  
-
-
-
-
-
-
-
-  
-
 }
 
-
-?>
-<?php
 }
 else{
   echo "<script>alert('please login first')</>";
   header('Location:index.php');
 }
 ?>
-
 
 
 

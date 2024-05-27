@@ -225,7 +225,6 @@ if(isset($_SESSION['id']) )
       </div>
     </div>
       </div>
-
   
    <div class="valid-feedback">
       &nbsp;
@@ -277,46 +276,7 @@ if(isset($_SESSION['id']) )
     </div>
   </div>
 
-  <!-- <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label>Company Pan</label>
-      <input type="text" class="form-control is-invalid" name="companypan"  placeholder="Company PAN No."
-        >
-      <div class="invalid-feedback">
-     &nbsp;
-      </div>
-    </div> -->
-    <!-- <div class="col-md-4 mb-3">
-      <label>company bank Account</label>
-      <input type="text" class="form-control is-invalid" name="companybank" placeholder="Company bank"
-        required>
-      <div class="invalid-feedback">
-       
-      </div>
-    </div> -->
-    <!-- <div class="col-md-4 mb-3">
-      <label>Bank IFSC</label>
-      <input type="text" class="form-control is-invalid" name="bankifsc" placeholder="Bank IFSC"
-        required>
-      <div class="invalid-feedback">
-       &nbsp;
-      </div>
-    </div> -->
-  <!-- </div> -->
-  
-      
-    
-  
-  <!-- <div class="form-group" style="padding-left:12px;">
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input is-invalid" id="invalidCheck33" required>
-      <label class="custom-control-label" for="invalidCheck33">Agree to terms and conditions</label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
-    </div>
-   &nbsp;
-  </div> -->
+ 
   <button  style="margin-left:10px; background:#337AB7" class="btn btn-primary" type="submit" name="submit">Create User</button>
   <!-- <a href="Masterdata.php" style="margin-left:10px; color:black ;font-weight:600;" class="btn btn-warning">Master Data</></a> -->
  
@@ -354,12 +314,19 @@ if(isset($_POST["submit"]))
     $gst            =   $_POST['gst'];
     $companypan     =   $_POST['companypan']; 
     // $companybank    =   $_POST['companybank'];   
+    // customerid
+    $companyid=$_SESSION['companyid'];
 
+    $customer= "SELECT COUNT(id) FROM `profile` WHERE `companyid`= '$companyid' ";
+    $execust=mysqli_query($conn,$customer);
+    $arraycountt=mysqli_fetch_array($execust);
+    $customerid= "CUSTOMER-00".$arraycountt[0]+1;
+// customerid close
 
     // $profile_query =" INSERT INTO `profile` (`id`,`name`,`email`,`phone`,`city`,`state`,`zip`,`address`,`companyname`,`industry`,`gst`) VALUES ('$id','$name','$email','$phone','$city','$state','$zip','$address',$companyname,$industry,$gst)"; 
     // $fire_profile_query = mysqli_query($conn, $profile_query);
-    $profile_query = "INSERT INTO `profile`(`companyid`,`userid`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`,`companypan`)
-    VALUES ('$companyid','$uniqueid','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst','$companypan')";
+    $profile_query = "INSERT INTO `profile`(`customerid`,`companyid`,`userid`, `name`, `email`, `phone`, `address`, `city`, `state`, `zip`, `companyname`, `industry`, `gst`,`companypan`)
+    VALUES ('$customerid','$companyid','$uniqueid','$name','$email','$phone','$address','$city','$state','$zip','$companyname','$industry','$gst','$companypan')";
     $fire_profile_query = mysqli_query($conn,$profile_query);
     
     

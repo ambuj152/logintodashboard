@@ -205,8 +205,10 @@ th, td {
                                   include("connection.php");
                                   if(isset($_GET['showid']));
                                   {  
+                    $companyid=$_SESSION['companyid'];
+
                                   $val=$_GET['showid'];
-                                  $a="SELECT * FROM `profile` WHERE `userid`='$val'";
+                                  $a="SELECT * FROM `profile` WHERE `companyid`='$companyid' AND `userid`='$val'";
                                   $b=mysqli_query($conn,$a);   
                                       $c= mysqli_fetch_assoc($b);
                                         
@@ -218,7 +220,7 @@ th, td {
 
                         </td >
                         <td style="  border-left:none;border-top:none; padding:20px;;padding-right:29px;border-right:none; padding-right:40px;">
-                        <p style="font-size:11px;font-family: system-ui;"> <b>Customer ID - </b><?php echo $c['userid'];?></p>
+                        <p style="font-size:11px;font-family: system-ui;"> <b>Customer ID - </b><?php echo $c['customerid'];?></p>
                                 <p style="font-size:11px;font-family: system-ui;"> <b>Mobile No. - </b><?php echo $c['phone'];?></p>
 
                         <!-- </td>
@@ -461,6 +463,8 @@ document.getElementById("total_amt").innerHTML = str;
                 <td style="padding:20px; border-left:none; text-align:right;">
                 <p style="font-size:11px;font-family: system-ui;"> <b><?php echo ucfirst($w['companyname']);?> </b></p>
                  <br>
+                 <img src="<?php echo $w['filepath']?>" width="120px" alt="">
+
                    <p style="font-size:11px;font-family: system-ui;"> <b>Authorized Signature </b></p>
                 </td>
               </tr>

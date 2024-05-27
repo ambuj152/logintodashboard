@@ -136,7 +136,7 @@ th, td {
           </tr>
                             <tr style="">
 
-                  <td colspan="2" width="50%" style="border-right:1px solid grey; border-top:none;border-left:none; padding:20px;">
+                  <td colspan="4" width="50%" style="border-right:1px solid grey; border-top:none;border-left:none; padding:20px;">
                               <?php 
                                   include("connection.php");
                     $companyid=$_SESSION['companyid'];
@@ -160,16 +160,7 @@ th, td {
             
                  </td>
                 
-                 <td width="50%" style=" border:none; border-bottom:1px solid grey; padding:20px; border-right:none;">
-                              <!-- <h4 style="font-size:11px"> <Strong>Order Date - </Strong>
-                              <?php 
-                              // echo date('j F Y', strtotime($z['orderdate'])) ;
-                              ?>
-                            </h4> -->
-                              <h4 style="font-size:11px"> <Strong> <?php echo "ORDER PREVIEW";?></Strong></h4>
-                                    
-
-                 </td>
+             
               </tr>
                              <tr style="border:none;">
 

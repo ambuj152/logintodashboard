@@ -1,5 +1,5 @@
 <?php
-if($_POST['action_code']=='previewbill')
+if(isset($_POST['action_code']))
 { 
  previewbill();
 }
@@ -41,6 +41,8 @@ $userid=$_REQUEST['userid'];
 $modeofpayment=$_REQUEST['modeOfPayment'];
 $orderdate=$_REQUEST['orderdate'];
 $tax=$_REQUEST['taxp'];
+$customerid=$_REQUEST['custid'];
+$name=$_REQUEST['names'];
  if(isset($_POST['billgen']))
  {
   echo "second table";
@@ -49,7 +51,7 @@ $tax=$_REQUEST['taxp'];
 for ($i = 0; $i < count($services); $i++) {
   
    
-    $tempquery="INSERT INTO  `temppreview` (`userid`, `services`,`quantity` ,`price`,`modeofpayment`,`orderdate`,`tax`,`hsn`) VALUES ('$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate','$tax','$hsn[$i]')";
+    $tempquery="INSERT INTO  `temppreview` (`userid`, `services`,`quantity` ,`price`,`modeofpayment`,`orderdate`,`tax`,`hsn`,`name`,`customerid`) VALUES ('$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate','$tax','$hsn[$i]','$name','$customerid')";
     $fire=mysqli_query($conn, $tempquery);
 
 

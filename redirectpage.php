@@ -41,7 +41,9 @@ $price=$rest['price'];
 $modeofpayment=$rest['modeofpayment'];
 $orderdate=$rest['orderdate'];
 $tax=$rest['tax'];
-$insertSql = "INSERT INTO `bill` (`userid`,`services`, `quantity`, `price`,`serial`,`modeofpayment`,`orderdate`, `companyid`,`tax-p`,`hsn`) VALUES ('$userid','$services' , '$quantity', '$price', '$serial', '$modeofpayment','$orderdate','$companyid','$tax','$hsn' ) ";
+$customerid=$rest['customerid'];
+$name=$rest['name'];
+$insertSql = "INSERT INTO `bill` (`userid`,`services`, `quantity`, `price`,`serial`,`modeofpayment`,`orderdate`, `companyid`,`tax-p`,`hsn`,`customerid`,`name`) VALUES ('$userid','$services' , '$quantity', '$price', '$serial', '$modeofpayment','$orderdate','$companyid','$tax','$hsn','$customerid','$name' ) ";
 $sql=mysqli_query($conn, $insertSql);
 
 

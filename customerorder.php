@@ -236,7 +236,6 @@ if(isset($_SESSION['id']) )
             </div> -->
         </div>  
     <h2>Customer Data</h2>
-    <!-- <a href="formsearch.php"><button type="button" class="btn btn-primary">Search data</button></a> -->
 
 
     <div class ="row">

@@ -4,7 +4,7 @@
 session_start();
 // include('connection.php');
 
-if(isset($_SESSION['id']))
+if(isset($_SESSION['userid']))
 {
 echo "<script> window.location.href = 'superdashboard.php'; </script>";
 }

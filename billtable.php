@@ -204,9 +204,12 @@ th, td {
                                   <?php 
                                   include("connection.php");
                                   if(isset($_GET['showtable']));
+
                                   {  
+                    $companyid=$_SESSION['companyid'];
+
                                   $showtable=$_GET['showtable'];
-                                  $demo="SELECT * FROM `bill` WHERE `serial`='$showtable'";
+                                  $demo="SELECT * FROM `bill` WHERE `companyid`='$companyid' AND `serial`='$showtable'";
                                   $executt=mysqli_query($conn,$demo );
                                   
 
@@ -224,7 +227,7 @@ th, td {
 
                         </td >
                         <td style="  border-left:none;border-top:none; padding:20px;;padding-right:29px;border-right:none; padding-right:40px;">
-                        <p style="font-size:11px;font-family: system-ui;"> <b>Customer ID - </b><?php echo $c['userid'];?></p>
+                        <p style="font-size:11px;font-family: system-ui;"> <b>Customer ID - </b><?php echo $c['customerid'];?></p>
                                 <p style="font-size:11px;font-family: system-ui;"> <b>Mobile No. - </b><?php echo $c['phone'];?></p>
 
                         <!-- </td>
@@ -265,10 +268,12 @@ th, td {
             $amt=0;
             $gst=0;
             $totalamt=0;
+            $companyid=$_SESSION['companyid'];
+
 
             // $x = "SELECT * FROM `bill` WHERE `userid` = '$val' AND (`orderdate`, `timestamp`) = (SELECT MAX(`orderdate`), `timestamp` FROM `bill` WHERE `userid` = '$val')";
 
-            $x = "SELECT * FROM `bill` WHERE `serial` = '$val'";
+            $x = "SELECT * FROM `bill` WHERE `companyid`='$companyid' AND `serial` = '$val' ";
             // $x="SELECT * FROM `bill` WHERE `userid`='$val'AND MAX(`orderdate`)";
             $y=mysqli_query($conn,$x);   
               // $z= mysqli_fetch_assoc($y);
@@ -353,7 +358,7 @@ th, td {
         {
          $userid=$_GET['showtable']; 
         $companyid=$_SESSION['companyid'];
-        $tax="SELECT * FROM `bill` WHERE `serial`= '$userid' ";
+        $tax="SELECT * FROM `bill` WHERE `companyid`='$companyid' AND `serial`= '$userid' ";
         $calc=mysqli_query($conn, $tax);
         $check=mysqli_fetch_assoc($calc);
         $sgst= $check['tax-p']/2;
@@ -467,6 +472,8 @@ document.getElementById("total_amt").innerHTML = str;
                 <td style="padding:20px; border-left:none; text-align:right;">
                 <p style="font-size:11px;font-family: system-ui;"> <b><?php echo ucfirst($w['companyname']);?> </b></p>
                  <br>
+                 <img src="<?php echo $w['filepath']?>" width="120px" alt="">
+
                    <p style="font-size:11px;font-family: system-ui;"> <b>Authorized Signature </b></p>
                 </td>
               </tr>

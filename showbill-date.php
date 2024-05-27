@@ -172,8 +172,12 @@ if(isset($_SESSION['id']) )
     <hr>
     <table class="table">
         <tr>
-          <th>date</th>
-          <th>userid</th>
+        <th>Name</th>
+        <th>Customer-id</th>
+
+
+          <th>Date</th>
+          <th>Userid</th>
           <th>Serial</th>
           <th>DOWNLOAD BILL</th>
         </tr>
@@ -181,8 +185,10 @@ if(isset($_SESSION['id']) )
      <?php
 
      include('connection.php');
-     $query="SELECT * FROM `bill` GROUP BY `serial`";
-     $fireing=mysqli_query($conn, $query);
+     $companyid=$_SESSION['companyid'];
+
+     $query= "SELECT * FROM `bill` WHERE `companyid` = '$companyid' GROUP BY `serial`";
+     $fireing = mysqli_query($conn, $query);
      foreach ($fireing as $restt)
      {
 ?>
@@ -190,25 +196,30 @@ if(isset($_SESSION['id']) )
 
         <tbody>
           <tr>
+          <td><?php echo $restt['name'];?></td>
+
+          <td><?php echo $restt['customerid'];?></td>
+
           <td><?php echo $restt['orderdate'];?></td>
           <td><?php echo $restt['userid'];?></td>
           <td><?php echo $restt['serial'];?></td>
           <td>
             
           <a href="billtable.php?showtable=<?php echo $restt['serial']?>"><button type="button" class="btn" style="background:red; width:40%"> Download</button></a>
-          <a href="billtable.php?showtable=<?php echo $restt['serial']?>"><button type="button" class="btn" style="background:blue; width:40%"> EDIT</button></a>
+          <!-- <a href="billtable.php?showtable=<?php echo $restt['serial']?>"><button type="button" class="btn" style="background:blue; width:40%"> EDIT</button></a> -->
         
         </td></a>
             
         </tr>
 
-          <?php
-     }
-
-     ?>
+        
 
         </tbody>
 
+        <?php
+     }
+
+     ?>
       </table>
 
 

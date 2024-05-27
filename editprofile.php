@@ -327,7 +327,9 @@ if(isset($_GET['UDTId']))
                     <div class="col-sm-4">
                     <div class="form-group">
                     <label for="firstname"> Customer Name</label>
-                          <input type="text" class="form-control" id="customername" name="customername"  value="<?php echo $c['name'] ?>" disabled>
+                          <input type="text" class="form-control" id="name" name="name"  value="<?php echo $c['name'] ?>" disabled>
+                          <input type="hidden" class="form-control" id="name" name="names"  value="<?php echo $c['name'] ?>" >
+
                     </div>
                     </div>
                     <div class="col-sm-4">
@@ -352,8 +354,11 @@ if(isset($_GET['UDTId']))
                   <div class="form-group">
                                 <label for="password">Customer ID</label>
 
-                                <input type="text" class="form-control" id="cid" name="customerid" disabled value="<?php echo $c['userid']?>">
+                                <input type="hidden" class="form-control" id="cid" name="customerid" disabled value="<?php echo $c['userid']?>">
                                 <input type="hidden" name="userid" value="<?php echo $c['userid']; ?>">
+                                <input type="text" class="form-control" name="custid" value="<?php echo $c['customerid']; ?>">
+
+
                             </div>
                   </div>
 

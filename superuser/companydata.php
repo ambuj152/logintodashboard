@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-if(isset($_SESSION['id']))
+if(isset($_SESSION['userid']))
 {
 
 ?>
@@ -249,13 +249,7 @@ if(isset($_SESSION['id']))
             </div> -->
          
     <h2>Company Data</h2>
-    <!-- <a href="formsearch.php"><button type="button" class="btn btn-primary">Search data</button></a> -->
-
-
-    <!-- <div class ="row">
-            <div class="col-md-12">
-                <div class=" card mt-4">
-                <div class="card-body"> -->
+    
                     <table class="table table-bordered">
                         <thead>
                             <tr style="font-size:12px">
@@ -266,13 +260,9 @@ if(isset($_SESSION['id']))
                                 <th>PHONE</th>
                                 <th>ADDRESS</th>
                                 <th>GSTIN/UIN</th>
-                                <th>TAX </th>
+                                <th>Edit </th>
                                 <th>OPERATIONS</th>
                                 <th>Status</th>
-                                        
-
-
-                                
                             </tr>
                         </thead>
                             <tbody>
@@ -303,7 +293,7 @@ if(isset($_SESSION['id']))
                                     <td><?=$row['mobile']; ?></td>
                                     <td><?=$row['address']; ?></td>
                                     <td><?=$row['gstnumber']; ?></td>
-                                    <td><?=$row['taxpercentage']; ?></td>
+                                    <td><a href="updatecompany.php?cu=<?php echo $row['id'];?>"><button class="btn btn-warning"> Edit</button></a></td>
                                     <td>
                                       <form action="" method="post">
                                         <input type="hidden" name="id" value="<?=$row['id'];?>">
