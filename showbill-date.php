@@ -206,7 +206,7 @@ if(isset($_SESSION['id']) )
           <td>
             
           <a href="billtable.php?showtable=<?php echo $restt['serial']?>"><button type="button" class="btn" style="background:red; width:40%"> Download</button></a>
-          <!-- <a href="billtable.php?showtable=<?php echo $restt['serial']?>"><button type="button" class="btn" style="background:blue; width:40%"> EDIT</button></a> -->
+          <a href="updatebill.php?editbilltable=<?php echo $restt['id']?>&&seriall=<?php echo $restt['serial']?>"><button type="button" class="btn" style="background:yellow;color:black; width:40%"> EDIT</button></a>
         
         </td></a>
             

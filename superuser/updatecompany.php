@@ -193,16 +193,22 @@ if(isset($_GET['cu']))
       <div class="col-sm-6 form-group">
         <label >Company PAN No.</label>
         <input type="text" name="pancard" class="form-control"  placeholder="Pan Card"  value="<?php echo $fet['companypan']?>" required>
-    <input type="test" name="old_photo" value="<?php echo $fet['filepath'];?>">
+    <input type="hidden" name="old_photo" value="<?php echo $fet['filepath'];?>">
+    <input type="hidden" name="old_photo2" value="<?php echo $fet['qr'];?>">
+
 
       </div>
       <div class="col-sm-6 form-group">
         <label >Invoice Prefix</label>
         <input type="text" name="prefix" class="form-control"  placeholder="Invoice prefix"  value="<?php echo $fet['in-prefix']?>" required>
       </div>
-      <div class="mb-6">
-                            <label for="fileInput" class="form-label">Choose Signature</label>
+      <div class="col-sm-6">
+                            <label for="fileInput" class="form-label" style="border-bottom: 5px solid red;">Choose Signature</label>
                             <input type="file" class="form-control" id="fileInput" name="filename">
+                          </div>
+                          <div class="col-sm-6">
+                            <label for="fileInput" class="form-label" style="border-bottom: 5px solid blue;">Choose QR Image</label>
+                            <input type="file" class="form-control" id="fileInput" name="filename2" required >
                           </div>
       
       <!-- <div class="col-sm-6 form-group">
@@ -268,6 +274,8 @@ if(isset($_POST['submit']))
   $bank = $_POST['bank'];
   $pancard = $_POST['pancard'];
   $prefix = $_POST['prefix'];
+
+
   $target_file1 = $_POST['old_photo'];
   $target_dir = "signature/";
 
@@ -276,8 +284,17 @@ if(isset($_POST['submit']))
     $target_file ='../'. $target_file1;
     move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file);
   }
+
+  $target_file2 = $_POST['old_photo2'];
+  $target_dir2 = "QRIMG/";
+
+  if(!empty($_FILES['filename2']['name'])){
+    $target_file2 = 'QRIMG/'.base64_encode(date('Y/m/d').time()).'.png';
+    $target_file3 ='../'. $target_file2;
+    move_uploaded_file($_FILES["filename2"]["tmp_name"], $target_file3);
+  }
   echo $companydata;
- $query = "UPDATE `vendors` SET `fullname`='$fullname',`companyname`='$companyname',`email`='$email',`address`='$address',`dataeofregistration`='$dateofregistration',`mobile`='$mobile',`gstnumber`='$gstnumber',`account`='$account',`ifsc`='$ifsc',`bank`='$bank',`username`='$username',`password`='$password',`companypan`='$pancard',`in-prefix`='$prefix',`filepath`='$target_file1' WHERE `id` = '$companydata' ";
+ $query = "UPDATE `vendors` SET `fullname`='$fullname',`companyname`='$companyname',`email`='$email',`address`='$address',`dataeofregistration`='$dateofregistration',`mobile`='$mobile',`gstnumber`='$gstnumber',`account`='$account',`ifsc`='$ifsc',`bank`='$bank',`username`='$username',`password`='$password',`companypan`='$pancard',`in-prefix`='$prefix',`filepath`='$target_file1',`qr`='$target_file2' WHERE `id` = '$companydata' ";
   
   $fireexe=mysqli_query($conn, $query);
   echo mysqli_error($conn);

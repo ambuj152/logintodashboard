@@ -34,15 +34,23 @@ $serial= $arraycount[0]+1;
   $invoice= $arraycount[0]+1;
 
 $services=$_REQUEST['services'];
+
+// $name=$_REQUEST['name'];
+$email=$_REQUEST['email'];
+$address=$_REQUEST['address'];
+$phone=$_REQUEST['phone'];
 $quantity=$_REQUEST['quantity'];
 $hsn=$_REQUEST['hsn'];
+$gst=$_REQUEST['gstnumber'];
 $price=$_REQUEST['price'];
 $userid=$_REQUEST['userid'];
 $modeofpayment=$_REQUEST['modeOfPayment'];
 $orderdate=$_REQUEST['orderdate'];
 $tax=$_REQUEST['taxp'];
 $customerid=$_REQUEST['custid'];
-$name=$_REQUEST['names'];
+$name=$_REQUEST['name'];
+$state=$_REQUEST['state'];
+$companyname=$_REQUEST['companyname'];
  if(isset($_POST['billgen']))
  {
   echo "second table";
@@ -51,7 +59,7 @@ $name=$_REQUEST['names'];
 for ($i = 0; $i < count($services); $i++) {
   
    
-    $tempquery="INSERT INTO  `temppreview` (`userid`, `services`,`quantity` ,`price`,`modeofpayment`,`orderdate`,`tax`,`hsn`,`name`,`customerid`) VALUES ('$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate','$tax','$hsn[$i]','$name','$customerid')";
+    $tempquery="INSERT INTO  `temppreview` (`userid`, `services`,`quantity` ,`price`,`modeofpayment`,`orderdate`,`tax`,`hsn`,`name`,`customerid`,`email`,`address`,`phone`,`customergst`,`state`,`companyname`) VALUES ('$userid','$services[$i]','$quantity[$i]','$price[$i]','$modeofpayment','$orderdate','$tax','$hsn[$i]','$name','$customerid','$email','$address','$phone','$gst','$state','$companyname')";
     $fire=mysqli_query($conn, $tempquery);
 
 

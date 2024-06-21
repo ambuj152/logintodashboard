@@ -27,8 +27,6 @@ $userid=$_GET['showid'];
       background-color: #f1f1f1;
       height: 100%;
     }
-
-    
         
     /* On small screens, set height to 'auto' for the grid */
     @media screen and (max-width: 767px) {
@@ -171,7 +169,12 @@ th, td {
                                       $x="SELECT * FROM `bill` WHERE `userid`='$userid' ORDER BY `id` DESC ";
                                       $y=mysqli_query($conn,$x);   
                                       $z= mysqli_fetch_assoc($y);
-                                      $count=1;
+
+
+                                      $q="SELECT * FROM `serial` ORDER BY `id` DESC ";
+                                      $r= mysqli_query($conn,$q);   
+                                      $s= mysqli_fetch_assoc($r);
+                                      // $count=1;
                                                    
                           ?>
                               <p style="font-size:11px;font-family: system-ui;"> <b>Invoice No.- </b><?php echo $w['in-prefix'];echo "-";echo $z['serial'];?></p>
@@ -208,7 +211,7 @@ th, td {
                     $companyid=$_SESSION['companyid'];
 
                                   $val=$_GET['showid'];
-                                  $a="SELECT * FROM `profile` WHERE `companyid`='$companyid' AND `userid`='$val'";
+                                  $a="SELECT * FROM `profile` WHERE `companyid`= '$companyid' AND `userid`='$val'";
                                   $b=mysqli_query($conn,$a);   
                                       $c= mysqli_fetch_assoc($b);
                                         
@@ -352,9 +355,25 @@ th, td {
         $tax="SELECT * FROM `temppreview` WHERE `userid`= '$userid' ";
         $calc=mysqli_query($conn, $tax);
         $check=mysqli_fetch_assoc($calc);
-        $sgst= $check['tax']/2;
+
+      
+
+        $igst= $check['tax'];
+        $sgst= $igst/2;
+
+       
+
         
         }
+
+        $state= $c['state'];
+         $state;
+
+            if($state=='Up'){
+              $sgst=$check['tax']/2;
+
+
+        
         ?>
 
                                 <td colspan="3" style="border-top:none; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b> <?php echo $sgst;?>% CGST </b> </p></td>
@@ -369,21 +388,131 @@ th, td {
                       <td colspan="3" style="border-left:none;  padding-top:5px;padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b><?php echo $sgst; ?>% SGST </b>  </p></td>
                       <td style="border-left:none !important; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui;border:none; padding-right:20px; text-align:right">  ₹
                       <?php
+
+
+
                          echo $cgst=($sgst/100)*$totalamt;
+
+                       
+
                       ?></p>
                         
                       </td>
         </tr>
 
+        <?php
+            }
+
+            else{
+        ?>
+
+        <tr>
+        <td colspan="3" style="border-top:none; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b>0% SGST </b> </p></td>
+                                <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui; padding-right:20px; text-align:right;"> ₹ 0  <?php
+                               
+                                  ?></p>
+                                  
+                                </td>
+
+        </tr>
+<tr>
+  
+<td colspan="3" style="border-top:none; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b>0% CGST </b> </p></td>
+                                <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui; padding-right:20px; text-align:right;"> ₹ 0  <?php
+                               
+                                  ?></p>
+                                  
+                                </td>
+</tr>
+        <tr style=" border:none">
+        
+
+<td colspan="3" style="border-left:none;  padding-top:5px;padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b><?php 
+
+//  $igst;
+//  if(is_float($igst)) {
+  echo $igst;
+// }
+
+
+// else
+// {
+//   $formatted_number = $igst . ".0";
+// echo $formatted_number;
+  
+// }
+
+?>% IGST </b>  </p></td>
+<td style="border-left:none !important; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui;border:none; padding-right:20px; text-align:right">  ₹
+<?php
+   echo $igst=($igst/100)*$totalamt;
+
+   
+?></p>
+  
+</td>
+</tr>
+
+<?php
+            }
+
+            if($state=='Up')
+            {
+?>
+
                             <tr style="border:none">
 
-          <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b><?php echo $check['tax']?>% GST = </b> (<?php echo $sgst;?> %SGST + <?php echo $sgst;?>% CGST)</p></td>
+          <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b>
+            <?php echo $check['tax']?>% GST = </b> (<?php echo $sgst;?>% SGST + <?php echo $sgst;?>% CGST)</p></td>
           <td style=" border-left:none;  padding:5px;"><p  style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px;"> ₹ <?php
            echo $gst=$cgst+$agst;
+           
             ?></p>
             
           </td>
         </tr>
+          <?php
+            }
+            else{
+              ?>
+
+              <tr style="border:none">
+
+              <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b>
+                <?php echo $check['tax']?>% GST (IGST) </p></td>
+              <td style=" border-left:none;  padding:5px;">
+              <p  style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px;"> ₹ <?php
+        $igst= $check['tax'];
+   echo $igst=($igst/100)*$totalamt;
+
+
+              //  echo $gst=$igst;
+               
+                ?></p>
+                
+              </td>
+            </tr>
+
+<?php
+            }
+
+            if($state=='Up')
+            {
+              ?>
+              <tr style="border:none; background:#eff5f5">
+
+              <td colspan="3" style="border-left:none;padding-left:20px;padding:5px;">
+                    <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax']; ?></b><p>
+              </td>
+              <td style="border-left:none; padding-left:20px">
+                    <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($gst+$totalamt); ?></b><p>
+
+              </td>
+        </tr>
+<?php
+            }
+            else{
+          ?>
                           
            <tr style="border:none; background:#eff5f5">
 
@@ -391,10 +520,12 @@ th, td {
                       <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax']; ?></b><p>
                 </td>
                 <td style="border-left:none; padding-left:20px">
-                      <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($gst+$totalamt); ?></b><p>
+                      <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($igst+$totalamt); ?></b><p>
 
                 </td>
           </tr>
+           <?php }
+           ?>
                              <tr style="border:none; border-top: 1px solid grey;">
 
                 <td colspan="3" width="50%" style="border-left:none;border-top: 1px solid grey; border-right:1px solid grey;padding-left:20px;">
@@ -432,16 +563,7 @@ document.getElementById("total_amt").innerHTML = str;
 		
 </script>
 
-
-
-
-
                                 <!--number to word-->
-
-
-
-
-
 
                 <p style="font-size:11px;font-family: system-ui;text-transform: uppercase;"> <b>Total Amount (In Words) - <span id="total_amt"><script>inWordsTotal(<?php //echo $a;?>);</script></span></b></p>
                 <p style="font-size:11px;font-family: system-ui;text-transform: uppercase;"> <b>Company Pan - </b><?php echo $w['companypan'];?></p>
@@ -464,7 +586,6 @@ document.getElementById("total_amt").innerHTML = str;
                 <p style="font-size:11px;font-family: system-ui;"> <b><?php echo ucfirst($w['companyname']);?> </b></p>
                  <br>
                  <img src="<?php echo $w['filepath']?>" width="120px" alt="">
-
                    <p style="font-size:11px;font-family: system-ui;"> <b>Authorized Signature </b></p>
                 </td>
               </tr>

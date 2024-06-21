@@ -245,13 +245,13 @@ if(isset($_SESSION['id']) )
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>USER-ID</th>
+                                <th>CUSTOMER-ID</th>
                                 <th>NAME</th>
                                 <th>EMAIL</th>
                                 <th>PHONE</th>
                                 <th>CITY</th>
                                 <th>STATE</th>
-                                <th>ZIP</th>
+                                <th>Company NAME</th>
                                 <th>ADDRESS</th>
 
 
@@ -279,13 +279,13 @@ if(isset($_SESSION['id']) )
                             foreach($result as $row) {
                                 ?>
                                 <tr>
-                                    <td><?=$row['userid']; ?></td>
+                                    <td><?=$row['customerid']; ?></td>
                                     <td><?=$row['name']; ?></td>
                                     <td><?=$row['email']; ?></td>
                                     <td><?=$row['phone']; ?></td>
                                     <td><?=$row['city']; ?></td>
                                     <td><?=$row['state']; ?></td>
-                                    <td><?=$row['zip']; ?></td>
+                                    <td><?=$row['companyname']; ?></td>
                                     <td><?=$row['address']; ?></td>
                                     <td><a href="orders.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger">Show Orders</> </a> &nbsp;
                      <!-- <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class="btn btn-primary">Create Bill</a> </td>  -->

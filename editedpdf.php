@@ -166,12 +166,12 @@ th, td {
                               if(isset($_GET['showid']))
                                   {
                                       // $val=$_GET['showid'];
-                                      $x="SELECT * FROM `bill` WHERE `userid`='$userid' ORDER BY `id` DESC ";
+                                      $x="SELECT * FROM `bill` WHERE `serial`='$userid' ";
                                       $y=mysqli_query($conn,$x);   
                                       $z= mysqli_fetch_assoc($y);
 
 
-                                      $q="SELECT * FROM `serial` ORDER BY `id` DESC ";
+                                      $q="SELECT * FROM `bill` ORDER BY `id` DESC ";
                                       $r= mysqli_query($conn,$q);   
                                       $s= mysqli_fetch_assoc($r);
                                       // $count=1;
@@ -210,8 +210,8 @@ th, td {
                                   {  
                     $companyid=$_SESSION['companyid'];
 
-                                  $val=$_GET['showid'];
-                                  $a="SELECT * FROM `profile` WHERE `companyid`= '$companyid' AND `userid`='$val'";
+                                $val=$_GET['showid'];
+                                  $a="SELECT * FROM `bill` WHERE `companyid`= '$companyid' AND `serial`='$val' GROUP BY `serial`";
                                   $b=mysqli_query($conn,$a);   
                                       $c= mysqli_fetch_assoc($b);
                                         
@@ -267,7 +267,7 @@ th, td {
 
             // $x = "SELECT * FROM `bill` WHERE `userid` = '$val' AND (`orderdate`, `timestamp`) = (SELECT MAX(`orderdate`), `timestamp` FROM `bill` WHERE `userid` = '$val')";
 
-            $x = "SELECT * FROM `temppreview` WHERE `userid` = '$val'";
+            $x = "SELECT * FROM `bill` WHERE `serial` = '$val'";
             // $x="SELECT * FROM `bill` WHERE `userid`='$val'AND MAX(`orderdate`)";
             $y=mysqli_query($conn,$x);   
               // $z= mysqli_fetch_assoc($y);
@@ -352,13 +352,13 @@ th, td {
         {
          $userid=$_GET['showid']; 
         $companyid=$_SESSION['companyid'];
-        $tax="SELECT * FROM `temppreview` WHERE `userid`= '$userid' ";
+        $tax="SELECT * FROM `bill` WHERE `serial`= '$userid' ";
         $calc=mysqli_query($conn, $tax);
         $check=mysqli_fetch_assoc($calc);
 
       
 
-        $igst= $check['tax'];
+        $igst= $check['tax-p'];
         $sgst= $igst/2;
 
        
@@ -370,7 +370,7 @@ th, td {
          $state;
 
             if($state=='Up'){
-              $sgst=$check['tax']/2;
+              $sgst=$check['tax-p']/2;
 
 
         
@@ -463,7 +463,7 @@ th, td {
                             <tr style="border:none">
 
           <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b>
-            <?php echo $check['tax']?>% GST = </b> (<?php echo $sgst;?>% SGST + <?php echo $sgst;?>% CGST)</p></td>
+            <?php echo $check['tax-p']?>% GST = </b> (<?php echo $sgst;?>% SGST + <?php echo $sgst;?>% CGST)</p></td>
           <td style=" border-left:none;  padding:5px;"><p  style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px;"> ₹ <?php
            echo $gst=$cgst+$agst;
            
@@ -479,10 +479,10 @@ th, td {
               <tr style="border:none">
 
               <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b>
-                <?php echo $check['tax']?>% GST (IGST) </p></td>
+                <?php echo $check['tax-p']?>% GST (IGST) </p></td>
               <td style=" border-left:none;  padding:5px;">
               <p  style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px;"> ₹ <?php
-        $igst= $check['tax'];
+        $igst= $check['tax-p'];
    echo $igst=($igst/100)*$totalamt;
 
 
@@ -502,7 +502,7 @@ th, td {
               <tr style="border:none; background:#eff5f5">
 
               <td colspan="3" style="border-left:none;padding-left:20px;padding:5px;">
-                    <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax']; ?></b><p>
+                    <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax-p']; ?></b><p>
               </td>
               <td style="border-left:none; padding-left:20px">
                     <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($gst+$totalamt); ?></b><p>
@@ -517,7 +517,7 @@ th, td {
            <tr style="border:none; background:#eff5f5">
 
                 <td colspan="3" style="border-left:none;padding-left:20px;padding:5px;">
-                      <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax']; ?></b><p>
+                      <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax-p']; ?></b><p>
                 </td>
                 <td style="border-left:none; padding-left:20px">
                       <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($igst+$totalamt); ?></b><p>
@@ -580,8 +580,8 @@ document.getElementById("total_amt").innerHTML = str;
               </tr>
                              <tr style="border:none;">
 
-                <td colspan="3" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;"> 
-                <?php if(!empty($w['qr'])){
+                <td colspan="3" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;">
+                  <?php if(!empty($w['qr'])){
                   ?> 
                   <img src="<?php echo $w['qr']?>" width="80px">  
                   <?php
@@ -591,9 +591,8 @@ document.getElementById("total_amt").innerHTML = str;
 
 
                   }
-                  ?>  
-                
-                <p style="font-size:11px;font-family: system-ui;margin-top:20px; margin-bottom:0px;"> <b>Declaration :  </b> We Declare that this Invoice shows the actual
+                  ?>
+                  <p style="font-size:11px;font-family: system-ui;margin-top:20px; margin-bottom:0px;"> <b>Declaration :  </b> We Declare that this Invoice shows the actual
             Price of the services/goods described and that all perticular are true and correct.    </p></td>
                 <td style="padding:20px; border-left:none; text-align:right;">
                 <p style="font-size:11px;font-family: system-ui;"> <b><?php echo ucfirst($w['companyname']);?> </b></p>

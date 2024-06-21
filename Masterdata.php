@@ -246,7 +246,7 @@ if(isset($_SESSION['id']) )
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>USER-ID</th>
+                                <th>CUSTOMER-ID</th>
                                 <th>NAME</th>
                                 <th>EMAIL</th>
                                 <th>PHONE</th>
@@ -287,7 +287,7 @@ if(isset($_SESSION['id']) )
                                       font-size: 10px;
                                     }
                                   </style>
-                                    <td><?=$row['userid']; ?></td>
+                                    <td><?=$row['customerid']; ?></td>
                                     <td><?=$row['name']; ?></td>
                                     <td><?=$row['email']; ?></td>
                                     <td><?=$row['phone']; ?></td>
@@ -297,7 +297,6 @@ if(isset($_SESSION['id']) )
                                     <td><?=$row['address']; ?></td>
                                     <td>
                                     <a href="updatecustomer.php?showID=<?php echo $row['userid']?>" class=" btn btn-warning" style="font-size: 10px;"><i class="fas fa-edit"></i> Edit</a>  
-                                    <a href="showbill.php?showid=<?php echo $row['userid']?>" class=" btn btn-danger" style="font-size: 10px;">Show bill</a> &nbsp;
                      <a href="editprofile.php?UDTId=<?php echo $row['userid'] ?>" class=" btn  btn-primary" style="font-size: 10px;">Create Bill</a> </td> 
 
                                 </tr>

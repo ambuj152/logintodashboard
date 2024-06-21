@@ -260,6 +260,10 @@ if(isset($_SESSION['userid']))
                                 <th>PHONE</th>
                                 <th>ADDRESS</th>
                                 <th>GSTIN/UIN</th>
+                                <th>SIGN</th>
+                                <th>QR IMAGE</th>
+
+
                                 <th>Edit </th>
                                 <th>OPERATIONS</th>
                                 <th>Status</th>
@@ -286,13 +290,17 @@ if(isset($_SESSION['userid']))
                                 ?>
                                 <tr style="font-size:13px">
 
-                                    <td><?=$row['companyid']; ?></td>
-                                 <td><?=$row['fullname']; ?></td>
-                                    <td><?=$row['companyname']; ?></td>
-                                    <td><?=$row['email']; ?></td>
-                                    <td><?=$row['mobile']; ?></td>
-                                    <td><?=$row['address']; ?></td>
-                                    <td><?=$row['gstnumber']; ?></td>
+                                    <td><?php echo $row['companyid']; ?></td>
+                                    <td><?php echo $row['fullname']; ?></td>
+                                    <td><?php echo $row['companyname']; ?></td>
+                                    <td><?php echo $row['email']; ?></td>
+                                    <td><?php echo $row['mobile']; ?></td>
+                                    <td><?php echo $row['address']; ?></td>
+                                    <td><?php echo $row['gstnumber']; ?></td>
+                                    <td><img src="../<?php echo $row['filepath']; ?>" alt="" width="100px"></td>
+                                    <td><img src="../<?php echo $row['qr']; ?>" alt="" width="100px"></td>
+
+
                                     <td><a href="updatecompany.php?cu=<?php echo $row['id'];?>"><button class="btn btn-warning"> Edit</button></a></td>
                                     <td>
                                       <form action="" method="post">

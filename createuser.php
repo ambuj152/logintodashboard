@@ -100,6 +100,16 @@ if(isset($_SESSION['id']) )
   }
 
   /* Style for form inputs */
+  select{
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+  }
   input[type="text"],
   input[type="email"],
   input[type="checkbox"] {
@@ -112,7 +122,7 @@ if(isset($_SESSION['id']) )
     background-color: #f8f8f8;
     transition: all 0.3s ease;
   }
-
+  select:focus,
   input[type="text"]:focus,
   input[type="email"]:focus,
   input[type="checkbox"]:focus {
@@ -149,7 +159,20 @@ if(isset($_SESSION['id']) )
   .master-data-link:hover {
     color: #333;
   }
+  select{
+    width: 100% !important;
+    height: 45px !important;
+    padding: 15px !important;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    border: 1px solid grey !important;
+    border-radius: 8px !important;
+    background-color: #f8f8f8 !important;
+    transition: all 0.3s ease;
+    font-size: 16px;
 
+  }
+  input[type="number"],
   input[type="text"],
   input[type="email"],
   input[type="checkbox"] {
@@ -164,13 +187,13 @@ if(isset($_SESSION['id']) )
     transition: all 0.3s ease;
     font-size: 16px;
   }
-
+  select::placeholder,
   input[type="text"]::placeholder,
   input[type="email"]::placeholder {
     color: #888;
     font-size: 14px;
   }
-
+  select:focus,
   input[type="text"]:focus,
   input[type="email"]:focus,
   input[type="checkbox"]:focus {
@@ -202,7 +225,7 @@ if(isset($_SESSION['id']) )
     <div class="col-md-4 mb-3">
       <label>Mobile Number</label>
              
-        <input type="text" class="form-control is-invalid" name="phone"  placeholder="Mobile"
+        <input type="number" class="form-control is-invalid" name="phone"  placeholder="Mobile"
            required>
        
       </div>
@@ -233,16 +256,19 @@ if(isset($_SESSION['id']) )
   <div class="form-row">
     
     <div class="col-md-4 mb-3">
-      <label>State</label>
-      <input type="text" class="form-control is-invalid" name="state"  placeholder="State"
-        required>
+    <label>State</label>
+      <select class="form-control is-invalid" id="property" name="state">
+        <option selected>Select State</option>
+        <option value="Up">Uttar Pradesh</option>
+        <option value="other">Other</option>
+      </select>
       <div class="invalid-feedback">
       &nbsp;
       </div>
     </div>
     <div class="col-md-4 mb-3">
       <label>Zip</label>
-      <input type="text" class="form-control is-invalid" name="zip"  placeholder="Zip"
+      <input type="number" class="form-control is-invalid" name="zip"  placeholder="Zip"
         required>
       <div class="invalid-feedback">
        &nbsp;

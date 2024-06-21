@@ -361,12 +361,22 @@ th, td {
         $tax="SELECT * FROM `bill` WHERE `companyid`='$companyid' AND `serial`= '$userid' ";
         $calc=mysqli_query($conn, $tax);
         $check=mysqli_fetch_assoc($calc);
-        $sgst= $check['tax-p']/2;
+
+        $igst= $check['tax-p'];
+        $sgst= $igst/2;
+
+        // $sgst= $check['tax-p']/2;
         
         }
+
+        $state= $c['state'];
+         $state;
+
+            if($state=='Up'){
+              $sgst=$check['tax-p']/2;
         ?>
 
-                                <td colspan="3" style="border-top:none; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b> <?php echo $sgst;?>% CGST </b> </p></td>
+<td colspan="3" style="border-top:none; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b> <?php echo $sgst;?>% CGST </b> </p></td>
                                 <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui; padding-right:20px; text-align:right;"> ₹  <?php
                                 echo $agst=($sgst/100)*$totalamt;
                                   ?></p>
@@ -378,21 +388,131 @@ th, td {
                       <td colspan="3" style="border-left:none;  padding-top:5px;padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b><?php echo $sgst; ?>% SGST </b>  </p></td>
                       <td style="border-left:none !important; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui;border:none; padding-right:20px; text-align:right">  ₹
                       <?php
+
+
+
                          echo $cgst=($sgst/100)*$totalamt;
+
+                       
+
                       ?></p>
                         
                       </td>
         </tr>
 
+        <?php
+            }
+
+            else{
+        ?>
+
+        <tr>
+        <td colspan="3" style="border-top:none; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b>0% SGST </b> </p></td>
+                                <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui; padding-right:20px; text-align:right;"> ₹ 0  <?php
+                               
+                                  ?></p>
+                                  
+                                </td>
+
+        </tr>
+<tr>
+  
+<td colspan="3" style="border-top:none; border-left:none; padding:5px; padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b>0% CGST </b> </p></td>
+                                <td  style="border-top:none; border-left:none;border-right:none; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui; padding-right:20px; text-align:right;"> ₹ 0  <?php
+                               
+                                  ?></p>
+                                  
+                                </td>
+</tr>
+        <tr style=" border:none">
+        
+
+<td colspan="3" style="border-left:none;  padding-top:5px;padding-left:20px;"><p style="font-size:11px;font-family: system-ui;"><b><?php 
+
+//  $igst;
+//  if(is_float($igst)) {
+  echo $igst;
+// }
+
+
+// else
+// {
+//   $formatted_number = $igst . ".0";
+// echo $formatted_number;
+  
+// }
+
+?>% IGST </b>  </p></td>
+<td style="border-left:none !important; padding-left:20px; padding:5px;"><p  style="font-size:11px;font-family: system-ui;border:none; padding-right:20px; text-align:right">  ₹
+<?php
+   echo $igst=($igst/100)*$totalamt;
+
+   
+?></p>
+  
+</td>
+</tr>
+
+<?php
+            }
+
+            if($state=='Up')
+            {
+?>
+
                             <tr style="border:none">
 
-          <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b><?php echo $check['tax-p']?>% GST = </b> (<?php echo $sgst;?> %SGST + <?php echo $sgst;?>% CGST)</p></td>
+          <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b>
+            <?php echo $check['tax-p']?>% GST = </b> (<?php echo $sgst;?>% SGST + <?php echo $sgst;?>% CGST)</p></td>
           <td style=" border-left:none;  padding:5px;"><p  style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px;"> ₹ <?php
            echo $gst=$cgst+$agst;
+           
             ?></p>
             
           </td>
         </tr>
+          <?php
+            }
+            else{
+              ?>
+
+              <tr style="border:none">
+
+              <td colspan="3" style="border-left:none; margin-left:200px;"><p style="font-size:11px;font-family: system-ui;"><b>
+                <?php echo $check['tax-p']?>% GST (IGST) </p></td>
+              <td style=" border-left:none;  padding:5px;">
+              <p  style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px;"> ₹ <?php
+        $igst= $check['tax-p'];
+   echo $igst=($igst/100)*$totalamt;
+
+
+              //  echo $gst=$igst;
+               
+                ?></p>
+                
+              </td>
+            </tr>
+
+<?php
+            }
+
+            if($state=='Up')
+            {
+              ?>
+              <tr style="border:none; background:#eff5f5">
+
+              <td colspan="3" style="border-left:none;padding-left:20px;padding:5px;">
+                    <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax-p']; ?></b><p>
+              </td>
+              <td style="border-left:none; padding-left:20px">
+                    <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($gst+$totalamt); ?></b><p>
+
+              </td>
+        </tr>
+<?php
+            }
+            else{
+          ?>
                           
            <tr style="border:none; background:#eff5f5">
 
@@ -400,11 +520,13 @@ th, td {
                       <p style="font-size:11px;font-family: system-ui;"><b> TOTAL AMOUNT <?php $check['tax-p']; ?></b><p>
                 </td>
                 <td style="border-left:none; padding-left:20px">
-                      <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($gst+$totalamt); ?></b><p>
+                      <p style="font-size:11px;font-family: system-ui;text-align:right;padding-right:20px"><b>₹ <?php echo $total= round($igst+$totalamt); ?></b><p>
 
                 </td>
           </tr>
-                             <tr style="border:none; border-top: 1px solid grey;">
+           <?php }
+           ?>
+                                  <tr style="border:none; border-top: 1px solid grey;">
 
                 <td colspan="3" width="50%" style="border-left:none;border-top: 1px solid grey; border-right:1px solid grey;padding-left:20px;">
 
@@ -467,7 +589,19 @@ document.getElementById("total_amt").innerHTML = str;
               </tr>
                              <tr style="border:none;">
 
-                <td colspan="3" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;"> <img src="images/QR.png" width="80px">  <p style="font-size:11px;font-family: system-ui;margin-top:20px; margin-bottom:0px;"> <b>Declaration :  </b> We Declare that this Invoice shows the actual
+                <td colspan="3" style="padding-left:20px; padding-right:20px; border-left:none; border-right:1px solid grey;">
+                <?php if(!empty($w['qr'])){
+                  ?> 
+                  <img src="<?php echo $w['qr']?>" width="80px">  
+                  <?php
+                }
+                  else{
+                    echo "";
+
+
+                  }
+                  ?>  
+                <p style="font-size:11px;font-family: system-ui;margin-top:20px; margin-bottom:0px;"> <b>Declaration :  </b> We Declare that this Invoice shows the actual
             Price of the services/goods described and that all perticular are true and correct.    </p></td>
                 <td style="padding:20px; border-left:none; text-align:right;">
                 <p style="font-size:11px;font-family: system-ui;"> <b><?php echo ucfirst($w['companyname']);?> </b></p>

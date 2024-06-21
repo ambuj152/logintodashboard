@@ -33,6 +33,12 @@ $querychaloa= mysqli_query($conn, $billinsert);
 foreach($querychaloa as $rest){
 
  $companyid=$_SESSION['companyid'];
+ $email=$rest['email'];
+ $address=$rest['address'];
+ $phone=$rest['phone'];
+ $customerid=$rest['customerid'];
+ $gst=$rest['customergst'];
+ $companyname=$rest['companyname'];
   
 $services=$rest['services'];
 $hsn=$rest['hsn'];
@@ -43,7 +49,8 @@ $orderdate=$rest['orderdate'];
 $tax=$rest['tax'];
 $customerid=$rest['customerid'];
 $name=$rest['name'];
-$insertSql = "INSERT INTO `bill` (`userid`,`services`, `quantity`, `price`,`serial`,`modeofpayment`,`orderdate`, `companyid`,`tax-p`,`hsn`,`customerid`,`name`) VALUES ('$userid','$services' , '$quantity', '$price', '$serial', '$modeofpayment','$orderdate','$companyid','$tax','$hsn','$customerid','$name' ) ";
+$state=$rest['state'];
+$insertSql = "INSERT INTO `bill` (`userid`,`services`, `quantity`, `price`,`serial`,`modeofpayment`,`orderdate`, `companyid`,`tax-p`,`hsn`,`customerid`,`name`,`email`,`phone`,`gst`,`address`,`state`,`companyname`) VALUES ('$userid','$services' , '$quantity', '$price', '$serial', '$modeofpayment','$orderdate','$companyid','$tax','$hsn','$customerid','$name','$email','$phone','$gst','$address','$state','$companyname' ) ";
 $sql=mysqli_query($conn, $insertSql);
 
 

@@ -184,9 +184,17 @@ body {
         <label >Invoice Prefix</label>
         <input type="text" name="prefix" class="form-control" id="pass" placeholder="Invoice prefix" required>
       </div>
-      <div class="mb-6">
-                            <label for="fileInput" class="form-label">Choose Signature</label>
+      <div class="col-sm-6">&nbsp;</div>
+      <div class="col-sm-6">&nbsp;</div>
+
+      
+      <div class="col-sm-6">
+                            <label for="fileInput" class="form-label"  style="border-bottom: 5px solid red;">Choose Signature</label>
                             <input type="file" class="form-control" id="fileInput" name="filename" required >
+                          </div>
+                          <div class="col-sm-6">
+                            <label for="fileInput" class="form-label" style="border-bottom: 5px solid blue;">Choose QR Image</label>
+                            <input type="file" class="form-control" id="fileInput" name="filename2" >
                           </div>
       
   
@@ -260,7 +268,21 @@ $target_file ='../'. $target_file1;
 	move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file);
   }
 
-  $query="INSERT INTO `vendors`( `companyid`,`fullname`, `companyname`, `email`, `address`, `dataeofregistration`, `mobile`, `gstnumber`, `account`, `ifsc`, `bank`, `username`, `password`, `taxpercentage`,`companypan`,`in-prefix`,`status`,`filepath`) VALUES ('$unique_id','$fullname','$companyname','$email','$address','$dateofregistration','$mobile','$gstnumber','$account','$ifsc','$bank','$username','$password','$taxation', '$pancard','$prefix','$status','$target_file1')";
+
+  $target_file2=$_POST['old_photo2'];
+
+
+  $target_dir = "QRIMG/";
+
+  if(!empty($_FILES['filename2']['name'])){  
+
+   echo $target_file1 = 'QRIMG/'.base64_encode(date('Y/m/d').time()).'.png';
+$target_file ='../'. $target_file1;
+
+	move_uploaded_file($_FILES["filename2"]["tmp_name"], $target_file);
+  }
+
+  $query="INSERT INTO `vendors`( `companyid`,`fullname`, `companyname`, `email`, `address`, `dataeofregistration`, `mobile`, `gstnumber`, `account`, `ifsc`, `bank`, `username`, `password`, `taxpercentage`,`companypan`,`in-prefix`,`status`,`filepath`,`qr``) VALUES ('$unique_id','$fullname','$companyname','$email','$address','$dateofregistration','$mobile','$gstnumber','$account','$ifsc','$bank','$username','$password','$taxation', '$pancard','$prefix','$status','$target_file1','$target_file2')";
   $fire=mysqli_query($conn,$query);
 
   if($fire){
